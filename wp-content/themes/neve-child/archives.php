@@ -18,7 +18,7 @@ get_header();
 				do_action( 'neve_page_header', 'index' );
 				do_action( 'neve_before_posts_loop' );
 
-        $wpb_all_query = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>-1));
+        $wpb_all_query = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish'));
         //print_r($wpb_all_query);
         if ( $wpb_all_query->have_posts() ){
 					/* Start the Loop. */
