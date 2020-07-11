@@ -1,0 +1,36 @@
+<?php
+/**
+ * @package WordPress
+ * @subpackage RAB_Theme
+ */
+get_header();
+?>
+
+<div id="single_page">
+	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		
+		<div class="post">
+			<?php the_title('<h3>', '</h3>'); ?>
+			<div class="clear"></div>
+			<div class="content">
+				<?php the_content(); ?>
+			</div><!--.content-->
+			
+			<div class="clear"></div>
+			
+			<p class="post_nav"><a href="#header">Back to top</a> | <a href="<?php bloginfo('url'); ?>">Back to home</a></p>
+		</div><!--.post-->
+		
+	<?php endwhile; else: ?>
+	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+	<?php endif; ?>
+	<div class="clear"></div>
+</div>
+
+<div class="sidebar">
+	<?php if ( !function_exists('dynamic_sidebar')
+		|| !dynamic_sidebar('news_posts') ) : ?>
+	<?php endif; ?>
+</div>
+<div class="clear"></div>
+<?php get_footer(); ?>

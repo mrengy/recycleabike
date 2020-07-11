@@ -1,0 +1,6 @@
+.triangle { display: none; }
+.menu { display: none;}
+
+.fund_container #sidebar {
+	background-color: #1DC3D4 !important;
+}
