@@ -14,10 +14,13 @@ get_header();
 			<?php do_action( 'neve_do_sidebar', 'blog-archive', 'left' ); ?>
 			<div class="nv-index-posts blog col">
 				<?php
-				do_action( 'neve_before_loop' );
+        do_action( 'neve_before_loop' );
 				do_action( 'neve_page_header', 'index' );
 				do_action( 'neve_before_posts_loop' );
-				if ( have_posts() ) {
+
+        $wpb_all_query = new WP_Query(array('post_type'=>'post', 'post_status'=>'publish', 'posts_per_page'=>-1));
+        //print_r($wpb_all_query);
+        if ( $wpb_all_query->have_posts() ){
 					/* Start the Loop. */
 					echo '<div class="posts-wrapper row">';
 
@@ -36,9 +39,24 @@ get_header();
 						$post_index = 1;
 					}
           */
-					while ( have_posts() ) {
-						the_post();
-						get_template_part( 'template-parts/tmpl_archives' );
+					while ( $wpb_all_query->have_posts() ) {
+						$wpb_all_query->the_post();
+						//$wpb_all_query->get_template_part( 'template-parts/tmpl_archives' );
+            ?>
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
+              <header class="entry-header">
+                <a href="<?php the_permalink()?>"><h2 class="entry-title"><?php the_title(); ?></h2></a>
+              </header><!-- .entry-header -->
+
+              <div class="entry-excerpt">
+                <?php the_excerpt(); ?>
+
+                <!-- THIS IS WHERE THE FUN PART GOES -->
+              </div><!-- .entry-content -->
+
+            </article><!-- #post-## -->
+            <?php
             /*
 						if ( $pagination_type !== 'infinite' ) {
 							if ( $post_index === $hook_after_post && $hook_after_post !== - 1 ) {
@@ -48,13 +66,17 @@ get_header();
 						}
             */
 					}
-					echo '</div>';
+          wp_reset_postdata();
+
+          echo '</div>';
+
 					if ( ! is_singular() ) {
 						do_action( 'neve_do_pagination', 'blog-archive' );
 					}
 				} else {
 					get_template_part( 'template-parts/content', 'none' );
 				}
+
 				?>
 				<div class="w-100"></div>
 				<?php do_action( 'neve_after_posts_loop' ); ?>
