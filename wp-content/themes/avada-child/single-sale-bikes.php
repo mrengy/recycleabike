@@ -13,8 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php get_header(); ?>
 
-<?php $sbquery = new WP_Query( array('post_type' => 'sale-bikes','posts_per_page' => 21 ) ); ?>
-
 <section id="content" <?php Avada()->layout->add_style( 'content_style' ); ?>>
 	<?php $post_pagination = get_post_meta( $post->ID, 'pyre_post_pagination', true ); ?>
 	<?php if ( ( Avada()->settings->get( 'blog_pn_nav' ) && 'no' !== $post_pagination ) || ( ! Avada()->settings->get( 'blog_pn_nav' ) && 'yes' === $post_pagination ) ) : ?>
@@ -24,8 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	<?php endif; ?>
 
-	<?php while ( $sbquery->have_posts() ) : ?>
-		<?php $sbquery->the_post(); ?>
+	<?php while ( have_posts() ) : ?>
+		<?php the_post(); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class( 'post' ); ?>>
 			<?php $full_image = ''; ?>
 			<?php if ( 'above' === Avada()->settings->get( 'blog_post_title' ) ) : ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Archives template for sale bikes.
+ * Template Name: Sale Bikes Archive
  *
  * @package Avada
  * @subpackage Templates
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	<?php endif; ?>
 
-	<?php get_template_part( 'templates/blog', 'layout' ); ?>
+	<?php get_template_part( 'templates/blog', 'sale-bikes' ); ?>
 </section>
 <?php do_action( 'avada_after_content' ); ?>
 <?php
