@@ -38,4 +38,29 @@ if (!preg_match_all('#\b(localhost|devsite|stage)\b#', site_url())) {
 <?php
   }
 }
+
+//create custom post type
+function sale_bikes_init() {
+    $args = array(
+      'label' => 'Sale Bikes',
+        'public' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'sale-bikes'),
+        'query_var' => true,
+        'menu_icon' => 'dashicons-store',
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'trackbacks',
+            'custom-fields',
+            'revisions',
+            'thumbnail',
+            'page-attributes',)
+        );
+    register_post_type( 'sale-bikes', $args );
+}
+add_action( 'init', 'sale_bikes_init' );
 ?>
