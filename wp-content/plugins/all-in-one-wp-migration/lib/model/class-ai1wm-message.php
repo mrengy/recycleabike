@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2016 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,22 +23,41 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
-class Ai1wm_Extension_Filter extends FilterIterator {
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
+}
 
-	protected $include = array();
+class Ai1wm_Message {
 
-	public function __construct( Iterator $iterator, $include = array() ) {
-		parent::__construct( $iterator );
-
-		// Set include filter
-		$this->include = $include;
-	}
-
-	public function accept() {
-		if ( in_array( pathinfo( $this->getInnerIterator()->getFilename(), PATHINFO_EXTENSION ), $this->include ) ) {
-			return true;
+	public static function flash( $type, $message ) {
+		if ( ( $messages = get_option( AI1WM_MESSAGES, array() ) ) !== false ) {
+			return update_option( AI1WM_MESSAGES, array_merge( $messages, array( $type => $message ) ) );
 		}
 
 		return false;
+	}
+
+	public static function has( $type ) {
+		if ( ( $messages = get_option( AI1WM_MESSAGES, array() ) ) ) {
+			if ( isset( $messages[ $type ] ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static function get( $type ) {
+		$message = null;
+		if ( ( $messages = get_option( AI1WM_MESSAGES, array() ) ) ) {
+			if ( isset( $messages[ $type ] ) && ( $message = $messages[ $type ] ) ) {
+				unset( $messages[ $type ] );
+			}
+
+			// Set messages
+			update_option( AI1WM_MESSAGES, $messages );
+		}
+
+		return $message;
 	}
 }

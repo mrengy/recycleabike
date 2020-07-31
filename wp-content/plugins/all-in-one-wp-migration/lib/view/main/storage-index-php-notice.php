@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2016 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,19 +23,23 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
-class Ai1wm_Import_Resolve {
-
-	public static function execute( $params ) {
-
-		// Set progress
-		Ai1wm_Status::info( __( 'Resolving URL address...', AI1WM_PLUGIN_NAME ) );
-
-		// HTTP resolve
-		Ai1wm_Http::resolve( admin_url( 'admin-ajax.php?action=ai1wm_resolve' ) );
-
-		// Set progress
-		Ai1wm_Status::info( __( 'Done resolving URL address...', AI1WM_PLUGIN_NAME ) );
-
-		return $params;
-	}
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
 }
+?>
+
+<div class="error">
+	<p>
+		<?php
+		printf(
+			__(
+				'All-in-One WP Migration is not able to create <strong>%s</strong> file. ' .
+				'Try to change permissions of the parent folder or send us an email at ' .
+				'<a href="mailto:support@servmask.com">support@servmask.com</a> for assistance.',
+				AI1WM_PLUGIN_NAME
+			),
+			AI1WM_STORAGE_INDEX_PHP
+		)
+		?>
+	</p>
+</div>

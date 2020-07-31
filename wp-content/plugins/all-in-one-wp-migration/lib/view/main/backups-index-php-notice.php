@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2016 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,55 +23,23 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
-class Ai1wm_Http_Curl extends Ai1wm_Http_Abstract {
-
-	public function get( $url, $blocking = false ) {
-
-		$headers = array();
-
-		// Set headers
-		foreach ( $this->headers as $key => $value ) {
-			$headers[] = "{$key}: {$value}";
-		}
-
-		// Set scheme
-		$scheme = parse_url( $url, PHP_URL_SCHEME );
-
-		// Set host
-		$host = parse_url( $url, PHP_URL_HOST );
-
-		// Set port
-		$port = parse_url( $url, PHP_URL_PORT );
-
-		// Set cURL client
-		$handle = curl_init();
-
-		// Set cURL options
-		curl_setopt( $handle, CURLOPT_CONNECTTIMEOUT, 5 );
-		curl_setopt( $handle, CURLOPT_TIMEOUT, 5 );
-		curl_setopt( $handle, CURLOPT_URL, $url );
-		curl_setopt( $handle, CURLOPT_FOLLOWLOCATION, true );
-		curl_setopt( $handle, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $handle, CURLOPT_SSL_VERIFYHOST, false );
-		curl_setopt( $handle, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt( $handle, CURLOPT_HEADER, false );
-		curl_setopt( $handle, CURLOPT_HTTPHEADER, $headers );
-
-		// Send data to server
-		if ( ! curl_exec( $handle ) ) {
-			if ( $scheme === 'https' ) {
-				if ( empty( $port ) ) {
-					curl_setopt( $handle, CURLOPT_URL, str_replace( "https://{$host}", "http://{$host}:443", $url ) );
-				} else {
-					curl_setopt( $handle, CURLOPT_URL, str_replace( "https://{$host}:{$port}", "http://{$host}:{$port}", $url ) );
-				}
-
-				// Re-send data to server
-				curl_exec( $handle );
-			}
-		}
-
-		// Close cURL handle
-		curl_close( $handle );
-	}
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
 }
+?>
+
+<div class="error">
+	<p>
+		<?php
+		printf(
+			__(
+				'All-in-One WP Migration is not able to create <strong>%s</strong> file. ' .
+				'Try to change permissions of the parent folder or send us an email at ' .
+				'<a href="mailto:support@servmask.com">support@servmask.com</a> for assistance.',
+				AI1WM_PLUGIN_NAME
+			),
+			AI1WM_BACKUPS_INDEX_PHP
+		)
+		?>
+	</p>
+</div>

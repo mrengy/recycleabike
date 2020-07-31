@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2016 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,14 +23,55 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
-class Ai1wm_Http_Factory {
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
+}
 
-	public static function create( $type ) {
-		if ( $type === 'curl' ) {
-			return new Ai1wm_Http_Curl;
+class Ai1wm_Directory {
+
+	/**
+	 * Create directory (recursively)
+	 *
+	 * @param  string  $path Path to the directory
+	 * @return boolean
+	 */
+	public static function create( $path ) {
+		if ( @is_dir( $path ) ) {
+			return true;
 		}
 
-		return new Ai1wm_Http_Stream;
+		return @mkdir( $path, 0777, true );
 	}
 
+	/**
+	 * Delete directory (recursively)
+	 *
+	 * @param  string  $path Path to the directory
+	 * @return boolean
+	 */
+	public static function delete( $path ) {
+		if ( @is_dir( $path ) ) {
+			try {
+				// Iterate over directory
+				$iterator = new Ai1wm_Recursive_Directory_Iterator( $path );
+
+				// Recursively iterate over directory
+				$iterator = new Ai1wm_Recursive_Iterator_Iterator( $iterator, RecursiveIteratorIterator::CHILD_FIRST, RecursiveIteratorIterator::CATCH_GET_CHILD );
+
+				// Remove files and directories
+				foreach ( $iterator as $item ) {
+					if ( $item->isDir() ) {
+						@rmdir( $item->getPathname() );
+					} else {
+						@unlink( $item->getPathname() );
+					}
+				}
+			} catch ( Exception $e ) {
+			}
+
+			return @rmdir( $path );
+		}
+
+		return false;
+	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2016 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,45 +23,63 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
-class Ai1wm_Resolve_Controller {
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
+}
 
-	public static function resolve( $params = array() ) {
+class Ai1wm_Notification {
 
-		// Set error handler
-		@set_error_handler( 'Ai1wm_Handler::error' );
-
-		// Set params
-		if ( empty( $params ) ) {
-			$params = ai1wm_urldecode( $_REQUEST );
+	public static function ok( $subject, $message ) {
+		// Enable notifications
+		if ( ! apply_filters( 'ai1wm_notification_ok_toggle', false ) ) {
+			return;
 		}
 
-		// Set secret key
-		$secret_key = null;
-		if ( isset( $params['secret_key'] ) ) {
-			$secret_key = $params['secret_key'];
+		// Set email
+		if ( ! ( $email = apply_filters( 'ai1wm_notification_ok_email', get_option( 'admin_email', false ) ) ) ) {
+			return;
 		}
 
-		// Verify secret key by using the value in the database, not in cache
-		if ( $secret_key !== get_option( AI1WM_SECRET_KEY ) ) {
-			Ai1wm_Status::error(
-				sprintf( __( 'Unable to authenticate your request with secret_key = "%s"', AI1WM_PLUGIN_NAME ), $secret_key ),
-				__( 'Unable to resolve', AI1WM_PLUGIN_NAME )
-			);
-			exit;
+		// Set subject
+		if ( ! ( $subject = apply_filters( 'ai1wm_notification_ok_subject', $subject ) ) ) {
+			return;
 		}
 
-		// Set IP address
-		if ( isset( $params['url_ip'] ) && ( $ip = $params['url_ip'] ) ) {
-			update_option( AI1WM_URL_IP, $ip );
+		// Set message
+		if ( ! ( $message = apply_filters( 'ai1wm_notification_ok_message', $message ) ) ) {
+			return;
 		}
 
-		// Set adapter
-		if ( isset( $params['url_adapter'] ) && ( $adapter = $params['url_adapter'] ) ) {
-			if ( $adapter === 'curl' ) {
-				update_option( AI1WM_URL_ADAPTER, 'curl' );
-			} else {
-				update_option( AI1WM_URL_ADAPTER, 'stream' );
-			}
+		// Send email
+		if ( ai1wm_is_scheduled_backup() ) {
+			wp_mail( $email, $subject, $message, array( 'Content-Type: text/html; charset=UTF-8' ) );
+		}
+	}
+
+	public static function error( $subject, $message ) {
+		// Enable notifications
+		if ( ! apply_filters( 'ai1wm_notification_error_toggle', false ) ) {
+			return;
+		}
+
+		// Set email
+		if ( ! ( $email = apply_filters( 'ai1wm_notification_error_email', get_option( 'admin_email', false ) ) ) ) {
+			return;
+		}
+
+		// Set subject
+		if ( ! ( $subject = apply_filters( 'ai1wm_notification_error_subject', $subject ) ) ) {
+			return;
+		}
+
+		// Set message
+		if ( ! ( $message = apply_filters( 'ai1wm_notification_error_message', $message ) ) ) {
+			return;
+		}
+
+		// Send email
+		if ( ai1wm_is_scheduled_backup() ) {
+			wp_mail( $email, $subject, $message, array( 'Content-Type: text/html; charset=UTF-8' ) );
 		}
 	}
 }

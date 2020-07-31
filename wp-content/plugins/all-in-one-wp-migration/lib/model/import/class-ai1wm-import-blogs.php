@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2016 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,10 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
+}
+
 class Ai1wm_Import_Blogs {
 
 	public static function execute( $params ) {
@@ -36,58 +40,114 @@ class Ai1wm_Import_Blogs {
 		if ( true === is_file( ai1wm_multisite_path( $params ) ) ) {
 
 			// Read multisite.json file
-			$handle = fopen( ai1wm_multisite_path( $params ), 'r' );
-			if ( $handle === false ) {
-				throw new Ai1wm_Import_Exception( __( 'Unable to read multisite.json file', AI1WM_PLUGIN_NAME ) );
-			}
+			$handle = ai1wm_open( ai1wm_multisite_path( $params ), 'r' );
 
 			// Parse multisite.json file
-			$multisite = fread( $handle, filesize( ai1wm_multisite_path( $params ) ) );
+			$multisite = ai1wm_read( $handle, filesize( ai1wm_multisite_path( $params ) ) );
 			$multisite = json_decode( $multisite, true );
 
 			// Close handle
-			fclose( $handle );
+			ai1wm_close( $handle );
 
 			// Validate
 			if ( empty( $multisite['Network'] ) ) {
 				if ( isset( $multisite['Sites'] ) && ( $sites = $multisite['Sites'] ) ) {
-					if ( count( $sites ) === 1 && ( $site = current( $sites ) ) ) {
+					if ( count( $sites ) === 1 && ( $subsite = current( $sites ) ) ) {
+
+						// Set internal Site URL (backward compatibility)
+						if ( empty( $subsite['InternalSiteURL'] ) ) {
+							$subsite['InternalSiteURL'] = null;
+						}
+
+						// Set internal Home URL (backward compatibility)
+						if ( empty( $subsite['InternalHomeURL'] ) ) {
+							$subsite['InternalHomeURL'] = null;
+						}
+
+						// Set active plugins (backward compatibility)
+						if ( empty( $subsite['Plugins'] ) ) {
+							$subsite['Plugins'] = array();
+						}
+
+						// Set active template (backward compatibility)
+						if ( empty( $subsite['Template'] ) ) {
+							$subsite['Template'] = null;
+						}
+
+						// Set active stylesheet (backward compatibility)
+						if ( empty( $subsite['Stylesheet'] ) ) {
+							$subsite['Stylesheet'] = null;
+						}
+
+						// Set uploads path (backward compatibility)
+						if ( empty( $subsite['Uploads'] ) ) {
+							$subsite['Uploads'] = null;
+						}
+
+						// Set uploads URL path (backward compatibility)
+						if ( empty( $subsite['UploadsURL'] ) ) {
+							$subsite['UploadsURL'] = null;
+						}
+
+						// Set uploads path (backward compatibility)
+						if ( empty( $subsite['WordPress']['Uploads'] ) ) {
+							$subsite['WordPress']['Uploads'] = null;
+						}
+
+						// Set uploads URL path (backward compatibility)
+						if ( empty( $subsite['WordPress']['UploadsURL'] ) ) {
+							$subsite['WordPress']['UploadsURL'] = null;
+						}
+
+						// Set blog items
 						$blogs[] = array(
 							'Old' => array(
-								'BlogID'  => $site['BlogID'],
-								'SiteURL' => $site['SiteURL'],
-								'HomeURL' => $site['HomeURL'],
+								'BlogID'          => $subsite['BlogID'],
+								'SiteURL'         => $subsite['SiteURL'],
+								'HomeURL'         => $subsite['HomeURL'],
+								'InternalSiteURL' => $subsite['InternalSiteURL'],
+								'InternalHomeURL' => $subsite['InternalHomeURL'],
+								'Plugins'         => $subsite['Plugins'],
+								'Template'        => $subsite['Template'],
+								'Stylesheet'      => $subsite['Stylesheet'],
+								'Uploads'         => $subsite['Uploads'],
+								'UploadsURL'      => $subsite['UploadsURL'],
+								'WordPress'       => $subsite['WordPress'],
 							),
 							'New' => array(
-								'BlogID'  => null,
-								'SiteURL' => site_url(),
-								'HomeURL' => home_url(),
+								'BlogID'          => null,
+								'SiteURL'         => site_url(),
+								'HomeURL'         => home_url(),
+								'InternalSiteURL' => site_url(),
+								'InternalHomeURL' => home_url(),
+								'Plugins'         => $subsite['Plugins'],
+								'Template'        => $subsite['Template'],
+								'Stylesheet'      => $subsite['Stylesheet'],
+								'Uploads'         => get_option( 'upload_path' ),
+								'UploadsURL'      => get_option( 'upload_url_path' ),
+								'WordPress'       => array(
+									'UploadsURL' => ai1wm_get_uploads_url(),
+								),
 							),
 						);
 					} else {
-						throw new Ai1wm_Import_Exception(
-							__( 'The archive should contain <strong>Single WordPress</strong> site! Please revisit your export settings.', AI1WM_PLUGIN_NAME )
-						);
+						throw new Ai1wm_Import_Exception( __( 'The archive should contain <strong>Single WordPress</strong> site! Please revisit your export settings.', AI1WM_PLUGIN_NAME ) );
 					}
 				} else {
-					throw new Ai1wm_Import_Exception(
-						__( 'At least <strong>one WordPress</strong> site should be presented in the archive.', AI1WM_PLUGIN_NAME )
-					);
+					throw new Ai1wm_Import_Exception( __( 'At least <strong>one WordPress</strong> site should be presented in the archive.', AI1WM_PLUGIN_NAME ) );
 				}
 			} else {
-				throw new Ai1wm_Import_Exception(
-					__( 'Unable to import <strong>WordPress Network</strong> into WordPress <strong>Single</strong> site.', AI1WM_PLUGIN_NAME )
-				);
+				throw new Ai1wm_Import_Exception( __( 'Unable to import <strong>WordPress Network</strong> into WordPress <strong>Single</strong> site.', AI1WM_PLUGIN_NAME ) );
 			}
 		}
 
-		// Save blogs.json file
-		$handle = fopen( ai1wm_blogs_path( $params ), 'w' );
-		fwrite( $handle, json_encode( $blogs ) );
-		fclose( $handle );
+		// Write blogs.json file
+		$handle = ai1wm_open( ai1wm_blogs_path( $params ), 'w' );
+		ai1wm_write( $handle, json_encode( $blogs ) );
+		ai1wm_close( $handle );
 
 		// Set progress
-		Ai1wm_Status::info( __( 'Done preparing blogs...', AI1WM_PLUGIN_NAME ) );
+		Ai1wm_Status::info( __( 'Done preparing blogs.', AI1WM_PLUGIN_NAME ) );
 
 		return $params;
 	}

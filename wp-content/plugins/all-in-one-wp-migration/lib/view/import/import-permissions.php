@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2016 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,32 +23,21 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
-abstract class Ai1wm_Http_Abstract {
-
-	protected $headers = array(
-		'Accept'          => '*/*',
-		'Accept-Encoding' => '*',
-		'Accept-Charset'  => '*',
-		'Accept-Language' => '*',
-		'User-Agent'      => 'Mozilla/5.0',
-	);
-
-	public function __construct() {
-		// Set user agent
-		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
-			$this->headers['User-Agent'] = $_SERVER['HTTP_USER_AGENT'];
-		}
-	}
-
-	public function set_header( $key, $value ) {
-		$this->headers[ $key ] = $value;
-
-		return $this;
-	}
-
-	public function get_header( $key ) {
-		return $this->headers[ $key ];
-	}
-
-	abstract public function get( $url, $blocking = false );
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
 }
+?>
+
+<div class="ai1wm-message ai1wm-red-message ai1wm-clear" style="margin-top: 4em;">
+	<?php
+	printf(
+		__(
+			'<h3>Site could not be imported</h3>' .
+			'<p>Please make sure that storage directory <strong>%s</strong> has read and write permissions.</p>' .
+			'<p><a href="https://help.servmask.com/knowledgebase/invalid-file-permissions/" target="_blank">Technical details</a></p>',
+			AI1WM_PLUGIN_NAME
+		),
+		AI1WM_STORAGE_PATH
+	);
+	?>
+</div>

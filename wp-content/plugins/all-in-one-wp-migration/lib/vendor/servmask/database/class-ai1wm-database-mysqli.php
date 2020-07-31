@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2016 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,10 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
+}
+
 class Ai1wm_Database_Mysqli extends Ai1wm_Database {
 
 	/**
@@ -32,7 +36,14 @@ class Ai1wm_Database_Mysqli extends Ai1wm_Database {
 	 * @return resource
 	 */
 	public function query( $input ) {
-		return mysqli_query( $this->wpdb->dbh, $input, MYSQLI_USE_RESULT );
+		if ( mysqli_real_query( $this->wpdb->dbh, $input ) ) {
+			// Copy results from the internal mysqlnd buffer into the PHP variables fetched
+			if ( defined( 'MYSQLI_STORE_RESULT_COPY_DATA' ) ) {
+				return mysqli_store_result( $this->wpdb->dbh, MYSQLI_STORE_RESULT_COPY_DATA );
+			}
+
+			return mysqli_store_result( $this->wpdb->dbh );
+		}
 	}
 
 	/**
@@ -41,26 +52,35 @@ class Ai1wm_Database_Mysqli extends Ai1wm_Database {
 	 * @param  string $input String to escape
 	 * @return string
 	 */
-	public function quote( $input ) {
-		return "'" . mysqli_real_escape_string( $this->wpdb->dbh, $input ) . "'";
+	public function escape( $input ) {
+		return mysqli_real_escape_string( $this->wpdb->dbh, $input );
 	}
 
 	/**
-	 * Returns the error code for the most recent function call
+	 * Return the error code for the most recent function call
 	 *
-	 * @return int
+	 * @return integer
 	 */
 	public function errno() {
 		return mysqli_errno( $this->wpdb->dbh );
 	}
 
 	/**
-	 * Returns a string description of the last error
+	 * Return a string description of the last error
 	 *
 	 * @return string
 	 */
 	public function error() {
 		return mysqli_error( $this->wpdb->dbh );
+	}
+
+	/**
+	 * Return server version
+	 *
+	 * @return string
+	 */
+	public function version() {
+		return mysqli_get_server_info( $this->wpdb->dbh );
 	}
 
 	/**
@@ -84,10 +104,20 @@ class Ai1wm_Database_Mysqli extends Ai1wm_Database {
 	}
 
 	/**
+	 * Return the number for rows from MySQL results
+	 *
+	 * @param  resource $result MySQL resource
+	 * @return integer
+	 */
+	public function num_rows( $result ) {
+		return mysqli_num_rows( $result );
+	}
+
+	/**
 	 * Free MySQL result memory
 	 *
 	 * @param  resource $result MySQL resource
-	 * @return bool
+	 * @return boolean
 	 */
 	public function free_result( $result ) {
 		return mysqli_free_result( $result );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2014-2016 ServMask Inc.
+ * Copyright (C) 2014-2020 ServMask Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,30 +23,21 @@
  * ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Kangaroos cannot jump here' );
+}
+
 class Ai1wm_Export_Clean {
 
 	public static function execute( $params ) {
 
-		// Remove export log file
-		unlink( ai1wm_export_path( $params ) );
+		// Delete storage files
+		Ai1wm_Directory::delete( ai1wm_storage_path( $params ) );
 
-		// Get storage iterator
-		$iterator = new RecursiveIteratorIterator(
-			new Ai1wm_Recursive_Directory_Iterator( ai1wm_storage_path( $params ) ),
-			RecursiveIteratorIterator::CHILD_FIRST
-		);
-
-		// Remove files and directories
-		foreach ( $iterator as $item ) {
-			if ( $item->isDir() ) {
-				rmdir( $item->getPathname() );
-			} else {
-				unlink( $item->getPathname() );
-			}
+		// Exit in console
+		if ( defined( 'WP_CLI' ) ) {
+			return $params;
 		}
-
-		// Remove storage path
-		rmdir( ai1wm_storage_path( $params ) );
 
 		exit;
 	}
