@@ -6,8 +6,15 @@ Author: Mike Eng
 Author URI: http://mike-eng.com
 Template: Avada
 Version: 1.0.0
-License: GNU General Public License v2 or late
+License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, responsive-layout
 Text Domain: avada-child
 */
+
+/* find the option for this in avada theme, if possible
+overriding max width on header navigation
+*/
+.fusion-header-wrapper .fusion-row{
+  max-width:none !important;
+}
