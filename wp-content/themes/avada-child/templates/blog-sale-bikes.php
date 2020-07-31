@@ -280,6 +280,12 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 				<div class="fusion-post-content post-content">
 					<?php echo avada_render_post_title( $post->ID ); // WPCS: XSS ok. ?>
 
+						<?php $first_image = avada_child_get_first_image();
+							if (!empty($first_image)){ ?>
+								<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'avada-child' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php print($first_image); ?></a>
+								<?php //print_r($first_image); ?>
+							<?php }?>
+
 					<?php // Render post meta for grid and timeline layouts. ?>
 					<?php if ( 'grid' === $blog_layout || 'masonry' === $blog_layout || 'timeline' === $blog_layout ) : ?>
 						<?php echo avada_render_post_metadata( 'grid_timeline' ); // WPCS: XSS ok. ?>
@@ -293,6 +299,7 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 								$separator_styles .= ' sep-' . $separator_style;
 							}
 							?>
+
 							<div class="fusion-content-sep<?php echo esc_attr( $separator_styles ); ?>"></div>
 						<?php endif; ?>
 

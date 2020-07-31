@@ -63,4 +63,17 @@ function sale_bikes_init() {
     register_post_type( 'sale-bikes', $args );
 }
 add_action( 'init', 'sale_bikes_init' );
+
+// function to get first image from a post
+function avada_child_get_first_image() {
+  global $post, $posts;
+  $first_img = '';
+  ob_start();
+  ob_end_clean();
+  $output = preg_match_all('/<img.*?>/i', $post->post_content, $matches);
+	if ($output > 0){
+		$first_img = $matches[0][0];
+	}
+  return $first_img;
+}
 ?>
