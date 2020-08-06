@@ -64,16 +64,31 @@ function sale_bikes_init() {
 }
 add_action( 'init', 'sale_bikes_init' );
 
-// function to get first image from a post
+// function to get thumbnail from first image from a post
 function avada_child_get_first_image() {
   global $post, $posts;
   $first_img = '';
-  ob_start();
   ob_end_clean();
   $output = preg_match_all('/<img.*?>/i', $post->post_content, $matches);
 	if ($output > 0){
 		$first_img = $matches[0][0];
 	}
-  return $first_img;
+  //return $first_img;
+
+  //parsing src from image url
+  $doc = new DOMDocument();
+  $doc->loadHTML($first_img);
+  $xpath = new DOMXPath($doc);
+  $src = $xpath->evaluate("string(//img/@src)");
+
+  //return $src;
+  //removing hardcoded image size from url
+  $src_stripped = preg_replace('/-[0-9]+x[0-9]+/', '', $src);
+  //return $src_stripped;
+
+  $img_post_id = attachment_url_to_postid($src_stripped);
+  //return $img_post_id;
+  $thumbnail_img = wp_get_attachment_image($img_post_id, 'thumbnail');
+  return $thumbnail_img;
 }
 ?>
