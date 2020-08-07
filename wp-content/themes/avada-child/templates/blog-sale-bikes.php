@@ -278,8 +278,18 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 				<?php endif; ?>
 
 				<div class="fusion-post-content post-content">
-					<?php echo avada_render_post_title( $post->ID ); // WPCS: XSS ok. ?>
-
+					<h2 class="entry-title">
+						<a href="<?php the_permalink()?>">
+							<?php the_title(); ?>
+						</a>
+					</h2>
+					<?php
+						$stripped_price = avada_child_stripped_price();
+						if (!empty ($stripped_price) ){ ?>
+						<div class="price">
+							$<?php echo($stripped_price);?>
+						</div>
+					<?php } ?>
 						<?php $first_image = avada_child_get_first_image();
 							if (!empty($first_image)){ ?>
 								<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'avada-child' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php print($first_image); ?></a>

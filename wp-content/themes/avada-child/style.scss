@@ -22,3 +22,7 @@ overriding max width on header navigation
 .menu-text{
   text-transform: uppercase;
 }
+
+dl,dd{
+  display:inline;
+}

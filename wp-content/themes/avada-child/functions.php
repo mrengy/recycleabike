@@ -94,7 +94,6 @@ function avada_child_get_first_image() {
 }
 
 // hide built-in custom fields meta box by default
-
 add_filter('default_hidden_meta_boxes','hide_meta_box',10,2);
 function hide_meta_box($hidden, $screen) {
     //make sure we are dealing with the correct screen
@@ -105,4 +104,12 @@ function hide_meta_box($hidden, $screen) {
     }
     return $hidden;
   }
+
+// strip $ sign from price
+function avada_child_stripped_price(){
+  $price = get_post_meta(get_the_ID(),'price',true);
+  $price_stripped = preg_replace('/\$/', '', $price);
+  return $price_stripped;
+}
+
 ?>
