@@ -92,4 +92,17 @@ function avada_child_get_first_image() {
   $thumbnail_img = wp_get_attachment_image($img_post_id, 'thumbnail');
   return $thumbnail_img;
 }
+
+// hide built-in custom fields meta box by default
+
+add_filter('default_hidden_meta_boxes','hide_meta_box',10,2);
+function hide_meta_box($hidden, $screen) {
+    //make sure we are dealing with the correct screen
+    if ( ('post' == $screen->base) && ('sale-bikes' == $screen->id) ){
+      //lets hide everything
+      $hidden = array('postcustom');
+      //$hidden[] ='my_custom_meta_box';//for custom meta box, enter the id used in the add_meta_box() function.
+    }
+    return $hidden;
+  }
 ?>
