@@ -284,10 +284,10 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 						</a>
 					</h2>
 					<?php
-						$stripped_price = avada_child_stripped_price();
-						if (!empty ($stripped_price) ){ ?>
+						$cleaned_price = avada_child_stripped_price();
+						if (strlen($cleaned_price)>1){ ?>
 						<div class="price">
-							$<?php echo($stripped_price);?>
+							<?php echo($cleaned_price);?>
 						</div>
 					<?php } ?>
 						<?php $first_image = avada_child_get_first_image();

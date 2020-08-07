@@ -29,11 +29,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<aside class="attributes">
 				<dl>
 					<?php
-						$stripped_price = avada_child_stripped_price();
-						if (!empty ($stripped_price) ){
+						$cleaned_price = avada_child_stripped_price();
+						if (strlen($cleaned_price)>1){
 					?>
 							<dt class="price">Price</dt>
-							<dd class="price">$<?php echo $stripped_price;?></dd>
+							<dd class="price"><?php echo $cleaned_price;?></dd>
 					<?php } ?>
 
 					<?php

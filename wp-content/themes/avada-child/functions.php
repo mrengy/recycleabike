@@ -109,7 +109,8 @@ function hide_meta_box($hidden, $screen) {
 function avada_child_stripped_price(){
   $price = get_post_meta(get_the_ID(),'price',true);
   $price_stripped = preg_replace('/\$/', '', $price);
-  return $price_stripped;
+  $price_cleaned = '$'.$price_stripped;
+  return $price_cleaned;
 }
 
 ?>
