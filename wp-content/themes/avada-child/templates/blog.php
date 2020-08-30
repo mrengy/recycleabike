@@ -1,6 +1,6 @@
 <?php
 /**
- * Blog-sale-bikes layout template.
+ * Blog-layout template.
  *
  * @author     ThemeFusion
  * @copyright  (c) Copyright by ThemeFusion
