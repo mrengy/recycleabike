@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	<?php endif; ?>
 
-	<?php get_template_part( 'templates/blog', 'sale-bikes' ); ?>
+	<?php get_template_part( 'templates/blog', 'posts' ); ?>
 </section>
 <?php do_action( 'avada_after_content' ); ?>
 <?php
