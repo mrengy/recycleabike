@@ -102,7 +102,7 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 		<?php endif; ?>
 
 		<?php // Start the main loop. ?>
-		<?php $sbquery = new WP_Query( array('post_type' => 'sale-bikes','posts_per_page' => 21 ) ); ?>
+		<?php $sbquery = new WP_Query( array('post_type' => 'post','posts_per_page' => 21 ) ); ?>
 		<?php while ( $sbquery->have_posts() ) : ?>
 			<?php $sbquery->the_post(); ?>
 			<?php
