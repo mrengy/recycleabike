@@ -14,6 +14,9 @@ Text Domain: avada-child
 /* find the option for this in avada theme, if possible
 overriding max width on header navigation
 */
+#main {
+  margin-top: 3em; }
+
 .fusion-header-wrapper .fusion-row {
   max-width: none !important; }
 
