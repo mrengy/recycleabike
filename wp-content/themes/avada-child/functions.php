@@ -120,4 +120,9 @@ function avada_child_stripped_price(){
   return $price_cleaned;
 }
 
+//strip ellipses from excerpt
+function avada_child_strip_brackets($content) {
+	return str_replace('[&hellip;]', '&hellip;', $content);
+}
+add_filter('the_excerpt', 'avada_child_strip_brackets');
 ?>

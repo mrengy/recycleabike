@@ -16,6 +16,7 @@ Text Domain: avada-child
 $break-small: 360px;
 $break-med: 768px;
 $break-large: 1000px;
+$secondary-text-color:#414042b8;
 
 /* blog archive */
 .page-template-archive-php #main{
@@ -25,6 +26,20 @@ $break-large: 1000px;
 .fusion-meta-info{
   border-top:none !important;
   border-bottom: none !important;
+}
+
+h2.entry-title{
+  font-style: normal !important;
+  display: block;
+}
+
+.date{
+  font-style: italic;
+  color: $secondary-text-color;
+}
+
+div.fusion-post-content{
+  clear:both;
 }
 
 .first-image-link-from-post > img{

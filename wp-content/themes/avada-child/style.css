@@ -20,6 +20,17 @@ Text Domain: avada-child
   border-top: none !important;
   border-bottom: none !important; }
 
+h2.entry-title {
+  font-style: normal !important;
+  display: block; }
+
+.date {
+  font-style: italic;
+  color: #414042b8; }
+
+div.fusion-post-content {
+  clear: both; }
+
 .first-image-link-from-post > img {
   max-width: 40%; }
   @media only screen and (min-width: 768px) {
