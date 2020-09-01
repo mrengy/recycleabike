@@ -18,14 +18,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="fusion-page-title-row">
 		<div class="fusion-page-title-wrapper">
 			<div class="fusion-page-title-captions">
-				<?php switch ( get_post_type() ){
-					case 'sale-bikes':?>
-						<a id="sale-bikes-breadcrumb" href="../">&lsaquo; all sale bikes</a>
-						<?php break;
-					case 'post':?>
-						<a id="posts-breadcrumb" href="./blog">&lsaquo; all posts</a>
-						<?php break;
-				}
+				<?php
+					//breadcrumb
+					switch ( get_post_type() ){
+						case 'sale-bikes':?>
+							<a id="sale-bikes-breadcrumb" href="../">&lsaquo; all sale bikes</a>
+							<?php break;
+						case 'post':?>
+							<a id="posts-breadcrumb" href="./blog">&lsaquo; all posts</a>
+							<?php break;
+					}
 				?>
 
 				<?php if ( $title ) : ?>
