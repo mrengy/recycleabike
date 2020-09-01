@@ -24,6 +24,10 @@ overriding max width on header navigation
   border-bottom: none !important;
 }
 
+.first-image-link-from-post > img{
+  max-width: 250px;
+}
+
 .fusion-header-wrapper .fusion-row{
   max-width:none !important;
 }
