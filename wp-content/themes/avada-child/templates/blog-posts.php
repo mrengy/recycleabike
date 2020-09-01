@@ -101,8 +101,10 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 			<article class="fusion-post-grid fusion-post-masonry post fusion-grid-sizer"></article>
 		<?php endif; ?>
 
-		<?php // Start the main loop. ?>
-		<?php $blogquery = new WP_Query( array('post_type' => 'post') ); ?>
+		<?php // Start the main loop.
+			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+		?>
+		<?php $blogquery = new WP_Query( array('post_type' => 'post', 'paged' => $paged) ); ?>
 		<?php while ( $blogquery->have_posts() ) : ?>
 			<?php $blogquery->the_post(); ?>
 			<?php
@@ -410,7 +412,16 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 			}
 			?>
 
-		<?php endwhile; ?>
+		<?php endwhile;
+			//end the loop
+
+			// next_posts_link() usage with max_num_pages.
+	    next_posts_link( __( 'Older Entries', 'textdomain' ), $blogquery->max_num_pages );
+	    previous_posts_link( __( 'Newer Entries', 'textdomain' ) );
+
+	    // Clean up after the query and pagination.
+	    wp_reset_postdata();
+		?>
 
 		<?php if ( 'timeline' === $blog_layout && 1 < $post_count ) : ?>
 			</div>
