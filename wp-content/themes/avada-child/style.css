@@ -40,6 +40,15 @@ div.fusion-post-content {
     .first-image-link-from-post > img {
       max-width: 250px; } }
 
+/* pagination */
+#next-posts {
+  float: right;
+  clear: none; }
+
+#previous-posts {
+  float: left;
+  clear: none; }
+
 /* navigation */
 .fusion-main-menu > ul > li > a, .fusion-vertical-menu-widget ul.menu li a, .side-nav li a {
   font-size: 16px !important; }

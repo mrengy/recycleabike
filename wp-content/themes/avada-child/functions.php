@@ -125,4 +125,16 @@ function avada_child_strip_brackets($content) {
 	return str_replace('[&hellip;]', '&hellip;', $content);
 }
 add_filter('the_excerpt', 'avada_child_strip_brackets');
+
+
+//add classes to pagination links
+add_filter('next_posts_link_attributes', 'avada_child_next_posts_link_id');
+add_filter('previous_posts_link_attributes', 'avada_child_previous_posts_link_id');
+
+function avada_child_next_posts_link_id() {
+  return 'id="next-posts"';
+}
+function avada_child_previous_posts_link_id() {
+  return 'id="previous-posts"';
+}
 ?>

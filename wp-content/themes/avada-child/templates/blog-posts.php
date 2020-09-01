@@ -416,12 +416,16 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 			//end the loop
 
 			// next_posts_link() usage with max_num_pages.
-	    next_posts_link( __( 'Older Entries', 'textdomain' ), $blogquery->max_num_pages );
-	    previous_posts_link( __( 'Newer Entries', 'textdomain' ) );
+		?>
+			<div id="pagination">
+		<?php
+			previous_posts_link( __( 'Newer Posts', 'textdomain' ) );
+	    next_posts_link( __( 'Older Posts', 'textdomain' ), $blogquery->max_num_pages );
 
 	    // Clean up after the query and pagination.
 	    wp_reset_postdata();
 		?>
+			</div>
 
 		<?php if ( 'timeline' === $blog_layout && 1 < $post_count ) : ?>
 			</div>
