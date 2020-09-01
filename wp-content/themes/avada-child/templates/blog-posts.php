@@ -102,9 +102,9 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 		<?php endif; ?>
 
 		<?php // Start the main loop. ?>
-		<?php $sbquery = new WP_Query( array('post_type' => 'post') ); ?>
-		<?php while ( $sbquery->have_posts() ) : ?>
-			<?php $sbquery->the_post(); ?>
+		<?php $blogquery = new WP_Query( array('post_type' => 'post') ); ?>
+		<?php while ( $blogquery->have_posts() ) : ?>
+			<?php $blogquery->the_post(); ?>
 			<?php
 			// Set the time stamps for timeline month/year check.
 			$alignment_class = '';
