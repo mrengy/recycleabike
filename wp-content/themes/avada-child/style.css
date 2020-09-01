@@ -24,12 +24,23 @@ overriding max width on header navigation
 .first-image-link-from-post > img {
   max-width: 250px; }
 
+/* navigation */
+.fusion-main-menu > ul > li > a, .fusion-vertical-menu-widget ul.menu li a, .side-nav li a {
+  font-size: 16px !important; }
+
+.fusion-main-menu > ul > li {
+  padding-right: 2em !important; }
+
+.fusion-main-menu > ul > li:last-of-type {
+  padding-right: 0 !important; }
+
 .fusion-header-wrapper .fusion-row {
   max-width: none !important; }
 
 .menu-text {
   text-transform: uppercase; }
 
+/* custom fields */
 dl, dd {
   display: inline; }
 
