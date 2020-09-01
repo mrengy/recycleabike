@@ -95,7 +95,8 @@ function avada_child_get_first_image() {
   if (!empty($thumbnail_img)) {
     return $thumbnail_img;
   } else {
-    return $first_img;
+    $first_img_output = '<img class="alignleft" src="'.$src_stripped.'">';
+    return $first_img_output;
   }
 }
 

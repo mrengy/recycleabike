@@ -29,16 +29,10 @@ $break-large: 1000px;
 
 .first-image-link-from-post > img{
   max-width: 40%;
-}
-
-@media only screen and (min-width : $break-med){
-  .first-image-link-from-post > img{
-    max-width: 33%;
+  @media only screen and (min-width : $break-med){
+    max-width: 25%;
   }
-}
-
-@media only screen and (min-width : $break-large){
-  .first-image-link-from-post > img{
+  @media only screen and (min-width : $break-large){
     max-width: 250px;
   }
 }

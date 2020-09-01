@@ -327,7 +327,9 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 						 *
 						 * @hooked avada_render_blog_post_content - 10 (outputs the post content wrapped with a container).
 						 */
-						do_action( 'avada_blog_post_content' );
+
+						// do_action( 'avada_blog_post_content' );
+						the_excerpt();
 						?>
 					</div>
 				</div>
