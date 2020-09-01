@@ -291,9 +291,11 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 						</div>
 					<?php } ?>
 						<?php $first_image = avada_child_get_first_image();
+							//debug
+							//print_r($first_image);
+
 							if (!empty($first_image)){ ?>
 								<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'avada-child' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php print($first_image); ?></a>
-								<?php //print_r($first_image); ?>
 							<?php }?>
 
 					<?php // Render post meta for grid and timeline layouts. ?>

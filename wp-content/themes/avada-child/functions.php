@@ -90,7 +90,13 @@ function avada_child_get_first_image() {
   $img_post_id = attachment_url_to_postid($src_stripped);
   //return $img_post_id;
   $thumbnail_img = wp_get_attachment_image($img_post_id, 'thumbnail');
-  return $thumbnail_img;
+
+  //return what we have defined
+  if (!empty($thumbnail_img)) {
+    return $thumbnail_img;
+  } else {
+    return $first_img;
+  }
 }
 
 // hide built-in custom fields meta box by default
