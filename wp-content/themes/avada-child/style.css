@@ -11,10 +11,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, responsive-layout
 Text Domain: avada-child
 */
-/* find the option for this in avada theme, if possible
-overriding max width on header navigation
-*/
-#main {
+/* responsive breakpoints */
+/* blog archive */
+.page-template-archive-php #main {
   margin-top: 65px; }
 
 .fusion-meta-info {
@@ -22,8 +21,14 @@ overriding max width on header navigation
   border-bottom: none !important; }
 
 .first-image-link-from-post > img {
-  max-width: 250px; }
+  max-width: 40%; }
 
+@media only screen and (min-width: 768px) {
+  .first-image-link-from-post > img {
+    max-width: 33%; } }
+@media only screen and (min-width: 1000px) {
+  .first-image-link-from-post > img {
+    max-width: 250px; } }
 /* navigation */
 .fusion-main-menu > ul > li > a, .fusion-vertical-menu-widget ul.menu li a, .side-nav li a {
   font-size: 16px !important; }
@@ -34,6 +39,7 @@ overriding max width on header navigation
 .fusion-main-menu > ul > li:last-of-type {
   padding-right: 0 !important; }
 
+/* find the option for this in avada theme, if possible. overriding max width on header navigation*/
 .fusion-header-wrapper .fusion-row {
   max-width: none !important; }
 

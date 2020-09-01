@@ -12,10 +12,13 @@ Tags: two-columns, responsive-layout
 Text Domain: avada-child
 */
 
-/* find the option for this in avada theme, if possible
-overriding max width on header navigation
-*/
-#main{
+/* responsive breakpoints */
+$break-small: 360px;
+$break-med: 768px;
+$break-large: 1000px;
+
+/* blog archive */
+.page-template-archive-php #main{
   margin-top:65px;
 }
 
@@ -25,7 +28,19 @@ overriding max width on header navigation
 }
 
 .first-image-link-from-post > img{
-  max-width: 250px;
+  max-width: 40%;
+}
+
+@media only screen and (min-width : $break-med){
+  .first-image-link-from-post > img{
+    max-width: 33%;
+  }
+}
+
+@media only screen and (min-width : $break-large){
+  .first-image-link-from-post > img{
+    max-width: 250px;
+  }
 }
 
 /* navigation */
@@ -41,6 +56,7 @@ overriding max width on header navigation
   padding-right: 0 !important;
 }
 
+/* find the option for this in avada theme, if possible. overriding max width on header navigation*/
 .fusion-header-wrapper .fusion-row{
   max-width:none !important;
 }
