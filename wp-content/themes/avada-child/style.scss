@@ -16,7 +16,12 @@ Text Domain: avada-child
 overriding max width on header navigation
 */
 #main{
-  margin-top:3em;
+  margin-top:65px;
+}
+
+.fusion-meta-info{
+  border-top:none !important;
+  border-bottom: none !important;
 }
 
 .fusion-header-wrapper .fusion-row{
