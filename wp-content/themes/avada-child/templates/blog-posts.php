@@ -278,7 +278,7 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 					<div class="fusion-timeline-circle"></div>
 					<div class="fusion-timeline-arrow"></div>
 				<?php endif; ?>
-
+				Hi. Testing auto deployment.
 				<div class="title-and-metadata">
 					<h2 class="entry-title">
 						<a href="<?php the_permalink()?>">
