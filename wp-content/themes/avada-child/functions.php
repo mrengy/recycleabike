@@ -112,6 +112,13 @@ function hide_meta_box($hidden, $screen) {
     return $hidden;
   }
 
+//load admin css file within WordPress admin
+function admin_style() {
+  wp_enqueue_style('neve-child-admin-styles', get_stylesheet_directory_uri().'/neve-child-admin.css');
+}
+add_action('admin_enqueue_scripts', 'admin_style');
+
+
 // strip $ sign from price
 function avada_child_stripped_price(){
   $price = get_post_meta(get_the_ID(),'price',true);
