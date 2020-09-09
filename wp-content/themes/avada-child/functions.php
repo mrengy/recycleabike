@@ -127,12 +127,18 @@ function avada_child_stripped_price(){
   return $price_cleaned;
 }
 
+//limit excerpt length
+function avada_child_excerpt_length($length){
+  return 20;
+}
+
+add_filter('excerpt_length', 'avada_child_excerpt_length', 999);
+
 //strip ellipses from excerpt
 function avada_child_strip_brackets($content) {
 	return str_replace('[&hellip;]', '&hellip;', $content);
 }
 add_filter('the_excerpt', 'avada_child_strip_brackets');
-
 
 //add classes to pagination links
 add_filter('next_posts_link_attributes', 'avada_child_next_posts_link_id');

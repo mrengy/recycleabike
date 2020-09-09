@@ -331,8 +331,12 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 						 */
 
 						// do_action( 'avada_blog_post_content' );
+
+						//stripping formatting and trimming exceerpt
 						$stripped_excerpt = wp_filter_nohtml_kses(get_the_excerpt());
-						echo($stripped_excerpt);
+						$shortened_excerpt = wp_trim_words($stripped_excerpt, 55);
+
+						echo($shortened_excerpt);
 						?>
 					</div>
 				</div>
