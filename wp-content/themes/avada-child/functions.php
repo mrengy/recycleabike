@@ -67,36 +67,46 @@ add_action( 'init', 'sale_bikes_init' );
 // function to get thumbnail from first image from a post
 function avada_child_get_first_image() {
   global $post, $posts;
-  $first_img = '';
-  ob_start();
-  ob_end_clean();
-  $output = preg_match_all('/<img.*?>/i', $post->post_content, $matches);
-	if ($output > 0){
-		$first_img = $matches[0][0];
-	}
-  //return $first_img;
+  $this_img = '';
 
-  //parsing src from image url
-  $doc = new DOMDocument();
-  $doc->loadHTML($first_img);
-  $xpath = new DOMXPath($doc);
-  $src = $xpath->evaluate("string(//img/@src)");
-
-  //return $src;
-  //removing hardcoded image size from url
-  $src_stripped = preg_replace('/-[0-9]+x[0-9]+/', '', $src);
-  //return $src_stripped;
-
-  $img_post_id = attachment_url_to_postid($src_stripped);
-  //return $img_post_id;
-  $thumbnail_img = wp_get_attachment_image($img_post_id, 'thumbnail');
-
-  //return what we have defined
-  if (!empty($thumbnail_img)) {
-    return $thumbnail_img;
+  if(has_post_thumbnail($post->id)){
+    //use the featured image if the post has one
+    $this_img = get_the_post_thumbnail($post->id, 'thumbnail', array('class' => 'alignleft'));
+    return $this_img ;
   } else {
-    $first_img_output = '<img class="alignleft" src="'.$src_stripped.'">';
-    return $first_img_output;
+    //only if no featured image on the post
+    ob_start();
+    ob_end_clean();
+    $output = preg_match_all('/<img.*?>/i', $post->post_content, $matches);
+  	if ($output > 0){
+  		$this_img = $matches[0][0];
+  	}
+
+
+    //return $this_img;
+
+    //parsing src from image url
+    $doc = new DOMDocument();
+    $doc->loadHTML($this_img);
+    $xpath = new DOMXPath($doc);
+    $src = $xpath->evaluate("string(//img/@src)");
+
+    //return $src;
+    //removing hardcoded image size from url
+    $src_stripped = preg_replace('/-[0-9]+x[0-9]+/', '', $src);
+    //return $src_stripped;
+
+    $img_post_id = attachment_url_to_postid($src_stripped);
+    //return $img_post_id;
+    $thumbnail_img = wp_get_attachment_image($img_post_id, 'thumbnail');
+
+    //return what we have defined
+    if (!empty($thumbnail_img)) {
+      return $thumbnail_img . 'thumbnail_img';
+    } else {
+      $this_img_output = '<img class="alignleft" src="'.$src_stripped.'">';
+      return $this_img_output . 'this_img_output';
+    }
   }
 }
 
@@ -132,7 +142,6 @@ function avada_child_strip_brackets($content) {
 	return str_replace('[&hellip;]', '&hellip;', $content);
 }
 add_filter('the_excerpt', 'avada_child_strip_brackets');
-
 
 //add classes to pagination links
 add_filter('next_posts_link_attributes', 'avada_child_next_posts_link_id');
