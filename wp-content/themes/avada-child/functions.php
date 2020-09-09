@@ -102,10 +102,10 @@ function avada_child_get_first_image() {
 
     //return what we have defined
     if (!empty($thumbnail_img)) {
-      return $thumbnail_img . 'thumbnail_img';
+      return $thumbnail_img;
     } else {
       $this_img_output = '<img class="alignleft" src="'.$src_stripped.'">';
-      return $this_img_output . 'this_img_output';
+      return $this_img_output;
     }
   }
 }
