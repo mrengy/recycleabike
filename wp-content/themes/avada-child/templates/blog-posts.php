@@ -278,7 +278,7 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 					<div class="fusion-timeline-circle"></div>
 					<div class="fusion-timeline-arrow"></div>
 				<?php endif; ?>
-				
+
 				<div class="title-and-metadata">
 					<h2 class="entry-title">
 						<a href="<?php the_permalink()?>">
@@ -331,7 +331,8 @@ if ( is_search() && Avada()->settings->get( 'search_results_per_page' ) ) {
 						 */
 
 						// do_action( 'avada_blog_post_content' );
-						the_excerpt();
+						$stripped_excerpt = wp_filter_nohtml_kses(get_the_excerpt());
+						echo($stripped_excerpt);
 						?>
 					</div>
 				</div>
