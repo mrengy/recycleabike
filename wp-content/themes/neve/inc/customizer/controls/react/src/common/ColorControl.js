@@ -7,7 +7,7 @@ const { Component, Fragment } = wp.element
 const { __ } = wp.i18n
 
 class ColorControl extends Component {
-  render() {
+  render () {
     const { label, selectedColor } = this.props
     let toggle = null
     return (
@@ -20,11 +20,13 @@ class ColorControl extends Component {
         }
 
         <Dropdown
-          renderToggle={( { isOpen, onToggle } ) => {
+          renderToggle={({ isOpen, onToggle }) => {
             toggle = onToggle
             return (
               <Button
-                className={classnames(['is-secondary is-button', { 'is-empty': !selectedColor }])}
+                className={classnames([
+                  'is-secondary is-button',
+                  { 'is-empty': !selectedColor }])}
                 onClick={onToggle}
                 aria-expanded={isOpen}
                 style={{ backgroundColor: selectedColor }}
@@ -33,9 +35,12 @@ class ColorControl extends Component {
           }}
           renderContent={() => (
             <Fragment>
+              <a href='#' />
               <ColorPicker
                 color={selectedColor}
-                onChangeComplete={( value ) => { this.props.onChange(value.hex) }}
+                onChangeComplete={(value) => {
+                  this.props.onChange(value.hex)
+                }}
                 disableAlpha
               />
               {selectedColor &&
@@ -47,7 +52,7 @@ class ColorControl extends Component {
                     toggle()
                   }}
                 >
-                  {__( 'Clear', 'neve' )}
+                  {__('Clear', 'neve')}
                 </Button>}
             </Fragment>
           )}
