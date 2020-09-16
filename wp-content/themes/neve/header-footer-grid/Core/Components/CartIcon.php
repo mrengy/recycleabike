@@ -195,7 +195,7 @@ class CartIcon extends Abstract_Component {
 	 */
 	public function add_style( array $css_array = array() ) {
 		$css_array[] = [
-			Dynamic_Selector::KEY_SELECTOR => $this->default_selector . ' svg',
+			Dynamic_Selector::KEY_SELECTOR => $this->default_selector . ' .nv-cart svg',
 			Dynamic_Selector::KEY_RULES    => [
 				\Neve\Core\Settings\Config::CSS_PROP_WIDTH => [
 					Dynamic_Selector::META_KEY     => $this->get_id() . '_' . self::SIZE_ID,
@@ -277,11 +277,8 @@ class CartIcon extends Abstract_Component {
 			return false;
 		}
 
-		if ( class_exists( '\Neve_Pro\Core\Settings' ) ) {
-			$settings = new Settings();
-			if ( ! $settings->is_module_active( 'woocommerce_booster' ) || ! class_exists( 'WooCommerce' ) ) {
-				return false;
-			}
+		if ( ! apply_filters( 'nv_pro_woocommerce_booster_status', false ) || ! class_exists( 'WooCommerce' ) ) {
+			return false;
 		}
 
 		return true;
