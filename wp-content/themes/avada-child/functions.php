@@ -124,7 +124,7 @@ function hide_meta_box($hidden, $screen) {
 
 //load admin css file within WordPress admin
 function admin_style() {
-  wp_enqueue_style('neve-child-admin-styles', get_stylesheet_directory_uri().'/neve-child-admin.css');
+  wp_enqueue_style('avada-child-admin-styles', get_stylesheet_directory_uri().'/avada-child-admin.css');
 }
 add_action('admin_enqueue_scripts', 'admin_style');
 
