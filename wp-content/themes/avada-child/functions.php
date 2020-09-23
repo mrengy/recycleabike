@@ -20,7 +20,11 @@ if ( function_exists( 'eae_encode_emails' ) )  {
 }
 
 //add wp_enqueue_scripts
-wp_enqueue_script( 'open-children', get_stylesheet_directory_uri() . '/js/open-children.js', array ( 'jquery' ), 1.0, true);
+add_action( 'wp_enqueue_scripts', 'avada_child_enqueue_scripts');
+
+function avada_child_enqueue_scripts() {
+  wp_enqueue_script( 'open-children', get_stylesheet_directory_uri() . '/js/open-children.js', array ( 'jquery' ), 1.0, true);
+}
 
 //add google analytics if not on staging or local Sites
 if (!preg_match_all('#\b(localhost|devsite|stage)\b#', site_url())) {
