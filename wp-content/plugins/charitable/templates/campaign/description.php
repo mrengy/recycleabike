@@ -5,14 +5,17 @@
  * Override this template by copying it to yourtheme/charitable/campaign/description.php
  *
  * @author  Studio 164a
+ * @package Charitable/Templates/Campaign Page
  * @since   1.0.0
+ * @version 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
-
-$campaign = $view_args['campaign'];
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?>
-<div class="campaign-description">  
-	<?php echo $campaign->description ?>
+<div class="campaign-description">
+	<?php echo $view_args['campaign']->description; ?>
 </div>

@@ -7,10 +7,13 @@
  * @version 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! isset( $_GET[ 'email_id' ] ) ) {
-    return;
+	return;
 }
 
 $email = charitable_get_helper( 'emails' )->get_email( $_GET[ 'email_id' ] );

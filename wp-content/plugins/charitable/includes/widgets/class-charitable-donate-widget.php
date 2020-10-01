@@ -5,12 +5,14 @@
  * @package     Charitable/Classes/Charitable_Donate_Widget
  * @version     1.0.0
  * @author      Eric Daams
- * @copyright   Copyright (c) 2015, Studio 164a
+ * @copyright   Copyright (c) 2020, Studio 164a
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_Donate_Widget' ) ) :
 
@@ -25,14 +27,13 @@ if ( ! class_exists( 'Charitable_Donate_Widget' ) ) :
 		/**
 		 * Register the widget.
 		 *
-		 * @access  public
 		 * @since   1.0.0
 		 */
 		public function __construct() {
 
 			parent::__construct(
-				'charitable_donate_widget', // Base ID
-				__( 'Campaign Donation', 'charitable' ), // Name
+				'charitable_donate_widget',
+				__( 'Campaign Donation', 'charitable' ),
 				array(
 					'description' => __( 'Display a donation widget.', 'charitable' ),
 					'customize_selective_refresh' => true,
@@ -44,14 +45,13 @@ if ( ! class_exists( 'Charitable_Donate_Widget' ) ) :
 		/**
 		 * Displays the widget on the frontend.
 		 *
-		 * @param   array       $args
-		 * @param   array       $instance
-		 * @return  void
-		 * @access  public
 		 * @since   1.0.0
+		 *
+		 * @param   array $args 	Widget args.
+		 * @param   array $instance Widget instance.
+		 * @return  void
 		 */
 		public function widget( $args, $instance ) {
-
 			if ( ! array_key_exists( 'campaign_id', $instance ) || '' == $instance['campaign_id'] ) {
 				return;
 			}
@@ -62,10 +62,10 @@ if ( ! class_exists( 'Charitable_Donate_Widget' ) ) :
 		/**
 		 * Displays the widget form.
 		 *
-		 * @param   array       $instance
-		 * @return  void
-		 * @access  public
 		 * @since   1.0.0
+		 *
+		 * @param   array $instance Widget instance.
+		 * @return  void
 		 */
 		public function form( $instance ) {
 
@@ -83,9 +83,9 @@ if ( ! class_exists( 'Charitable_Donate_Widget' ) ) :
 				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'charitable' ) ?>
 					<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 				</label>
-			</p> 
+			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'campaign_id' ); ?>"><?php _e( 'Campaign:', 'charitable' ) ?>        
+				<label for="<?php echo $this->get_field_id( 'campaign_id' ); ?>"><?php _e( 'Campaign:', 'charitable' ) ?>
 					<select name="<?php echo $this->get_field_name( 'campaign_id' ) ?>">
 						<option value="current"><?php _e( 'Campaign currently viewed', 'charitable' ) ?></option>
 						<optgroup label="<?php _e( 'Specific campaigns', 'charitable' ) ?>">
@@ -93,20 +93,20 @@ if ( ! class_exists( 'Charitable_Donate_Widget' ) ) :
 								<option value="<?php echo $campaign->ID ?>" <?php selected( $campaign->ID, $campaign_id ) ?>><?php echo $campaign->post_title ?></option>
 							<?php endforeach ?>
 						</optgroup>
-					</select>    
-				</label>      
-			</p>       
+					</select>
+				</label>
+			</p>
 			<?php
 		}
 
 		/**
 		 * Update the widget settings.
 		 *
-		 * @param   array $new_instance
-		 * @param   array $old_instance
-		 * @return  array
-		 * @access  public
 		 * @since   1.0.0
+		 *
+		 * @param   array $new_instance New widget instance arguments.
+		 * @param   array $old_instance Old widget instance arguments.
+		 * @return  array
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance                = $old_instance;

@@ -1,17 +1,22 @@
 <?php
 /**
- * Returns an array of all countries, with the country code as the key. 
+ * Returns an array of all countries, with the country code as the key.
+ *
+ * Country codes and names should follow the Unicode CLDR recommendation (http://cldr.unicode.org/translation/country-names).
  *
  * Credit to WooThemes, mikejolly and shivapoudel. This is shamelessly based on their implementation in WooCommerce.
  *
- * @since		1.0.0
- * @package		Charitable/i18n
- * @author 		Eric Daams
- * @copyright 	Copyright (c) 2015, Studio 164a
- * @license    	http://opensource.org/licenses/gpl-2.0.php GNU Public License  
+ * @package   Charitable/i18n
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.0.0
+ * @version   1.6.24
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly. 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 return array(
 	'AF' => __( 'Afghanistan', 'charitable' ),
@@ -84,6 +89,7 @@ return array(
 	'GQ' => __( 'Equatorial Guinea', 'charitable' ),
 	'ER' => __( 'Eritrea', 'charitable' ),
 	'EE' => __( 'Estonia', 'charitable' ),
+	'SZ' => __( 'Eswatini', 'charitable' ),
 	'ET' => __( 'Ethiopia', 'charitable' ),
 	'FK' => __( 'Falkland Islands', 'charitable' ),
 	'FO' => __( 'Faroe Islands', 'charitable' ),
@@ -141,8 +147,7 @@ return array(
 	'LI' => __( 'Liechtenstein', 'charitable' ),
 	'LT' => __( 'Lithuania', 'charitable' ),
 	'LU' => __( 'Luxembourg', 'charitable' ),
-	'MO' => __( 'Macao S.A.R., China', 'charitable' ),
-	'MK' => __( 'Macedonia', 'charitable' ),
+	'MO' => __( 'Macau', 'charitable' ),
 	'MG' => __( 'Madagascar', 'charitable' ),
 	'MW' => __( 'Malawi', 'charitable' ),
 	'MY' => __( 'Malaysia', 'charitable' ),
@@ -177,10 +182,11 @@ return array(
 	'NU' => __( 'Niue', 'charitable' ),
 	'NF' => __( 'Norfolk Island', 'charitable' ),
 	'KP' => __( 'North Korea', 'charitable' ),
+	'MK' => __( 'North Macedonia', 'charitable' ),
 	'NO' => __( 'Norway', 'charitable' ),
 	'OM' => __( 'Oman', 'charitable' ),
 	'PK' => __( 'Pakistan', 'charitable' ),
-	'PS' => __( 'Palestinian Territory', 'charitable' ),
+	'PS' => __( 'Palestinian Territories', 'charitable' ),
 	'PA' => __( 'Panama', 'charitable' ),
 	'PG' => __( 'Papua New Guinea', 'charitable' ),
 	'PY' => __( 'Paraguay', 'charitable' ),
@@ -223,7 +229,6 @@ return array(
 	'SD' => __( 'Sudan', 'charitable' ),
 	'SR' => __( 'Suriname', 'charitable' ),
 	'SJ' => __( 'Svalbard and Jan Mayen', 'charitable' ),
-	'SZ' => __( 'Swaziland', 'charitable' ),
 	'SE' => __( 'Sweden', 'charitable' ),
 	'CH' => __( 'Switzerland', 'charitable' ),
 	'SY' => __( 'Syria', 'charitable' ),
@@ -257,5 +262,5 @@ return array(
 	'WS' => __( 'Western Samoa', 'charitable' ),
 	'YE' => __( 'Yemen', 'charitable' ),
 	'ZM' => __( 'Zambia', 'charitable' ),
-	'ZW' => __( 'Zimbabwe', 'charitable' )
+	'ZW' => __( 'Zimbabwe', 'charitable' ),
 );

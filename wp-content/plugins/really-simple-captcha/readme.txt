@@ -1,16 +1,18 @@
 === Really Simple CAPTCHA ===
 Contributors: takayukister
-Donate link: http://contactform7.com/donate/
+Donate link: https://contactform7.com/donate/
 Tags: captcha
-Requires at least: 3.2
-Tested up to: 3.5.1
-Stable tag: 1.6
+Requires at least: 4.7
+Tested up to: 5.5
+Stable tag: trunk
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Really Simple CAPTCHA is a CAPTCHA module intended to be called from other plugins. It is originally created for my Contact Form 7 plugin.
 
 == Description ==
 
-Really Simple CAPTCHA does not work alone and is intended to work with other plugins. It is originally created for [Contact Form 7](http://contactform7.com/), however, you can use it with your own plugin.
+Really Simple CAPTCHA does not work alone and is intended to work with other plugins. It is originally created for [Contact Form 7](https://contactform7.com/), however, you can use it with your own plugin.
 
 Note: This product is "really simple" as its name suggests, i.e., it is not strongly secure. If you need perfect security, you should try other solutions.
 
@@ -60,7 +62,7 @@ And last, remove the temporary image and text files, as they are no longer in us
 
 That's all.
 
-If you wish to see a live sample of this, you can try [Contact Form 7](http://contactform7.com/).
+If you wish to see a live sample of this, you can try [Contact Form 7](https://contactform7.com/captcha/).
 
 == Installation ==
 
@@ -81,7 +83,7 @@ Really Simple CAPTCHA needs GD and FreeType library installed on your server. As
 
 Also, make the temporary file folder writable. The location of the temporary file folder is managed by the instance variable `tmp_dir` of ReallySimpleCaptcha class. Note that the setting varies depending on the calling plugin. For example, Contact Form 7 uses `wp-contents/uploads/wpcf7_captcha` as the temporary folder basically, but it can use different folder depending on your settings.
 
-If you have any further questions, please submit them [to the support forum](http://wordpress.org/tags/really-simple-captcha?forum_id=10#postform).
+If you have any further questions, please submit them [to the support forum](https://wordpress.org/support/plugin/really-simple-captcha).
 
 == Screenshots ==
 
@@ -89,28 +91,22 @@ If you have any further questions, please submit them [to the support forum](htt
 
 == Changelog ==
 
-= 1.6 =
+= 2.0.2 =
 
-* Bundled font changed to Gentium Basic 1.1.
-* Some workarounds for infrequently reported problems on Windows server.
-* Do temp file cleanup every time before generating CAPTCHA image.
+* "Stable tag" refers to trunk.
 
-= 1.5 =
+= 2.0.1 =
 
-* The required WordPress version changed to 3.2 and higher.
-* Use plain text file as answer file (again). This time, hash value generated with hash_hmac() is stored in the file.
+* Does a file existence check before attempting to remove the file.
 
-= 1.4 =
+= 2.0 =
 
-* Reverted answer file to PHP. As plain text file is visible from client side, that's not good.
+* Did some rewrite of the code following the coding standard.
+* Updated the license file; added a section for bundled font files.
 
-= 1.3 =
+= 1.9 =
 
-* Use plain text file as answer file.
-
-= 1.2 =
-* File name sanitization added.
-
-= 1.1 =
-* The required WordPress version changed to 2.8 and higher.
-* cleanup() method added.
+* Change the default file mode: 0644 for image and 0640 for answer.
+* Add "Text Domain" field to the plugin header.
+* Update bundled font: Gentium Basic 1.102.
+* Add $max argument to cleanup() to prevent an endless file cleanup.

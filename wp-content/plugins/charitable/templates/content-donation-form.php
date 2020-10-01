@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Displays the campaign donation form.
  *
@@ -10,15 +10,18 @@
  * @version 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * The donation form object used for donations to this campaign. By
- * default, this will be a Charitable_Donation_Form object, but 
+ * default, this will be a Charitable_Donation_Form object, but
  * extensions are able to define their own donation form models to use
- * instead. 
+ * instead.
  *
- * @var 	Charitable_Donation_Form_Interface
+ * @var Charitable_Donation_Form_Interface
  */
 $form = charitable_get_current_donation_form();
 

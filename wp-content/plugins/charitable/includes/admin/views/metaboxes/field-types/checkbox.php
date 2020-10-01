@@ -2,34 +2,44 @@
 /**
  * Display checkbox field.
  *
- * @author      Eric Daams
- * @package     Charitable/Admin Views/Metaboxes
- * @copyright   Copyright (c) 2015, Studio 164a
- * @since       1.0.0
+ * @author    Eric Daams
+ * @package   Charitable/Admin Views/Metaboxes
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @since     1.2.0
+ * @version   1.6.36
  */
 
-global $post;
-
-if ( ! isset( $view_args['meta_key'] ) ) {
+if ( ! array_key_exists( 'form_view', $view_args ) || ! $view_args['form_view']->field_has_required_args( $view_args ) ) {
 	return;
 }
 
-$key         = $view_args['meta_key'];
-$custom_keys = get_post_custom_keys( $post->ID );
-$checked     = $custom_keys && in_array( $key, $custom_keys ) ? get_post_meta( $post->ID, $key, true ) : $view_args['default'];
-
-$id          = ltrim( $key, '_' );
-$id          = str_replace( '_', '-', $id );
-$wrapper_id  = 'charitable-' . $id . '-wrap';
+$is_required = array_key_exists( 'required', $view_args ) && $view_args['required'];
+$field_attrs = array_key_exists( 'field_attrs', $view_args ) ? $view_args['field_attrs'] : array();
 
 ?>
-<div id="<?php echo $wrapper_id ?>" class="charitable-metabox-wrap charitable-checkbox-wrap">
-	<input type="checkbox" 
-		id="<?php echo $id ?>" 
-		name="<?php echo esc_attr( $key ) ?>"
-		value="1"
-		<?php checked( $checked ) ?> />
+<div id="<?php echo esc_attr( $view_args['wrapper_id'] ); ?>" class="<?php echo esc_attr( $view_args['wrapper_class'] ); ?>" <?php echo charitable_get_arbitrary_attributes( $view_args ); ?>>
+	<input
+		type="checkbox"
+		id="<?php echo esc_attr( $view_args['id'] ); ?>"
+		name="<?php echo esc_attr( $view_args['key'] ); ?>"
+		tabindex="<?php echo esc_attr( $view_args['tabindex'] ); ?>"
+		value="<?php echo esc_attr( $view_args['value'] ); ?>"
+		<?php echo charitable_get_arbitrary_attributes( $field_attrs ); ?>
+		<?php checked( $view_args['checked'], $view_args['value'] ); ?>
+	/>
 	<?php if ( isset( $view_args['label'] ) ) : ?>
-		<label for="<?php echo $id ?>"><?php echo $view_args['label']  ?></label>
+		<label for="<?php echo esc_attr( $view_args['id'] ); ?>">
+			<?php
+			echo esc_html( $view_args['label'] );
+			if ( $is_required ) :
+				?>
+				<abbr class="required" title="required">*</abbr>
+				<?php
+			endif;
+			?>
+		</label>
 	<?php endif ?>
-</div>
+	<?php if ( isset( $view_args['description'] ) ) : ?>
+		<span class="charitable-helper"><?php echo esc_html( $view_args['description'] ); ?></span>
+	<?php endif ?>
+</div><!-- #<?php echo $view_args['wrapper_id']; ?> -->

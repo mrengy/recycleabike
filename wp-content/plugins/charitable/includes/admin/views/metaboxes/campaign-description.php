@@ -1,9 +1,10 @@
-<?php 
+<?php
 /**
  * Renders the campaign description field for the Campaign post type.
  *
  * @author 	Studio 164a
- * @since 	1.0.0
+ * @since   1.0.0
+ * @package Charitable/Admin Views/Metaboxes
  */
 
 global $post;
@@ -15,5 +16,5 @@ $campaign_description	= esc_textarea( get_post_meta( $post->ID, '_campaign_descr
 ?>
 <div id="charitable-campaign-description-metabox-wrap" class="charitable-metabox-wrap">
 	<label class="screen-reader-text" for="campaign_description"><?php echo $campaign_description ?></label>
-	<textarea name="_campaign_description" id="campaign_description" tabindex="" rows="10" placeholder="<?php _e( 'Enter a short description of your campaign', 'charitable' ) ?>"><?php echo $campaign_description ?></textarea>
+	<textarea name="_campaign_description" id="campaign_description" tabindex="" rows="10" placeholder="<?php _e( 'Enter a short description of your campaign', 'charitable' ); ?>"><?php echo $campaign_description ?></textarea>
 </div>

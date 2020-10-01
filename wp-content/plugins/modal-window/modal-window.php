@@ -2,68 +2,210 @@
 /**
  * Plugin Name:       Modal Window
  * Plugin URI:        https://wordpress.org/plugins/modal-window/
- * Description:       This plugin is for creation of modal windows!
- * Version:           2.2.1
+ * Description:       Create popups. Insert any content. Trigger on anything.
+ * Version:           5.1
  * Author:            Wow-Company
- * Author URI:        http://wow-company.com
+ * Author URI:        https://wow-estore.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       wow-marketings
-  */
-if ( ! defined( 'WPINC' ) ) {die;}
-define( 'WOW_MODALSIMPLE_PLUGIN_BASENAME', dirname(plugin_basename(__FILE__)) );
-if ( ! defined( 'WOWMODAL_PLUGIN_DIR' ) ) {
-	define( 'WOWMODAL_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-}
-if ( ! defined( 'WOWMODAL_PLUGIN_URL' ) ) {
-	define( 'WOWMODAL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-}
-load_plugin_textdomain('wow-marketings', false, dirname(plugin_basename(__FILE__)) . '/languages/');
-function activate_wow_modalsimple() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/activator.php';	
-}	
-register_activation_hook( __FILE__, 'activate_wow_modalsimple' );
-function deactivate_wow_modalsimple() {	
-	require_once plugin_dir_path( __FILE__ ) . 'includes/deactivator.php';
-}
-register_deactivation_hook( __FILE__, 'deactivate_wow_modalsimple' );
+ * Text Domain:       modal-window
+ */
 
-if( !class_exists( 'JavaScriptPacker' )) {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class.JavaScriptPacker.php';
-}
-if( !class_exists( 'WOWWPClass' )) {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/wowclass.php';
-}
-require_once plugin_dir_path( __FILE__ ) . 'admin/admin.php';
-require_once plugin_dir_path( __FILE__ ) . 'public/public.php';
+namespace modal_window;
 
-function wow_modalsimple_row_meta( $meta, $plugin_file ){
-	if( false === strpos( $plugin_file, basename(__FILE__) ) )
-		return $meta;
-
-	$meta[] = '<a href="https://wow-estore.com/support/" target="_blank">Support </a> | <a href="https://www.facebook.com/wowaffect/" target="_blank">Join us on Facebook</a>';
-	return $meta; 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
-add_filter( 'plugin_row_meta', 'wow_modalsimple_row_meta', 10, 4 );
 
-function wow_modalsimple_action_links( $actions, $plugin_file ){
-	if( false === strpos( $plugin_file, basename(__FILE__) ) )
-		return $actions;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-	$settings_link = '<a href="admin.php?page=wow-modalsimple' .'">Settings</a>'; 
-	array_unshift( $actions, $settings_link ); 
-	return $actions; 
-}
-add_filter( 'plugin_action_links', 'wow_modalsimple_action_links', 10, 2 );
+if ( ! class_exists( 'Wow_Plugin' ) ) :
 
-function wow_modalsimple_free_asset(){
-	$filename = plugin_dir_path( __FILE__ ).'asset';
-	if (!is_writable($filename)) {
-		add_action('admin_notices', 'wow_modalsimple_free_asset_notice' );
-	} 
+	/**
+	 * Main Wow_Plugin Class.
+	 *
+	 * @since 1.0
+	 */
+	final class Wow_Plugin {
+
+		private static $_instance;
+
+		/**
+		 * Wow Plugin information
+		 *
+		 * All information which need for correctly plugin working
+		 *
+		 * @return array
+		 * @static
+		 */
+		public static function information() {
+
+			$info = array(
+				'plugin' => array(
+					'name'      => esc_attr__( 'Modal Window', 'modal-window' ), // Plugin name
+					'menu'      => esc_attr__( 'Modal Window', 'modal-window' ), // Plugin name in menu
+					'author'    => 'Wow-Company', // Author
+					'prefix'    => 'mwp', // Prefix for database
+					'text'      => 'modal-window',    // Text domain for translate files
+					'version'   => '5.1', // Current version of the plugin
+					'file'      => __FILE__, // Main file of the plugin
+					'slug'      => dirname( plugin_basename( __FILE__ ) ), // Name of the plugin folder
+					'url'       => plugin_dir_url( __FILE__ ), // filesystem directory path for the plugin
+					'dir'       => plugin_dir_path( __FILE__ ), // URL directory path for the plugin
+					'shortcode' => 'Modal-Window',
+				),
+				'url'    => array(
+					'author'   => 'https://wow-estore.com/',
+					'home'     => 'https://wordpress.org/plugins/modal-window/',
+					'support'  => 'https://wordpress.org/support/plugin/modal-window/',
+					'facebook' => 'https://www.facebook.com/wowaffect/',
+				),
+				'rating' => array(
+					'website'  => 'WordPress.org', // Name site for rating plugin
+					'url'      => 'https://wordpress.org/support/plugin/modal-window/reviews/#new-post',
+					'wp_url'   => 'https://wordpress.org/support/plugin/modal-window/reviews/#new-post',
+					'wp_home'  => 'https://wordpress.org/plugins/modal-window/',
+					'wp_title' => 'Modal Window – create popup modal window',
+				),
+			);
+
+			return $info;
+
+		}
+
+		/**
+		 * Main Wow_Plugin Instance.
+		 *
+		 * Insures that only one instance of Wow_Plugin exists in memory at any one
+		 * time. Also prevents needing to define globals all over the place.
+		 *
+		 * @return object|Wow_Plugin The one true Wow_Plugin for Current plugin
+		 *
+		 * @uses      Wow_Plugin::_includes() Include the required files.
+		 * @uses      Wow_Plugin::text_domain() load the language files.
+		 * @since     1.0
+		 * @static
+		 * @staticvar array $_instance
+		 */
+		public static function instance() {
+
+			if ( ! isset( self::$_instance ) && ! ( self::$_instance instanceof Wow_Plugin ) ) {
+
+				$info = self::information();
+
+				self::$_instance = new Wow_Plugin;
+
+				register_activation_hook( __FILE__, array( self::$_instance, 'plugin_activate' ) );
+				add_action( 'plugins_loaded', array( self::$_instance, 'text_domain' ) );
+
+				if ( get_option( 'wow_' . $info['plugin']['prefix'] . '_updater_5.0' ) === false ) {
+					add_action( 'admin_init', array( self::$_instance, 'plugin_updater' ) );
+				}
+				self::$_instance->_includes();
+				self::$_instance->admin  = new Wow_Plugin_Admin( $info );
+				self::$_instance->public = new Wow_Plugin_Public( $info );
+			}
+
+			return self::$_instance;
+		}
+
+		/**
+		 * Throw error on object clone.
+		 * The whole idea of the singleton design pattern is that there is a single
+		 * object therefore, we don't want the object to be cloned.
+		 *
+		 * @return void
+		 * @since  1.0
+		 * @access protected
+		 */
+		public function __clone() {
+			$info = self::information();
+			$text = $info['plugin']['text'];
+			// Cloning instances of the class is forbidden.
+			_doing_it_wrong( __FUNCTION__, esc_attr__( 'Cheatin&#8217; huh?', $text ), '0.1' );
+		}
+
+		/**
+		 * Disable unserializing of the class.
+		 *
+		 * @return void
+		 * @since  1.0
+		 * @access protected
+		 */
+		public function __wakeup() {
+			$info = self::information();
+			$text = $info['plugin']['text'];
+			// Unserializing instances of the class is forbidden.
+			_doing_it_wrong( __FUNCTION__, esc_attr__( 'Cheatin&#8217; huh?', $text ), '0.1' );
+		}
+
+
+		/**
+		 * Include required files.
+		 *
+		 * @access private
+		 * @return void
+		 * @since  1.0
+		 */
+		private function _includes() {
+			if ( ! class_exists( 'Wow_Company' ) ) {
+				include_once 'includes/class-wow-company.php';
+			}
+			include_once 'admin/class-admin.php';
+			include_once 'public/class-public.php';
+		}
+
+		/**
+		 * Activate the plugin.
+		 * create the database
+		 * create the folder in wp-upload
+		 *
+		 * @access public
+		 * @return void
+		 * @since  1.0
+		 */
+		public function plugin_activate() {
+			$info   = self::information();
+			$prefix = $info['plugin']['prefix'];
+			include_once 'includes/plugin-activation.php';
+		}
+
+		/**
+		 * Download the folder with languages.
+		 *
+		 * @access public
+		 * @return void
+		 * @since  1.0
+		 */
+		public function text_domain() {
+			$info             = self::information();
+			$text             = $info['plugin']['text'];
+			$languages_folder = dirname( plugin_basename( __FILE__ ) ) . '/languages/';
+			load_plugin_textdomain( $text, false, $languages_folder );
+		}
+
+		/*
+		 * Update the plugin option to version 4.0
+		 */
+
+		public function plugin_updater() {
+			include 'includes/plugin-updater.php';
+		}
+
+	}
+
+endif; // End if class_exists check.
+
+/**
+ * The main function for that returns Wow_Plugin
+ *
+ * @since 1.0
+ */
+function Wow_Plugin_run() {
+	return Wow_Plugin::instance();
 }
-add_filter( 'admin_init', 'wow_modalsimple_free_asset');
-function wow_modalsimple_free_asset_notice(){
-	$path = plugin_dir_path( __FILE__ ).'asset';
-    echo "<div class='error' id='message'><p>".__("Please set the 775 access rights (chmod 775) for the '".$path."' folder.", "marketing-wp")."</p> </div>";
-}
+
+// Get Running.
+Wow_Plugin_run();

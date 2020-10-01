@@ -5,58 +5,64 @@
  * @author  Studio 164a
  * @package Charitable/Templates/Account
  * @since   1.0.0
- * @version 1.3.0
+ * @version 1.6.29
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 $form = $view_args['form'];
 
 /**
- * @hook    charitable_user_registration_before
+ * Do something before rendering the user registration form.
+ *
+ * @param Charitable_Form $form      The form object.
+ * @param array           $view_args All args passed to template.
  */
-do_action( 'charitable_user_registration_before', $form );
+do_action( 'charitable_user_registration_before', $form, $view_args );
 
 ?>
 <form method="post" id="charitable-registration-form" class="charitable-form">
 	<?php
 	/**
-	 * @hook    charitable_form_before_fields
+	 * Do something before rendering the form fields.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param Charitable_Form $form      The form object.
+	 * @param array           $view_args All args passed to template.
 	 */
-	do_action( 'charitable_form_before_fields', $form ) ?>
-	
-	<div class="charitable-form-fields cf">
-
-	<?php
-
-	$i = 1;
-
-	foreach ( $form->get_fields() as $key => $field ) :
-
-		do_action( 'charitable_form_field', $field, $key, $form, $i );
-
-		$i += apply_filters( 'charitable_form_field_increment', 1, $field, $key, $form, $i );
-
-	endforeach;
+	do_action( 'charitable_form_before_fields', $form, $view_args );
 
 	?>
-	
-	</div>
-
+	<div class="charitable-form-fields cf">
+		<?php $form->view()->render(); ?>
+	</div><!-- .charitable-form-fields -->
 	<?php
+
 	/**
-	 * @hook    charitable_form_after_fields
+	 * Do something after rendering the form fields.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param Charitable_Form $form      The form object.
+	 * @param array           $view_args All args passed to template.
 	 */
-	do_action( 'charitable_form_after_fields', $form );
+	do_action( 'charitable_form_after_fields', $form, $view_args );
 
 	?>
 	<div class="charitable-form-field charitable-submit-field">
-		<button class="button button-primary" type="submit" name="register"><?php esc_attr_e( 'Register', 'charitable' ) ?></button>
+		<button class="<?php echo esc_attr( charitable_get_button_class( 'registration' ) ); ?>" type="submit" name="register"><?php esc_attr_e( 'Register', 'charitable' ); ?></button>
 	</div>
-</form>
+</form><!-- #charitable-registration-form -->
 <?php
 
 /**
- * @hook    charitable_user_registration_after
+ * Do something after rendering the user registration form.
+ *
+ * @param Charitable_Form $form      The form object.
+ * @param array           $view_args All args passed to template.
  */
-do_action( 'charitable_user_registration_after', $form );
+do_action( 'charitable_user_registration_after', $form, $view_args );

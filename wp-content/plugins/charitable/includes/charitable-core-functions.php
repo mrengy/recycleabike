@@ -1,18 +1,21 @@
 <?php
-
 /**
  * Charitable Core Functions.
  *
  * General core functions.
  *
- * @package 	Charitable/Functions/Core
- * @version     1.0.0
- * @author 		Eric Daams
- * @copyright 	Copyright (c) 2015, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Functions/Core
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.0.0
+ * @version   1.6.37
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * This returns the original Charitable object.
@@ -20,8 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  * Use this whenever you want to get an instance of the class. There is no
  * reason to instantiate a new object, though you can do so if you're stubborn :)
  *
- * @return 	Charitable
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @return Charitable
  */
 function charitable() {
 	return Charitable::get_instance();
@@ -30,140 +34,149 @@ function charitable() {
 /**
  * This returns the value for a particular Charitable setting.
  *
- * @param 	mixed		$key 			Accepts an array of strings or a single string.
- * @param 	mixed 		$default 		The value to return if key is not set.
- * @param 	array 		$settings 		Optional. Used when $key is an array.
- * @return 	mixed
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @param  mixed $key          Accepts an array of strings or a single string.
+ * @param  mixed $default      The value to return if key is not set.
+ * @param  array $settings     Optional. Used when $key is an array.
+ * @param  mixed $original_key Optional. Original array of keys.
+ * @return mixed
  */
-function charitable_get_option( $key, $default = false, $settings = array() ) {
+function charitable_get_option( $key, $default = false, $settings = array(), $original_key = array() ) {
 	if ( empty( $settings ) ) {
 		$settings = get_option( 'charitable_settings' );
 	}
 
-	if ( is_array( $key ) ) {
-		$current_key = current( $key );
-
-		/* Key does not exist */
-		if ( ! isset( $settings[ $current_key ] ) ) {
-
-			return $default;
-
-		} else {
-
-			array_shift( $key );
-
-			if ( empty( $key ) ) {
-
-				return $settings[ $current_key ];
-
-			} else {
-
-				return charitable_get_option( $key, $default, $settings[ $current_key ] );
-
-			}
-		}
-	} else {
-
-		return isset( $settings[ $key ] ) ? $settings[ $key ] : $default;
-
+	if ( ! is_array( $key ) ) {
+		$key = array( $key );
 	}
+
+	$current_key = current( $key );
+
+	if ( empty( $original_key ) ) {
+		$original_key = $key;
+	}
+
+	/* Key does not exist */
+	if ( ! isset( $settings[ $current_key ] ) ) {
+		return $default;
+	}
+
+	array_shift( $key );
+
+	if ( ! empty( $key ) ) {
+		return charitable_get_option( $key, $default, $settings[ $current_key ], $original_key );
+	}
+
+	/**
+	 * Filter the option value.
+	 *
+	 * @since 1.6.37
+	 *
+	 * @param mixed $value   The option value.
+	 * @param mixed $key     The key, or list of keys.
+	 * @param mixed $default The default value.
+	 */
+	return apply_filters( 'charitable_option_' . $current_key, $settings[ $current_key ], $original_key, $default );
 }
 
 /**
  * Returns a helper class.
  *
- * @param 	string $class_key
- * @return 	mixed
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @param  string $class_key The class to get an object for.
+ * @return mixed|false
  */
 function charitable_get_helper( $class_key ) {
-	if ( false !== strpos( $class_key, '_' ) ) {
-
-		$class_words = str_replace( '_', ' ', $class_key );
-
-	} else {
-
-		$class_words = $class_key;
-
-	}
-
-	$class_words = ucwords( $class_words );
-	$class_name = 'Charitable_' . str_replace( ' ', '_', $class_words );
-
-	if ( ! class_exists( $class_name ) ) {
-		return false;
-	}
-
-	return charitable()->get_registered_object( $class_name );
+	return charitable()->registry()->get( $class_key );
 }
 
 /**
  * Returns the Charitable_Notices class instance.
  *
- * @return 	Charitable_Notices
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @return Charitable_Notices
  */
 function charitable_get_notices() {
-	return Charitable_Notices::get_instance();
+	return charitable()->registry()->get( 'notices' );
 }
 
 /**
  * Returns the Charitable_Donation_Processor class instance.
  *
- * @return  Charitable_Donation_Processor
- * @since   1.0.0
+ * @since  1.0.0
+ *
+ * @return Charitable_Donation_Processor
  */
 function charitable_get_donation_processor() {
-	return Charitable_Donation_Processor::get_instance();
+	$registry = charitable()->registry();
+
+	if ( ! $registry->has( 'donation_processor' ) ) {
+		$registry->register_object( Charitable_Donation_Processor::get_instance() );
+	}
+
+	return $registry->get( 'donation_processor' );
 }
 
 /**
  * Return Charitable_Locations helper class.
  *
- * @return 	Charitable_Locations
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @return Charitable_Locations
  */
 function charitable_get_location_helper() {
-	return Charitable_Locations::get_instance();
+	return charitable()->registry()->get( 'locations' );
 }
 
 /**
  * Returns the current user's session object.
  *
- * @return 	Charitable_Session
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @return Charitable_Session
  */
 function charitable_get_session() {
-	return Charitable_Session::get_instance();
+	return charitable()->registry()->get( 'session' );
 }
 
 /**
  * Returns the current request helper object.
  *
- * @return 	Charitable_Request
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @return Charitable_Request
  */
 function charitable_get_request() {
-	return Charitable_Request::get_instance();
+	$registry = charitable()->registry();
+
+	if ( ! $registry->has( 'request' ) ) {
+		$registry->register_object( Charitable_Request::get_instance() );
+	}
+
+	return $registry->get( 'request' );
 }
 
 /**
  * Returns the Charitable_User_Dashboard object.
  *
- * @return 	Charitable_User_Dashboard
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @return Charitable_User_Dashboard
  */
 function charitable_get_user_dashboard() {
-	return Charitable_User_Dashboard::get_instance();
+	return charitable()->registry()->get( 'user_dashboard' );
 }
 
 /**
  * Return the database table helper object.
  *
- * @param 	string 	$table
- * @return  Charitable_DB|null
- * @since   1.0.0
+ * @since  1.0.0
+ *
+ * @param  string $table The table key.
+ * @return mixed|null A child class of Charitable_DB if table exists. null otherwise.
  */
 function charitable_get_table( $table ) {
 	return charitable()->get_db_table( $table );
@@ -172,8 +185,9 @@ function charitable_get_table( $table ) {
 /**
  * Returns the current donation form.
  *
- * @return 	Charitable_Donation_Form_Interface|false
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @return Charitable_Donation_Form_Interface|false
  */
 function charitable_get_current_donation_form() {
 	$campaign = charitable_get_current_campaign();
@@ -183,9 +197,10 @@ function charitable_get_current_donation_form() {
 /**
  * Returns the provided array as a HTML element attribute.
  *
- * @param 	array 		$args
- * @return 	string
- * @since 	1.0.0
+ * @since  1.0.0
+ *
+ * @param  array $args Arguments to be added.
+ * @return string
  */
 function charitable_get_action_args( $args ) {
 	return sprintf( "data-charitable-args='%s'", json_encode( $args ) );
@@ -194,13 +209,16 @@ function charitable_get_action_args( $args ) {
 /**
  * Returns the Charitable_Deprecated class, loading the file if required.
  *
- * @return 	Charitable_Deprecated
- * @since 	1.4.0
+ * @since  1.4.0
+ *
+ * @return Charitable_Deprecated
  */
 function charitable_get_deprecated() {
-	if ( ! class_exists( 'Charitable_Deprecated' ) ) {
-		require_once( charitable()->get_path( 'includes' ) . 'deprecated/class-charitable-deprecated.php' );
+	$registry = charitable()->registry();
+
+	if ( ! $registry->has( 'deprecated' ) ) {
+		$registry->register_object( Charitable_Deprecated::get_instance() );
 	}
 
-	return Charitable_Deprecated::get_instance();
+	return $registry->get( 'deprecated' );
 }
