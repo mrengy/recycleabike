@@ -12,6 +12,7 @@ function my_theme_enqueue_styles() {
         array( $parent_style),
         wp_get_theme()->get('Version')
     );
+    wp_enqueue_style('titillium-web-google-font', 'https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400&display=swap');
 }
 
 //obfuscating emails using email-address-encoder plugin https://encoder.till.im/guide#filtering-content
