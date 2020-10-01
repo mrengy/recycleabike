@@ -5,20 +5,23 @@
  * @version		1.0.0
  * @package		Charitable/Classes/Charitable_Template_Part
  * @author 		Eric Daams
- * @copyright 	Copyright (c) 2015, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License  
+ * @copyright 	Copyright (c) 2020, Studio 164a
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-if ( ! class_exists( 'Charitable_Template_Part' ) ) : 
+if ( ! class_exists( 'Charitable_Template_Part' ) ) :
 
 /**
  * Charitable_Template_Part
  *
- * @since		1.0.0
+ * @since   1.0.0
  */
-class Charitable_Template_Part {	
+class Charitable_Template_Part {
 
 	/**
 	 * @var 	string 			The template's slug.
@@ -31,13 +34,13 @@ class Charitable_Template_Part {
 	private $name;
 
 	/**
-	 * Class constructor. 
+	 * Class constructor.
+	 *
+	 * @since   1.0.0
 	 *
 	 * @param 	string $slug
 	 * @param 	string $name 	Optional name.
 	 * @return 	void
-	 * @access 	public
-	 * @since 	1.0.0
 	 */
 	public function __construct($slug, $name = "" ) {
 		$this->slug = $slug;
@@ -47,11 +50,11 @@ class Charitable_Template_Part {
 	}
 
 	/**
-	 * Returns the array of template names. 
-	 * 
+	 * Returns the array of template names.
+	 *
+	 * @since   1.0.0
+	 *
 	 * @return 	array
-	 * @access 	private
-	 * @since 	1.0.0
 	 */
 	private function get_template_names() {
 		$names = array(
@@ -69,4 +72,4 @@ class Charitable_Template_Part {
 	}
 }
 
-endif; // End class_exists check
+endif;

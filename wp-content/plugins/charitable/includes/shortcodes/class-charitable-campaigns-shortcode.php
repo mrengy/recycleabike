@@ -2,14 +2,17 @@
 /**
  * Campaigns shortcode class.
  *
- * @version  1.0.0
- * @package  Charitable/Shortcodes/Campaigns
- * @category Class
- * @author   Eric Daams
+ * @package   Charitable/Shortcodes/Campaigns
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.0.0
+ * @version   1.5.7
  */
 
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 if ( ! class_exists( 'Charitable_Campaigns_Shortcode' ) ) :
@@ -17,38 +20,48 @@ if ( ! class_exists( 'Charitable_Campaigns_Shortcode' ) ) :
 	/**
 	 * Charitable_Campaigns_Shortcode class.
 	 *
-	 * @since 1.0.0
+	 * @since   1.0.0
 	 */
 	class Charitable_Campaigns_Shortcode {
 
 		/**
 		 * Display the shortcode output. This is the callback method for the campaigns shortcode.
 		 *
+		 * @since   1.0.0
+		 *
 		 * @param  array $atts The user-defined shortcode attributes.
 		 * @return string
-		 * @access public
-		 * @static
-		 * @since  1.0.0
 		 */
 		public static function display( $atts ) {
 			$default = array(
-				'id' => '',
-				'orderby' => 'post_date',
-				'order' => '',
-				'number' => get_option( 'posts_per_page' ),
-				'category' => '',
-				'creator' => '',
-				'exclude' => '',
+				'id'               => '',
+				'orderby'          => 'post_date',
+				'order'            => '',
+				'number'           => get_option( 'posts_per_page' ),
+				'category'         => '',
+				'tag'              => '',
+				'creator'          => '',
+				'exclude'          => '',
 				'include_inactive' => false,
-				'columns' => 2,
-				'button' => 'donate',
-				'responsive' => 1,
+				'columns'          => 2,
+				'button'           => 'donate',
+				'responsive'       => 1,
+				'masonry'          => 0,
 			);
 
-			$args = shortcode_atts( $default, $atts, 'campaigns' );
+			$args              = shortcode_atts( $default, $atts, 'campaigns' );
 			$args['campaigns'] = self::get_campaigns( $args );
 
-			/* Allows extensions/themes to plug in their own template objects here. */
+			/**
+			 * Replace the default template with your own.
+			 *
+			 * If you replace the template with your own, it needs to be an instance of Charitable_Template.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param false|Charitable_Template The template. If false (the default), we will use our own template.
+			 * @param array $args               All the parsed arguments.
+			 */
 			$template = apply_filters( 'charitable_campaigns_shortcode_template', false, $args );
 
 			/* Fall back to default Charitable_Template if no template returned or if template was not object of 'Charitable_Template' class. */
@@ -60,12 +73,15 @@ if ( ! class_exists( 'Charitable_Campaigns_Shortcode' ) ) :
 				return false;
 			}
 
-			$view_args = apply_filters( 'charitable_campaigns_shortcode_view_args', array(
-				'campaigns' => $args['campaigns'],
-				'columns' => $args['columns'],
-				'button' => $args['button'],
-				'responsive' => $args['responsive'],
-			), $args );
+			/**
+			 * Modify the view arguments that are passed to the campaigns shortcode template.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param array $view_args The arguments to pass.
+			 * @param array $args      All the parsed arguments.
+			 */
+			$view_args = apply_filters( 'charitable_campaigns_shortcode_view_args', charitable_array_subset( $args, array( 'campaigns', 'columns', 'button', 'responsive', 'masonry' ) ), $args );
 
 			$template->set_view_args( $view_args );
 
@@ -73,17 +89,25 @@ if ( ! class_exists( 'Charitable_Campaigns_Shortcode' ) ) :
 
 			$template->render();
 
+			/**
+			 * Customize the output of the shortcode.
+			 *
+			 * @since  1.0.0
+			 *
+			 * @param  string $content The content to be displayed.
+			 * @param  array  $args    All the parsed arguments.
+			 * @return string
+			 */
 			return apply_filters( 'charitable_campaigns_shortcode', ob_get_clean(), $args );
 		}
 
 		/**
 		 * Return campaigns to display in the campaigns shortcode.
 		 *
+		 * @since   1.0.0
+		 *
 		 * @param  array $args The query arguments to be used to retrieve campaigns.
 		 * @return WP_Query
-		 * @access public
-		 * @static
-		 * @since  1.0.0
 		 */
 		public static function get_campaigns( $args ) {
 			$query_args = array(
@@ -103,11 +127,24 @@ if ( ! class_exists( 'Charitable_Campaigns_Shortcode' ) ) :
 			/* Set category constraint */
 			if ( ! empty( $args['category'] ) ) {
 				$query_args['tax_query'] = array(
-				array(
-					'taxonomy'  => 'campaign_category',
-					'field'     => 'slug',
-					'terms'     => $args['category'],
-				),
+					array(
+						'taxonomy' => 'campaign_category',
+						'field'    => 'slug',
+						'terms'    => explode( ',', $args['category'] ),
+					),
+				);
+			}
+
+			/* Set tag constraint */
+			if ( ! empty( $args['tag'] ) ) {
+				if ( ! array_key_exists( 'tax_query', $query_args ) ) {
+					$query_args['tax_query'] = array();
+				}
+
+				$query_args['tax_query'][] = array(
+					'taxonomy' => 'campaign_tag',
+					'field'    => 'slug',
+					'terms'    => explode( ',', $args['tag'] ),
 				);
 			}
 
@@ -121,15 +158,15 @@ if ( ! class_exists( 'Charitable_Campaigns_Shortcode' ) ) :
 				$query_args['meta_query'] = array(
 					'relation' => 'OR',
 					array(
-						'key'       => '_campaign_end_date',
-						'value'     => date( 'Y-m-d H:i:s' ),
-						'compare'   => '>=',
-						'type'      => 'datetime',
+						'key'     => '_campaign_end_date',
+						'value'   => date( 'Y-m-d H:i:s' ),
+						'compare' => '>=',
+						'type'    => 'datetime',
 					),
 					array(
-						'key'       => '_campaign_end_date',
-						'value'     => 0,
-						'compare'   => '=',
+						'key'     => '_campaign_end_date',
+						'value'   => 0,
+						'compare' => '=',
 					),
 				);
 			}
@@ -142,16 +179,6 @@ if ( ! class_exists( 'Charitable_Campaigns_Shortcode' ) ) :
 				$query_args['order'] = $args['order'];
 			}
 
-			/* Return campaigns, ordered by how much money has been raised. */
-			if ( 'popular' === $args['orderby'] ) {
-				return Charitable_Campaigns::ordered_by_amount( $query_args );
-			}
-
-			/* Return campaigns, ordered by how soon they are ending. */
-			if ( 'ending' === $args['orderby'] ) {
-				return Charitable_Campaigns::ordered_by_ending_soon( $query_args );
-			}
-
 			/* Return campaigns, ordered by date of creation. */
 			if ( 'post_date' === $args['orderby'] ) {
 				$query_args['orderby'] = 'date';
@@ -159,11 +186,33 @@ if ( ! class_exists( 'Charitable_Campaigns_Shortcode' ) ) :
 				if ( ! isset( $query_args['order'] ) ) {
 					$query_args['order'] = 'DESC';
 				}
-			} else {
+			} elseif ( ! in_array( $args['orderby'], array( 'popular', 'ending' ) ) ) {
 				$query_args['orderby'] = $args['orderby'];
 			}
 
-			return Charitable_Campaigns::query( $query_args );
+			/**
+			 * Filter the campaign query args.
+			 *
+			 * @since 1.6.28
+			 *
+			 * @param array $query_args The arguments to be passed to WP_Query.
+			 * @param array $args       The shortcode args.
+			 */
+			$query_args = apply_filters( 'charitable_campaigns_shortcode_query_args', $query_args, $args );
+
+			/**
+			 * Finally, query based on the orderby argument.
+			 */
+			switch ( $args['orderby'] ) {
+				case 'popular':
+					return Charitable_Campaigns::ordered_by_amount( $query_args );
+
+				case 'ending':
+					return Charitable_Campaigns::ordered_by_ending_soon( $query_args );
+
+				default:
+					return Charitable_Campaigns::query( $query_args );
+			}
 		}
 	}
 

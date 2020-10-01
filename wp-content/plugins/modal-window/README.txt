@@ -1,90 +1,93 @@
-﻿=== Modal Window - create a simple popup & insert any content ===
+=== Modal Window - create popup modal window ===
 Contributors: Wpcalc
-Donate link: https://wow-estore.com/downloads/wow-modal-windows-pro/
-Tags: animated popup, auto close, delayed popup, image popup, lightbox, modal plugin, modal popup, modal window, modal windows, onclick popup, popup, popup plugin, popup window, popups, unlimited popups
-Requires at least: 3.2
-Tested up to: 4.6
-Stable tag: 2.2
+Donate link: https://wow-estore.com/item/wow-modal-windows-pro/
+Tags: modal, modal window, modal popup, lightbox, popup, 
+Requires at least: 4.3
+Tested up to: 5.5
+Requires PHP: 5.6
+Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create popups. Insert any content. Trigger on anything. Place anywhere with a shortcode.
+WordPress popup plugin for easily create popup and modal window with any kind of content and settings.
 
 == Description ==
+
+Use the free WordPress popup plugin "Modal Window" to quickly and easily create informative popups. Add the text and media you need, insert shortcodes of forms and much more. Change the behavior of the display of modal windows depending on the user's actions on the page. 
+
+The Modal Window is the unique tool for free use. With its help you can add bright information popup messages to the site, warn visitors about various promotions, display contact forms to increase the conversion of the resource. The WordPress popup plugin will allow you to set the data display in the new format.
+
 Create modal windows and insert any kind of content.
 
-= Get more results by using different marketing tools together! =
-Get this plugin in our [free marketing bundle plugin](https://wordpress.org/plugins/marketing-wp/).
-
-= Demo =
-[Demo](http://wow-demo.com/wow-modal-windows/)
-
-[youtube https://www.youtube.com/watch?v=Yk7XYub_d0Q]
-
 = Main features =
-* Create any kind of modal windows
-* Insert any content via the built-in editor
-* Trigger the modal windows on anything
-* Show all the time or only once
-* Place them anywhere with a shortcode
-* Create up to 3 modal windows
+
+The WordPress plugin Modal Window will help you quickly get the attention of visitors. Its functionality will make it possible to implement high-quality modal windows for any query.
+
+* Place any kind of content
+* Use the function editor to configure the contents of the block
+* Change the height and width of windows
+* Set the window closing options by clicking on Overlay or the Esc key
+* Change settings for mobile devices
+* Output of the window via the button or the menu item
+* Display the modal window depending on user behavior
+* Use cookies to customize the display of the pop-up block
+* Copy and paste the shortcode of the window anywhere
+
 
 = Pro version =
-Achieve even better results with the PRO version:
+Discover even more features with the Pro version of the Modal Window plugin:
 
-* Unlimited amount of modal windows
-* Powerful positioning
-* Create not only popups, but also flyout panels
-* Powerful styling, including image backgrounds
-* Powerful placing: In addition to shortcodes, place the popup to the whole website, only posts, only pages, only certain pages or only certain posts, all posts except specified ones or all pages except specified ones.
-* Show modal windows via the fixed buttons with your custom text. Buttons can be placed on the left, right, top or bottom of the screen.
+* Create an unlimited number of modal windows
+* Change the display of the window depending on the user's status
+* Set the output of the block on all or individual pages via ID
+* Modify the behavior of modal windows in accordance with the language of the site
+* Set limits for screens with the small resolution
+* Use advanced features to customize the appearance
+* Insert the background image
+* Change the start point of the window
+* Add borders and change their color for each pop-up block
+* Use the variety of color palettes
+* Choose the type and behavior of the closing button
+* Use the time delay for the effective appearance of the block
+* Set the bright animation when the window appears and closes
+* Change the duration of the effect at your discretion
+* Display the button for the modal window in the form of an icon and / or text
+* Add the animation for the button, change its color and location on the page
+* Create convenient and functional pop-up panels
+* Generate unlike icons using the built-in menu "icons"
 * And more...
 
-[Pro version demo](http://wow-demo.com/wow-modal-windows-pro/)
+[Pro version demo](https://preview.wow-estore.com/wow-modal-windows-pro/)
 
-[Buy Pro version](https://wow-estore.com/downloads/wow-modal-windows-pro/)
+[Buy Pro version](https://wow-estore.com/item/wow-modal-windows-pro/)
 
-= Trigger the modal window on: = 
-* Click on a link or button with an ID
-* Click on a link or button with an #anchor-link
-* Opening the page (auto-show)
-* Scrolling the page
-* On exit intent (When the user tries to navigate away from the page - moves the cursor away from your page and tries to close or switch tabs)
-* Enable closing the modal window on overlay & via the esc button
 
-= Enable timing: = 
-* Set the delay with which the modal window appears
+The free Modal Window plugin is the best tool to create information pop-up blocks quickly and easy. It allows you to display any kind of content on the page. Add and edit text messages, shortcodes of various forms, images and other media files with its help.
 
-= Show modal window: = 
-* All the time
-* Only once
-* Show again after the number of days you specify
+= Can be used for: =
+* pop-up notifications;
+* detailed description of the service or the product;
+* windows with the contact form;
+* blocks with large images of products;
+* pop-up video instructions;
+* error messages or warnings;
+* windows with interactive maps and much more.
 
-= Insert any content: = 
-* HTML Text
-* Banner Ads
-* Image or Image Gallery
-* Video or Video Gallery
-* Audio or Audio Gallery
-* Pdf viewer
-* Iframe Content
-* Forms
-* SlideShare Content
-* and other media
- 
-= Modal windows can be used for: = 
-* Capturing emails
-* Advertisements
-* Contact forms
-* Disclaimer contents
-* Notifications
-* Alert messages
-* Product description
-* Work portfolio
-* Product images
-* Google maps
-* Notices
-* Other information
+= Use with other plugins to maximize your results =
+* [Popup Box – new WordPress popup plugin](https://wordpress.org/plugins/popup-box/)
+* [Counter Box – powerful creator of counters, timers and countdowns](https://wordpress.org/plugins/counter-box/)
+* [Button Generator – easily Button Builder](https://wordpress.org/plugins/button-generation/)
+* [Herd Effects – fake notifications and social proof plugin](https://wordpress.org/plugins/mwp-herd-effect/)
+* [Floating Button](https://wordpress.org/plugins/floating-button/)
+* [Side Menu Lite – add sticky fixed buttons](https://wordpress.org/plugins/side-menu-lite/)
+* [Sticky Buttons – floating buttons builder](https://wordpress.org/plugins/sticky-buttons/)
+* [Bubble Menu – circle floating menu](https://wordpress.org/plugins/bubble-menu/)
+* [Float menu – awesome floating side menu](https://wordpress.org/plugins/float-menu/)
+* [Modal Window – create modal window](https://wordpress.org/plugins/modal-window/)
+* [Wow Skype Buttons](https://wordpress.org/plugins/mwp-skype/)
+* [Border Menu](https://wordpress.org/plugins/border-menu/)
+* [Slide Menu](https://wordpress.org/plugins/slide-menu/)
+
 
 = Frequently Asked Questions = 
 
@@ -92,23 +95,11 @@ Achieve even better results with the PRO version:
 
 * How to create a Modal window?
 * How to open 'Modal Window' via a Side Menu?
-* How to open 'Modal Window' on click on button or link?
+
+* How to open a modal window clicking on the link?
+* How to open a modal window clicking on the button?
 * How to insert a form into a modal window?
 * Can I insert a shortcode into the modal window?
-
-
-= Use with our other popular plugins to maximize your results =
-* Wow Side Menus - add fixed side buttons to your website & lead users where you want (Unique plugin) [Free version](https://wordpress.org/plugins/mwp-side-menu/) | [Pro version](https://wow-estore.com/downloads/wow-side-menus-pro/)
-* Wow Countdowns - create countdowns with randomizer & triggers (Unique plugin) [Free version](https://wordpress.org/plugins/mwp-countdown/) | [Pro version](https://wow-estore.com/downloads/wow-countdowns-pro/)
-* Wow Forms - create simple forms [Free version](https://wordpress.org/plugins/mwp-forms/) | [Pro version](https://wow-estore.com/downloads/wow-forms-pro/)
-* Wow Herd Effects - create a queue effect on your website (Unique plugin) [Free version](https://wordpress.org/plugins/mwp-herd-effect/) | [Pro version](https://wow-estore.com/downloads/wow-herd-effects-pro/)
-* Wow Viral Signups - run basic or limited optin campaigns, with viral sharing (Unique plugin) [Free version](https://wordpress.org/plugins/mwp-viral-signup/) | [Pro version](https://wow-estore.com/downloads/wow-viral-signups-pro/)
-* Wow Skype Buttons - add a skype button to your website [Free version](https://wordpress.org/plugins/mwp-skype/) | [Pro version](https://wow-estore.com/downloads/wow-skype-buttons-pro/)
-* Wow Marketing-WP Suite - all of the above plugins in a single ultimate marketing plugin [Free version](https://wordpress.org/plugins/marketing-wp/) | [Pro version](https://wow-estore.com/downloads/wow-marketing-wp-suite-pro/)
-
-= Translations =
-* English
-* Russian
 
 = Support =
 Search for answers and ask your questions at [support center](https://wordpress.org/support/plugin/modal-window)
@@ -121,9 +112,8 @@ Search for answers and ask your questions at [support center](https://wordpress.
 * Click `Add new` to create your first modal window
 * Setup your modal window
 * Click Save
-* Copy and paste the shortcode, such as [Wow-Modal-Windows id=1] to where you want the modal window to appear. 
-* If you want it to appear everywhere on your site, you can insert it for example in your `header.php`, like this: `<?php echo do_shortcode('[Wow-Modal-Windows id=1]');?>`
-* If you want to insert the shortcode into a widget, use <a href="https://wordpress.org/plugins/shortcode-widget/">this plugin</a>
+* Copy and paste the shortcode, such as [Modal-Window id=1] to where you want the modal window to appear.
+* If you want it to appear everywhere on your site, you can insert it for example in your `header.php`, like this: `<?php echo do_shortcode('[Modal-Window id=1]');?>`
 
 == Frequently Asked Questions ==
 = How to create a Modal window?  =
@@ -131,20 +121,67 @@ Search for answers and ask your questions at [support center](https://wordpress.
 * Click `Add new` to create your first modal window
 * Setup your modal window
 * Click Save
-* Copy and paste the shortcode, such as [Wow-Modal-Windows id=1], to where you want the modal window to appear. 
-* If you want it to appear everywhere on your site, you can insert it for example in your `header.php`, like this: `<?php echo do_shortcode('[Wow-Modal-Windows id=1]');?>`
-* If you want to insert the shortcode into a widget, use <a href="https://wordpress.org/plugins/shortcode-widget/">this plugin</a>
+* Copy and paste the shortcode, such as [Modal-Window id=1], to where you want the modal window to appear. For Example: insert shortcode [Modal-Window id=1] into a page/post content
+* If you want it to appear everywhere on your site, you can insert it for example in your `footer.php`, like this: `<?php echo do_shortcode('[Modal-Window id=1]');?>`
+
+= Prevent page jumping to top when opening modal =
+
+If the page jumping to the top when opening a modal via a link lower down on a page add the next CSS code:
+
+`html.no-scroll, body.no-scroll {
+    overflow: visible !important;
+}`
+
+In the site dashboard:
+
+1. Go to the page ‘Appearance’->’Customize’
+2. Click ‘Additional CSS’
+3. Add CSS code
+4. Click ‘Publised’
+
+= How to close the modal window using custom button =
+
+You can сlose popup via adding to the element:
+
+* Class - wow-modal-close-X, like `<span class="wow-modal-close-X">Close Popup</span>`
+* ID - wow-modal-close-X, like `<span id="wow-modal-close-X">Close Popup</span>`
+* URL - #wow-modal-close-X, like `<a href="#wow-modal-close-X">Close Popup</a>`
+
+Where X = Modal window ID
+
+= The modal window on the frontend does not change after making changes to the settings =
+
+If you use the cache (W3 Total Cache, WP Super Cache, WP Rocket) or minify plugins (Autoptimize, Fast Velocity Minify) try deactivate them and tested the modal window.
+If the modal window shows correctly, reset the cache of these plugins.
+
+= The modal window not show =
+
+1. Check whether you have inserted a modal window on the page. You can insert the modal window via shortcode or option 'Publish' -> 'All posts and pages'
+2. Check that the site's protocol matches WordPress Address (URL) & Site Address (URL) in the Settings-> General
 
 = How to open 'Modal Window' via a Side Menu? =
 Install plugin [Side Menu - add fixed side buttons](https://wordpress.org/plugins/side-menu/)
 
 * Create a modal window
 * In the option `Show a modal window` select -> `Click on a link (with id)`
-* Copy and paste the shortcode, such as [Wow-Modal-Windows id=1], to where you want the modal window to appear.
+* Copy and paste the shortcode, such as [Modal-Window id=1], to where you want the modal window to appear.
 * Create Side Menu Item via plugin [Side Menu](https://wordpress.org/plugins/side-menu/)
-* In the option `Item type` select -> `modal window`
-* Then enter which modal window to show. Enter Modal window ID such as wow-modal-id-1
+* In the option `Item type` select -> `link`
+* Then enter which modal window to show. Enter link such as #wow-modal-id-1
 * Save Menu Item
+
+
+= How to open a modal window clicking on the link?  =
+
+* Create a modal window
+* Copy and paste the shortcode, such as [Modal-Window id=1], to where you want the modal window to appear.
+* Insert a link like `<a href="https://wow-estore.com/#wow-modal-id-1">Open Modal Window</a>`  to the page.
+
+= How to open a modal window clicking on the button ?  =
+* Create a modal window
+* Copy and paste the shortcode, such as [Modal-Window id=1], to where you want the modal window to appear.
+* Insert a button like `<button id="wow-modal-id-1">Open Modal Window</button>`  to the page.
+
 
 = How to insert a form into a modal window? =
 Install plugin [Wow Forms](https://wordpress.org/plugins/mwp-forms/)
@@ -154,6 +191,15 @@ Install plugin [Wow Forms](https://wordpress.org/plugins/mwp-forms/)
 
 = Can I insert a shortcode into the modal window? =
 Yes, you can inert any shortcode into the content of modal window
+
+= The modal window doesn't scrolling =
+This happens if the height of the modal is set to auto and is less than the height of the screen.
+
+To solve this problem:
+
+* Set the value to option "Modal Height"
+* Select the value "Modal Height" % or px, but not auto 
+
 
 == Screenshots ==
 1. Overview
@@ -167,8 +213,115 @@ Yes, you can inert any shortcode into the content of modal window
 9. Features
 10. Pro version features
 
+== Upgrade Notice ==
+
+= 5.0 =
+If you use the cache plugin, reset the cache completely.
 
 == Changelog ==
+
+= 5.1 =
+Updated: Font Awesome Icons to version 5.14
+Fixed: minor bugs
+
+= 5.0.6 =
+Fixed: check, if jQuery is ready
+
+= 5.0.5 =
+Fixed: fix conflict with Divi theme
+
+= 5.0.4 =
+Fixed: save to database
+= 5.0.3 =
+Fixed: fix conflict with form plugins
+= 5.0.2 =
+Fixed: Mobile Rules
+
+= 5.0 =
+Added: Live Preview Builder
+Added: Test mode</li>
+Added: Activate/Deactvate the modal window
+Changed: Admin style
+Optimized: scripts and styles
+
+= 4.0.3 =
+Fixed: link to the Settings
+
+= 4.0.2 =
+Fixed: option 'Show only once'
+
+= 4.0.1 = 
+Fixed: using old shortcode
+
+= 4.0 = 
+* Added: Options for modal window style: z-index, position, overlay, top location, border style, content font-size
+* Added: Title of the modal window
+* Added: Icon generation
+* Added: Shortcodes for columns
+* Added: Screen width control for different devices
+* Added: Pot file for translate
+* Changed: Admin style
+* Changed: Database of the plugin
+
+= 3.2.2 = 
+* Fixes: Gutenberg Shortcode 
+
+= 3.2.1 = 
+* Deleted: quantity constraint
+
+= 3.2 = 
+* Added: Function for showing modal windows on all posts and pages
+
+= 3.1.2 = 
+* Fixed: Showing a modal window when scrolled
+
+= 3.1.1 = 
+* Fixed: Save a modal window
+
+= 3.1 = 
+* Added: Support page
+
+= 3.0 = 
+* Added: show a modal window on hover
+* Changed: Admin style
+* Fixed: General style
+
+
+= 2.5 = 
+* Fixed: Open a modal window, when the window is scrolled
+* Fixed: Open a modal window, when the user tries to leave the page.
+
+= 2.4 = 
+* Fixed: Working with cookies
+* Fixed: Saving to the database.
+
+
+= 2.3.4 = 
+
+* Added: FAQ.
+* Fixed: code.
+
+= 2.3.3 = 
+
+* Fix: Show a modal window with cookies.
+
+
+= 2.3.2 = 
+
+* Fix: Modal Window style.
+* Fix: Admin style.
+
+= 2.3.1 = 
+
+* Fix: Admin style.
+
+
+= 2.3 = 
+
+* Add: Button for call a modal window.
+* Add: Mobile style settings.
+* Change: Image of close button.
+* Change: The admin style of modal window.
 
 
 = 2.2.1 = 

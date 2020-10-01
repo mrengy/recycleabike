@@ -4,11 +4,12 @@
  *
  * Credit to WooThemes, mikejolly and shivapoudel. This is shamelessly based on their implementation in WooCommerce.
  *
- * @since		1.0.0
- * @package		Charitable/i18n
- * @author 		Eric Daams
- * @copyright 	Copyright (c) 2015, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License  
+ * @package   Charitable/i18n
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.0.0
+ * @version   1.0.0
  */
 
 return array(
@@ -88,5 +89,5 @@ return array(
 	'TH-61' => __( 'Uthai Thani (&#3629;&#3640;&#3607;&#3633;&#3618;&#3608;&#3634;&#3609;&#3637;)', 'charitable' ),
 	'TH-53' => __( 'Uttaradit (&#3629;&#3640;&#3605;&#3619;&#3604;&#3636;&#3605;&#3606;&#3660;)', 'charitable' ),
 	'TH-95' => __( 'Yala (&#3618;&#3632;&#3621;&#3634;)', 'charitable' ),
-	'TH-35' => __( 'Yasothon (&#3618;&#3650;&#3626;&#3608;&#3619;)', 'charitable' )
+	'TH-35' => __( 'Yasothon (&#3618;&#3650;&#3626;&#3608;&#3619;)', 'charitable' ),
 );
