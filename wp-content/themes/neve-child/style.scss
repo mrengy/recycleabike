@@ -27,10 +27,27 @@ figure.alignleft:first-child, figure.alignright:first-child {
 p {
   clear: both; }
 
+.relative {
+  position: relative;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0px;
+  padding: 0 24px;
+  font-size: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+
+  p {
+    margin: 1em 0;
+  }
+}
+
 .covid-frontpage {
   background: #E5F3F4;
 
-  .wrapper {
+  .content-wrapper {
     max-width: 1024px;
     margin: auto;
     background: white;
