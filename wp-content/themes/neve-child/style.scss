@@ -18,12 +18,6 @@ Text Domain: neve-child
   max-width: 42em; }
 */
 
-$link-color: rgb(103,183,225);
-
-a, a:focus, a:hover {
-  color: $link-color;
-}
-
 h1, h2, h3, h4, h5, h6 {
   clear: both; }
 
@@ -33,18 +27,7 @@ figure.alignleft:first-child, figure.alignright:first-child {
 p {
   clear: both; }
 
-@mixin titillium {
-  font-family: 'Titillium Web', sans-serif;
-}
-
 .covid-frontpage {
-  @include titillium;
-  h1 {
-    @include titillium;
-  }
-
-  font-size: 16pt;
-
   background: #E5F3F4;
 
   .wrapper {

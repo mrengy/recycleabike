@@ -15,9 +15,6 @@ Text Domain: neve-child
 /*#content .row {
   max-width: 42em; }
 */
-a, a:focus, a:hover {
-  color: #67b7e1; }
-
 h1, h2, h3, h4, h5, h6 {
   clear: both; }
 
@@ -28,11 +25,7 @@ p {
   clear: both; }
 
 .covid-frontpage {
-  font-family: 'Titillium Web', sans-serif;
-  font-size: 16pt;
   background: #E5F3F4; }
-  .covid-frontpage h1 {
-    font-family: 'Titillium Web', sans-serif; }
   .covid-frontpage .wrapper {
     max-width: 1024px;
     margin: auto;
