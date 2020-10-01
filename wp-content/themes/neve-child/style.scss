@@ -33,9 +33,69 @@ figure.alignleft:first-child, figure.alignright:first-child {
 p {
   clear: both; }
 
+@mixin titillium {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.covid-frontpage {
+  @include titillium;
+  h1 {
+    @include titillium;
+  }
+
+  font-size: 16pt;
+
+  background: #E5F3F4;
+
+  .wrapper {
+    max-width: 1024px;
+    margin: auto;
+    background: white;
+  }
+
+  .container {
+    padding: 16px 0;
+  }
+
+  .featured-image {
+    height: 220px;
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .wp-block-group {
+    padding: 16px 32px;
+    &:nth-child(even) {
+      background: #f2f2f2;
+    }
+  }
+}
+
+// Desktop
 @media (min-width: 769px) {
   p {
-    clear: none; }
+    clear: none;
+  }
+
+  .covid-frontpage {
+    .featured-image {
+      height: 340px;
+    }
+  }
 }
+
+// Tablet
+@media (min-width: 480px) {
+  .covid-frontpage {
+    .wp-block-group:nth-child(even) {
+      background: inherit;
+    }
+    .featured-image {
+      height: 280px;
+    }
+  }
+}
+
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }

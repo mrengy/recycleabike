@@ -27,9 +27,39 @@ figure.alignleft:first-child, figure.alignright:first-child {
 p {
   clear: both; }
 
+.covid-frontpage {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 16pt;
+  background: #E5F3F4; }
+  .covid-frontpage h1 {
+    font-family: 'Titillium Web', sans-serif; }
+  .covid-frontpage .wrapper {
+    max-width: 1024px;
+    margin: auto;
+    background: white; }
+  .covid-frontpage .container {
+    padding: 16px 0; }
+  .covid-frontpage .featured-image {
+    height: 220px;
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat; }
+  .covid-frontpage .wp-block-group {
+    padding: 16px 32px; }
+    .covid-frontpage .wp-block-group:nth-child(even) {
+      background: #f2f2f2; }
+
 @media (min-width: 769px) {
   p {
-    clear: none; } }
+    clear: none; }
+
+  .covid-frontpage .featured-image {
+    height: 340px; } }
+@media (min-width: 480px) {
+  .covid-frontpage .wp-block-group:nth-child(even) {
+    background: inherit; }
+  .covid-frontpage .featured-image {
+    height: 280px; } }
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }
 
