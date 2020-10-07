@@ -64,6 +64,9 @@ p {
     .covid-frontpage .wp-block-group:nth-child(even) {
       background: #f2f2f2; }
 
+.mc4wp-form {
+  padding: 1em 2em; }
+
 @media (min-width: 769px) {
   p {
     clear: none; }
