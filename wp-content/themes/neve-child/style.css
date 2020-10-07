@@ -37,6 +37,9 @@ p {
   .caption p {
     margin: 1em 0; }
 
+.header-main-inner, .footer-bottom-inner {
+  background-color: #5cc8dd !important; }
+
 .covid-frontpage {
   background: #E5F3F4; }
   .covid-frontpage .content-wrapper {
