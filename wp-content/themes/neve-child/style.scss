@@ -50,9 +50,15 @@ p {
   }
 }
 
-.header-main-inner, .footer-bottom-inner{
+.header-main-inner{
   background-color: $blue-primary !important;
 }
+
+.footer-bottom-inner{
+  background-color: $blue-light !important;
+  min-height: 2em;
+}
+
 
 .covid-frontpage {
   background: $blue-light;
