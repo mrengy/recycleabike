@@ -37,6 +37,13 @@ p {
   .caption p {
     margin: 1em 0; }
 
+.header-main-inner {
+  background-color: #5cc8dd !important; }
+
+.footer-bottom-inner {
+  background-color: #E5F3F4 !important;
+  min-height: 2em; }
+
 .covid-frontpage {
   background: #E5F3F4; }
   .covid-frontpage .content-wrapper {
