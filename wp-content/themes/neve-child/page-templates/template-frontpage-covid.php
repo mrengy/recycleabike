@@ -12,7 +12,9 @@ get_header();
 			<div class="caption">
 				<?php
 					$caption = get_post_custom_values( $key = 'Caption');
-					echo($caption[0]);
+					if (!empty($caption)){
+						echo wpautop($caption[0]);
+					}
 				?>
 			</div>
 		</div>
