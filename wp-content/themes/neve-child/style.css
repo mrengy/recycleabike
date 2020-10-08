@@ -46,23 +46,24 @@ p {
   background-color: #E5F3F4 !important;
   min-height: 2em; }
 
-.covid-frontpage {
+main {
   background: #E5F3F4; }
-  .covid-frontpage .content-wrapper {
-    max-width: 1024px;
-    margin: auto;
-    background: white; }
-  .covid-frontpage .container {
-    padding: 1em 0; }
-  .covid-frontpage .featured-image {
-    height: 220px;
-    background-position: left;
-    background-size: cover;
-    background-repeat: no-repeat; }
-  .covid-frontpage .wp-block-group {
-    padding: 1em 2em; }
-    .covid-frontpage .wp-block-group:nth-child(even) {
-      background: #f2f2f2; }
+
+.covid-frontpage .content-wrapper {
+  max-width: 1024px;
+  margin: auto;
+  background: white; }
+.covid-frontpage .container {
+  padding: 1em 0; }
+.covid-frontpage .featured-image {
+  height: 220px;
+  background-position: left;
+  background-size: cover;
+  background-repeat: no-repeat; }
+.covid-frontpage .wp-block-group {
+  padding: 1em 2em; }
+  .covid-frontpage .wp-block-group:nth-child(even) {
+    background: #f2f2f2; }
 
 .mc4wp-form {
   padding: 1em 2em; }
