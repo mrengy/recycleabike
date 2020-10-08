@@ -61,9 +61,11 @@ p {
   min-height: 2em;
 }
 
+main{
+  background: $blue-light;
+}
 
 .covid-frontpage {
-  background: $blue-light;
 
   .content-wrapper {
     max-width: 1024px;
