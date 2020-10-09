@@ -45,7 +45,7 @@ if (!preg_match_all('#\b(localhost|devsite|stage)\b#', site_url())) {
   }
 }
 
-//customize meta boxes in admin
+//hide / show meta boxes when editing pages in admin https://wordpress.stackexchange.com/a/1402/7313
 
 add_action('do_meta_boxes', 'neve_child_customize_meta_boxes');
 
