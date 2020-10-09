@@ -44,4 +44,14 @@ if (!preg_match_all('#\b(localhost|devsite|stage)\b#', site_url())) {
 <?php
   }
 }
+
+//hide / show meta boxes when editing pages in admin https://wordpress.stackexchange.com/a/1402/7313
+
+add_action('do_meta_boxes', 'neve_child_customize_meta_boxes');
+
+function neve_child_customize_meta_boxes(){
+    remove_meta_box( 'mymetabox_revslider_0', 'page', 'normal' );
+    add_meta_box('postcustom', __('Custom Fields'), 'post_custom_meta_box', 'page', 'normal', 'high');
+}
+
 ?>
