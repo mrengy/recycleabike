@@ -94,6 +94,14 @@ main{
   padding: 1em 2em;
 }
 
+@media (min-width: 1024px) {
+  header .container {
+    max-width: 1024px;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
 // Desktop
 @media (min-width: 769px) {
   p {
