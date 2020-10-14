@@ -101,6 +101,15 @@ main{
   padding: 1em 2em;
 }
 
+input[type="submit"]{
+  background-color: $blue-primary;
+  text-transform: none;
+}
+
+input[type="submit"]:hover{
+  background-color: $overlay;
+}
+
 @media (min-width: 1024px) {
   header .container {
     max-width: 1024px;
