@@ -28,6 +28,13 @@ body{
 h1, h2, h3, h4, h5, h6 {
   clear: both; }
 
+#header-grid{
+    div.builder-item{
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
 figure.alignleft:first-child, figure.alignright:first-child {
   margin-top: 0; }
 
