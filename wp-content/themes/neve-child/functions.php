@@ -8,10 +8,11 @@ function my_theme_enqueue_styles() {
 
     //wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.min.css' );
     wp_enqueue_style( 'child-style',
-        get_stylesheet_directory_uri() . '/style.css',
+        get_stylesheet_directory_uri() . '/style.min.css',
         array( $parent_style),
         wp_get_theme()->get('Version')
     );
+    wp_enqueue_style('titillium-web-google-font', 'https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400&display=swap');
 }
 
 //obfuscating emails using email-address-encoder plugin https://encoder.till.im/guide#filtering-content
@@ -20,7 +21,11 @@ if ( function_exists( 'eae_encode_emails' ) )  {
 }
 
 //add wp_enqueue_scripts
-wp_enqueue_script( 'open-children', get_stylesheet_directory_uri() . '/js/open-children.js', array ( 'jquery' ), 1.0, true);
+add_action( 'wp_enqueue_scripts', 'neve_child_enqueue_scripts');
+
+function neve_child_enqueue_scripts() {
+  wp_enqueue_script( 'open-children', get_stylesheet_directory_uri() . '/js/open-children.js', array ( 'jquery' ), 1.0, true);
+}
 
 //add google analytics if not on staging or local Sites
 if (!preg_match_all('#\b(localhost|devsite|stage)\b#', site_url())) {
@@ -39,4 +44,14 @@ if (!preg_match_all('#\b(localhost|devsite|stage)\b#', site_url())) {
 <?php
   }
 }
+
+//hide / show meta boxes when editing pages in admin https://wordpress.stackexchange.com/a/1402/7313
+
+add_action('do_meta_boxes', 'neve_child_customize_meta_boxes');
+
+function neve_child_customize_meta_boxes(){
+    remove_meta_box( 'mymetabox_revslider_0', 'page', 'normal' );
+    add_meta_box('postcustom', __('Custom Fields'), 'post_custom_meta_box', 'page', 'normal', 'high');
+}
+
 ?>

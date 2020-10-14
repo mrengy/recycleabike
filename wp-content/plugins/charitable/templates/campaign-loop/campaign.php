@@ -10,7 +10,10 @@
  * @version 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 $campaign = charitable_get_current_campaign();
 
@@ -23,14 +26,14 @@ $campaign = charitable_get_current_campaign();
 	do_action( 'charitable_campaign_content_loop_before', $campaign, $view_args );
 
 	?>
-	<a href="<?php the_permalink() ?>"> 
+	<a href="<?php the_permalink() ?>">
 		<?php
 			/**
 			 * @hook charitable_campaign_content_loop_before_title
 			 */
 			do_action( 'charitable_campaign_content_loop_before_title', $campaign, $view_args );
 		?>
-		
+
 		<h3><?php the_title() ?></h3>
 
 		<?php

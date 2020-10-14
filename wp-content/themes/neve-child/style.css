@@ -1,2 +1,24 @@
-a,a:focus,a:hover{color:#67b7e1}h1,h2,h3,h4,h5,h6{clear:both}figure.alignleft:first-child,figure.alignright:first-child{margin-top:0}p{clear:both}@media (min-width: 769px){p{clear:none}}.header-menu-sidebar .nav-menu-primary ul li{text-align:left}
-/*# sourceMappingURL=style.css.map */
+/*
+Theme Name: Neve Child
+description: >-
+  Child Theme of Neve
+Author: Mike Eng
+Author URI: http://mike-eng.com
+Template: neve
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: two-columns, responsive-layout
+Text Domain: neve-child
+*/
+/*
+ * This required file is here only to provide theme metadata to WordPress.
+ *
+ * This theme's source is in style.scss.
+ *
+ * The minified output, which is the styling included on the site itself, is in
+ * style.min.css.
+ *
+ * Run `make` to build style.min.css from style.scss. (You must have the `sass`
+ * cli tool installed. see https://sass-lang.com/)
+ */

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Displays the campaign content.
  *
@@ -10,19 +10,30 @@
  * @version 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-$campaign = $view_args[ 'campaign' ];
-$content = $view_args[ 'content' ];
+$campaign = $view_args['campaign'];
+$content  = $view_args['content'];
 
 /**
- * @hook charitable_campaign_content_before
+ * Add something before the campaign content.
+ *
+ * @since 1.0.0
+ *
+ * @param $campaign Charitable_Campaign Instance of `Charitable_Campaign`.
  */
-do_action( 'charitable_campaign_content_before', $campaign ); 
+do_action( 'charitable_campaign_content_before', $campaign );
 
 echo $content;
 
 /**
- * @hook charitable_campaign_content_after
+ * Add something after the campaign content.
+ *
+ * @since 1.0.0
+ *
+ * @param $campaign Charitable_Campaign Instance of `Charitable_Campaign`.
  */
 do_action( 'charitable_campaign_content_after', $campaign );

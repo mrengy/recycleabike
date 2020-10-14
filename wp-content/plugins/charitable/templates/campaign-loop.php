@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Displays the campaign loop.
  *
@@ -7,39 +7,42 @@
  * @author  Studio 164a
  * @package Charitable/Templates/Campaign
  * @since   1.0.0
- * @version 1.2.3
+ * @version 1.5.7
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-$campaigns = $view_args[ 'campaigns' ];
-$columns = $view_args[ 'columns' ];
-$args = charitable_campaign_loop_args( $view_args );
+$campaigns = $view_args['campaigns'];
 
 if ( ! $campaigns->have_posts() ) :
-    return;
+	return;
 endif;
 
-if ( $columns > 1 ) :
-    $loop_class = sprintf( 'campaign-loop campaign-grid campaign-grid-%d', $columns );
-else : 
-    $loop_class = 'campaign-loop campaign-list';
-endif;
+$loop_class = charitable_campaign_loop_class( $view_args );
+$args       = charitable_campaign_loop_args( $view_args );
 
 /**
- * @hook charitable_campaign_loop_before
+ * Add something before the campaign loop.
+ *
+ * @since   1.5.0
+ *
+ * @param   WP_Query $campaigns The campaigns.
+ * @param   array    $args      Loop args.
  */
 do_action( 'charitable_campaign_loop_before', $campaigns, $args );
 
 ?>
-<ol class="<?php echo $loop_class ?>">
+<ol class="<?php echo esc_attr( $loop_class ); ?>">
 
-<?php 
-while( $campaigns->have_posts() ) : 
+<?php
+while ( $campaigns->have_posts() ) :
 
-    $campaigns->the_post();
+	$campaigns->the_post();
 
-    charitable_template( 'campaign-loop/campaign.php', $args );
+	charitable_template( 'campaign-loop/campaign.php', $args );
 
 endwhile;
 
@@ -49,6 +52,11 @@ wp_reset_postdata();
 <?php
 
 /**
- * @hook charitable_campaign_loop_after
+ * Add something after the campaign loop.
+ *
+ * @since   1.5.0
+ *
+ * @param   WP_Query $campaigns The campaigns.
+ * @param   array    $args      Loop args.
  */
 do_action( 'charitable_campaign_loop_after', $campaigns, $args );

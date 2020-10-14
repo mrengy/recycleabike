@@ -4,22 +4,27 @@
  *
  * Functions used with ajax hooks.
  *
- * @package     Charitable/Functions/AJAX
- * @version     1.2.3
- * @author      Eric Daams
- * @copyright   Copyright (c) 2015, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Functions/AJAX
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.2.3
+ * @version   1.6.28
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'charitable_ajax_get_donation_form' ) ) :
 
 	/**
 	 * Returns the donation form content for a particular campaign, through AJAX.
 	 *
-	 * @return  void
 	 * @since   1.2.3
+	 *
+	 * @return  void
 	 */
 	function charitable_ajax_get_donation_form() {
 		if ( ! isset( $_POST['campaign_id'] ) ) {
@@ -36,7 +41,12 @@ if ( ! function_exists( 'charitable_ajax_get_donation_form' ) ) :
 
 		$campaign->get_donation_form()->render();
 
-		$output = ob_get_clean();
+		/**
+		 * Strip any shortcodes that haven't been rendered yet.
+		 *
+		 * @see https://github.com/Charitable/Charitable/issues/708
+		 */
+		$output = preg_replace( '~(?:\[/?)[^/\]]+/?\]~s', '', ob_get_clean() );
 
 		wp_send_json_success( $output );
 
@@ -50,10 +60,10 @@ if ( ! function_exists( 'charitable_plupload_image_upload' ) ) :
 	/**
 	 * Upload an image via plupload.
 	 *
-	 * @return
+	 * @return void
 	 */
 	function charitable_plupload_image_upload() {
-		$post_id = (int) filter_input( INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT );
+		$post_id  = (int) filter_input( INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT );
 		$field_id = (string) filter_input( INPUT_POST, 'field_id' );
 
 		check_ajax_referer( 'charitable-upload-images-' . $field_id );
@@ -106,3 +116,193 @@ if ( ! function_exists( 'charitable_plupload_image_upload' ) ) :
 	}
 
 endif;
+
+/**
+ * Get donor data, given a donor ID.
+ *
+ * @since  1.6.28
+ *
+ * @return void
+ */
+function charitable_ajax_get_donor_data() {
+	$donor_id = (int) filter_input( INPUT_POST, 'donor_id', FILTER_SANITIZE_NUMBER_INT );
+
+	if ( ! check_ajax_referer( 'donor-select', 'nonce' ) ) {
+		wp_send_json_error( 'nonce check failed', '403' );
+	}
+
+	$fields = array_key_exists( 'fields', $_POST ) ? $_POST['fields'] : [];
+	$donor  = new Charitable_Donor( $donor_id );
+	$data   = [];
+
+	foreach ( $fields as $field ) {
+		$data[ $field ] = $donor->get_donor_meta( $field );
+	}
+
+	wp_send_json_success( $data );
+}
+
+/**
+ * Receives an AJAX request to load session content and returns
+ * the output to be loaded.
+ *
+ * @since  1.5.0
+ *
+ * @return void
+ */
+function charitable_ajax_get_session_content() {
+	if ( ! array_key_exists( 'templates', $_POST ) ) {
+		wp_send_json_error( __( 'Missing templates in request.', 'charitable' ) );
+	}
+
+	$output = array();
+
+	foreach ( $_POST['templates'] as $i => $template_args ) {
+		if ( empty( $template_args ) || ! array_key_exists( 'template', $template_args ) ) {
+			continue;
+		}
+
+		/**
+		 * Get the output for the session content item.
+		 *
+		 * @since 1.5.0
+		 *
+		 * @param false|string $content The content to return, or a false in case of failure.
+		 * @param array        $args    Mixed set of arguments.
+		 */
+		$output[ $i ] = apply_filters( 'charitable_session_content_' . $template_args['template'], false, $template_args );
+	}
+
+	wp_send_json_success( $output );
+}
+
+/**
+ * Return the donation receipt.
+ *
+ * @since  1.5.0
+ *
+ * @param  string|false $content Content to return, or false in case of failure.
+ * @param  array        $args    Mixed array of args.
+ * @return string|false
+ */
+function charitable_ajax_get_session_donation_receipt( $content, $args ) {
+	if ( ! array_key_exists( 'donation_id', $args ) ) {
+		return $content;
+	}
+
+	$donation = charitable_get_donation( $args['donation_id'] );
+
+	if ( ! $donation ) {
+		return $content;
+	}
+
+	return charitable_template_donation_receipt_output( '', $donation );
+}
+
+/**
+ * Return the donation form's amount field.
+ *
+ * @since  1.5.0
+ *
+ * @param  string|false $content Content to return, or false in case of failure.
+ * @param  array        $args    Mixed array of args.
+ * @return string|false
+ */
+function charitable_ajax_get_session_donation_form_amount_field( $content, $args ) {
+	if ( ! array_key_exists( 'campaign_id', $args ) ) {
+		return $content;
+	}
+
+	if ( ! array_key_exists( 'form_id', $args ) ) {
+		return $content;
+	}
+
+	ob_start();
+
+	charitable_template(
+		'donation-form/donation-amount-list.php',
+		array(
+			'campaign' => charitable_get_campaign( $args['campaign_id'] ),
+			'form_id'  => $args['form_id'],
+		)
+	);
+
+	return ob_get_clean();
+}
+
+/**
+ * Return the donation form's amount field.
+ *
+ * @since  1.5.0
+ *
+ * @param  string|false $content Content to return, or false in case of failure.
+ * @param  array        $args    Mixed array of args.
+ * @return string|false
+ */
+function charitable_ajax_get_session_donation_form_current_amount_text( $content, $args ) {
+	if ( ! array_key_exists( 'campaign_id', $args ) ) {
+		return $content;
+	}
+
+	if ( ! array_key_exists( 'form_id', $args ) ) {
+		return $content;
+	}
+
+	$amount = charitable_get_campaign( $args['campaign_id'] )->get_donation_amount_in_session();
+
+	return charitable_template_donation_form_current_amount_text( $amount, $args['form_id'], $args['campaign_id'] );
+}
+
+/**
+ * Return the error messages.
+ *
+ * @since  1.5.0
+ *
+ * @param  string|false $content Content to return, or false in case of failure.
+ * @return string|false
+ */
+function charitable_ajax_get_session_errors( $content ) {
+	$errors = charitable_get_notices()->get_errors();
+
+	if ( empty( $errors ) ) {
+		return $content;
+	}
+
+	ob_start();
+
+	charitable_template(
+		'form-fields/errors.php',
+		array(
+			'errors' => $errors,
+		)
+	);
+
+	return ob_get_clean();
+}
+
+/**
+ * Return the notices
+ *
+ * @since  1.5.0
+ *
+ * @param  string|false $content Content to return, or false in case of failure.
+ * @return string|false
+ */
+function charitable_ajax_get_session_notices( $content ) {
+	$notices = charitable_get_notices()->get_notices();
+
+	if ( empty( $notices ) ) {
+		return $content;
+	}
+
+	ob_start();
+
+	charitable_template(
+		'form-fields/notices.php',
+		array(
+			'notices' => $notices,
+		)
+	);
+
+	return ob_get_clean();
+}

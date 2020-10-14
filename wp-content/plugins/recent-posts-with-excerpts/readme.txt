@@ -5,8 +5,8 @@ Donate link: http://stephanieleary.com/code/wordpress/recent-posts-with-excerpts
 Text Domain: recent_posts_with_excerpts
 Domain Path: /languages
 Requires at least: 2.8
-Tested up to: 3.8.1
-Stable tag: 2.5.4
+Tested up to: 4.8
+Stable tag: 2.6.1
 
 
 A widget that lists your most recent posts with optional excerpts.   
@@ -16,6 +16,8 @@ A widget that lists your most recent posts with optional excerpts.
 A widget that lists your most recent posts with excerpts, optionally limited to a category. The number of posts and excerpts is configurable; for example, you could show the titles of five posts but include the excerpt for only the two most recent. Supports <a href="http://robsnotebook.com/the-excerpt-reloaded/">the_excerpt Reloaded</a> and <a href="http://sparepencil.com/code/advanced-excerpt/">Advanced Excerpt</a> for excerpts with HTML formatting.
 
 New! Supports displaying post thumbnails along with excerpts. Widget options let you place the thumbnails above the title, in between the title and the excerpt, or below the excerpt.
+
+Now on <a href="https://github.com/sillybean/Recent-Posts-with-Excerpts">GitHub</a>.
 
 = Translations =
 
@@ -49,6 +51,13 @@ To add something above the list, use the `recent_posts_with_excerpts_begin` acti
 
 == Changelog ==
 
+= 2.6.1 =
+* The 'recent_posts_with_excerpts_query' filter now accepts a second parameter, $instance, to give developers access to the widget's settings.
+= 2.6 =
+* Constructor update.
+= 2.5.5 =
+* New offset option, props Carlos Santana.
+* New option to ignore sticky posts, props Francesco Mele.
 = 2.5.3 =
 * Added POT file.
 = 2.5.2 =

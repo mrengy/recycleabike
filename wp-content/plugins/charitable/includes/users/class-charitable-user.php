@@ -8,21 +8,46 @@
  * the "campaign_creator" role; people who create fundraisers for campaigns
  * get the "fundraiser" role.
  *
- * @version     1.0.0
- * @package     Charitable/Classes/Charitable_User
- * @author      Eric Daams
- * @copyright   Copyright (c) 2015, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Classes/Charitable_User
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.0.0
+ * @version   1.6.44
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly.
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_User' ) ) :
 
 	/**
 	 * Charitable_User
 	 *
-	 * @since       1.0.0
+	 * @since 1.0.0
+	 *
+	 * @property string $nickname
+	 * @property string $description
+	 * @property string $user_description
+	 * @property string $first_name
+	 * @property string $user_firstname
+	 * @property string $last_name
+	 * @property string $user_lastname
+	 * @property string $user_login
+	 * @property string $user_pass
+	 * @property string $user_nicename
+	 * @property string $user_email
+	 * @property string $user_url
+	 * @property string $user_registered
+	 * @property string $user_activation_key
+	 * @property string $user_status
+	 * @property int    $user_level
+	 * @property string $display_name
+	 * @property string $spam
+	 * @property string $deleted
+	 * @property string $locale
 	 */
 	class Charitable_User extends WP_User {
 
@@ -31,39 +56,39 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		 *
 		 * NOTE: This is not the same as the user ID.
 		 *
-		 * @var     int
-		 * @access  protected
-		 * @since 	1.0.0
+		 * @since 1.0.0
+		 *
+		 * @var   int
 		 */
 		protected $donor_id;
 
 		/**
 		 * A mapping of user keys.
 		 *
-		 * @var 	string[]
-		 * @access 	protected
-		 * @since 	1.4.0
+		 * @since 1.4.0
+		 *
+		 * @var   string[]
 		 */
 		protected $mapped_keys;
 
 		/**
 		 * Core keys.
 		 *
-		 * @var 	string[]
-		 * @access 	protected
-		 * @since 	1.4.0
+		 * @since  1.4.0
+		 *
+		 * @var   string[]
 		 */
 		protected $core_keys;
 
 		/**
 		 * Create class object.
 		 *
-		 * @param   int|string|stdClass|WP_User $id     User's ID, a WP_User object, or a user object from the DB.
-		 * @param   string  $name                       Optional. User's username
-		 * @param   int     $blog_id                    Optional Blog ID, defaults to current blog.
-		 * @return  void
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  int|string|stdClass|WP_User $id      User's ID, a WP_User object, or a user object from the DB.
+		 * @param  string                      $name    Optional. User's username.
+		 * @param  int                         $blog_id Optional Blog ID, defaults to current blog.
+		 * @return void
 		 */
 		public function __construct( $id = 0, $name = '', $blog_id = '' ) {
 			parent::__construct( $id, $name, $blog_id );
@@ -72,15 +97,14 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Create object using a donor ID.
 		 *
-		 * @param   int $donor_id
-		 * @return  Charitable_user
-		 * @access  public
-		 * @static
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  int $donor_id The donor ID.
+		 * @return Charitable_user
 		 */
 		public static function init_with_donor( $donor_id ) {
 			$user_id = charitable_get_table( 'donors' )->get_user_id( $donor_id );
-			$user = charitable_get_user( $user_id );
+			$user    = charitable_get_user( $user_id );
 			$user->set_donor_id( $donor_id );
 			return $user;
 		}
@@ -88,37 +112,46 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Magic getter method. Looks for the specified key in the mapped keys before using WP_User's __get method.
 		 *
-		 * @return  mixed
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  string $key The key to retrieve.
+		 * @return mixed
 		 */
 		public function __get( $key ) {
-			$mapped_keys = $this->get_mapped_keys();
-
-			if ( array_key_exists( $key, $mapped_keys ) ) {
-				$key = $mapped_keys[ $key ];
-			}
-
-			return parent::__get( $key );
+			return parent::__get( $this->map_key( $key ) );
 		}
 
 		/**
 		 * Display the donor name when printing the object.
 		 *
-		 * @return  string
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return string
 		 */
 		public function __toString() {
 			return $this->get_name();
 		}
 
 		/**
+		 * Determine whether a property or meta key is set
+		 *
+		 * Consults the users and usermeta tables.
+		 *
+		 * @since  1.5.0
+		 *
+		 * @param  string $key Property.
+		 * @return boolean
+		 */
+		public function has_prop( $key ) {
+			return parent::has_prop( $this->map_key( $key ) );
+		}
+
+		/**
 		 * Returns whether the user is logged in.
 		 *
-		 * @return  boolean
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return boolean
 		 */
 		public function is_logged_in() {
 			return 0 !== $this->ID;
@@ -127,10 +160,10 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Set the donor ID of this user.
 		 *
-		 * @param   int     $donor_id
-		 * @return  void
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  int $donor_id The Donor ID.
+		 * @return void
 		 */
 		public function set_donor_id( $donor_id ) {
 			$this->donor_id = $donor_id;
@@ -139,9 +172,9 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Return the donor ID of this user.
 		 *
-		 * @return  int|false $donor_id
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return int|false $donor_id
 		 */
 		public function get_donor_id() {
 			if ( isset( $this->donor_id ) || ! is_null( $this->get_donor() ) ) {
@@ -154,9 +187,9 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Return the donor record.
 		 *
-		 * @return  Object|null Object if a donor record could be matched. null if user is logged out or no donor record found.
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return Object|null Object if a donor record could be matched. null if user is logged out or no donor record found.
 		 */
 		public function get_donor() {
 			if ( ! $this->is_logged_in() && ! isset( $this->donor_id ) ) {
@@ -175,7 +208,7 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 
 			} else {
 
-				$donor = charitable_get_table( 'donors' )->get_by( 'user_id', $this->ID );
+				$donor = charitable_get_table( 'donors' )->get_by( 'email', $this->get( 'user_email' ) );
 
 				if ( ! is_object( $donor ) ) {
 					return null;
@@ -183,7 +216,7 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 
 				$this->donor_id = $donor->donor_id;
 
-			}
+			}//end if
 
 			wp_cache_add( $this->donor_id, $donor, 'donors' );
 
@@ -193,20 +226,72 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Returns whether the user has ever made a donation.
 		 *
-		 * @return  boolean
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return boolean
 		 */
 		public function is_donor() {
 			return ! is_null( $this->get_donor() );
 		}
 
 		/**
+		 * Returns whether the user has verified their email address.
+		 *
+		 * @since  1.5.0
+		 *
+		 * @return int If verified, return 1. Otherwise return 0.
+		 */
+		public function is_verified() {
+			return absint( get_user_meta( $this->ID, '_charitable_user_verified', true ) );
+		}
+
+		/**
+		 * Mark a user as verified.
+		 *
+		 * @since  1.5.0
+		 *
+		 * @param  boolean $verified Whether the user is verified.
+		 * @return int|boolean Meta ID if the key didn't exist, true on successful update, false on failure.
+		 */
+		public function mark_as_verified( $verified ) {
+			$verified = update_user_meta( $this->ID, '_charitable_user_verified', $verified );
+
+			if ( ! $verified ) {
+				return $verified;
+			}
+
+			/* Delete the time that the verification email was sent. */
+			delete_user_meta( $this->ID, '_charitable_email_verification_email_send_time' );
+
+			/* Check for a notice about having sent a verification email and remove it. */
+			charitable_get_notices()->clear_notice( "/We have sent you an email to confirm your email address. Haven\'t received the email\?/" );
+
+			/* Check for an existing donor account. */
+			$donor_id = $this->get_donor_id();
+
+			if ( $donor_id ) {
+				$donor = new Charitable_Donor( $donor_id );
+				$donor->set_user_id( $this->ID );
+			}
+
+			/**
+			 * Do something when a user is verified.
+			 *
+			 * @since 1.6.23
+			 *
+			 * @param Charitable_User $user The user object.
+			 */
+			do_action( 'charitable_user_verified', $this );
+
+			return $verified;
+		}
+
+		/**
 		 * Returns the email address of the donor.
 		 *
-		 * @return  string
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return string
 		 */
 		public function get_email() {
 			if ( $this->get_donor() ) {
@@ -215,15 +300,23 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 				$email = $this->get( 'user_email' );
 			}
 
+			/**
+			 * Filter the user email address.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param string          $email The email address.
+			 * @param Charitable_User $user  This instance of `Charitable_User`.
+			 */
 			return apply_filters( 'charitable_user_email', $email, $this );
 		}
 
 		/**
 		 * Returns the display name of the user.
 		 *
-		 * @return  string
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return string
 		 */
 		public function get_name() {
 			if ( $this->is_donor() ) {
@@ -242,9 +335,9 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Returns the first name of the user.
 		 *
-		 * @return  string
-		 * @access  public
-		 * @since   1.1.0
+		 * @since  1.1.0
+		 *
+		 * @return string
 		 */
 		public function get_first_name() {
 			if ( $this->is_donor() && $this->get_donor()->first_name ) {
@@ -259,9 +352,9 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Returns the last name of the user.
 		 *
-		 * @return  string
-		 * @access  public
-		 * @since   1.1.0
+		 * @since  1.1.0
+		 *
+		 * @return string
 		 */
 		public function get_last_name() {
 			if ( $this->is_donor() && $this->get_donor()->last_name ) {
@@ -275,9 +368,9 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Returns the user's location.
 		 *
-		 * @return  string
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return string
 		 */
 		public function get_location() {
 			$city     = $this->get( 'donor_city' );
@@ -301,44 +394,24 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		}
 
 		/**
-		 * Return an array of fields used for the address.
-		 *
-		 * @return  array
-		 * @access  public
-		 * @since   1.0.0
-		 */
-		public function get_address_fields() {
-			return apply_filters( 'charitable_user_address_fields', array(
-				'donor_address',
-				'donor_address_2',
-				'donor_city',
-				'donor_state',
-				'donor_postcode',
-				'donor_country',
-			) );
-		}
-
-		/**
 		 * Returns printable address of donor.
 		 *
-		 * @param   $donation_id Optional. If set, will return the address provided for the specific donation. Otherwise, returns the current address for the user.
-		 * @return  string
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  int $donation_id Optional. If set, will return the address provided for the specific donation. Otherwise, returns the current address for the user.
+		 * @return string
 		 */
 		public function get_address( $donation_id = '' ) {
-			$address_fields = false;
+			$address_details = false;
 
 			if ( $donation_id ) {
-
-				$address_fields = get_post_meta( $donation_id, 'donor', true );
-
+				$address_details = get_post_meta( $donation_id, 'donor', true );
 			}
 
 			/* If the address fields were not set by the check above, get them from the user meta. */
-			if ( ! is_array( $address_fields ) ) {
+			if ( ! is_array( $address_details ) ) {
 
-				$address_fields = array(
+				$address_details = array(
 					'first_name' => $this->get( 'first_name' ),
 					'last_name'  => $this->get( 'last_name' ),
 					'company'    => $this->get( 'donor_company' ),
@@ -352,18 +425,30 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 
 			}
 
-			$address_fields = apply_filters( 'charitable_user_address_fields', $address_fields, $this, $donation_id );
+			/**
+			 * Filter the address details for the current user.
+			 *
+			 * Please note that prior to 1.6.44, the hook used here was `charitable_user_address_fields`,
+			 * which is used elsewhere in a different context and thus resulted in unexpected results.
+			 *
+			 * @since 1.6.44
+			 *
+			 * @param array           $address_details The address details.
+			 * @param Charitable_User $user            The user object.
+			 * @param int             $donation_id     The donation ID.
+			 */
+			$address_details = apply_filters( 'charitable_user_address_details', $address_details, $this, $donation_id );
 
-			return charitable_get_location_helper()->get_formatted_address( $address_fields );
+			return charitable_get_location_helper()->get_formatted_address( $address_details );
 		}
 
 		/**
 		 * Return all donations made by donor.
 		 *
-		 * @param   boolean $distinct_donations If true, will only count unique donations.
-		 * @return  object[]
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  boolean $distinct_donations If true, will only count unique donations.
+		 * @return object[]
 		 */
 		public function get_donations( $distinct_donations = false ) {
 			return charitable_get_table( 'campaign_donations' )->get_donations_by_donor( $this->get_donor_id(), $distinct_donations );
@@ -372,10 +457,10 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Return the number of donations made by the donor.
 		 *
-		 * @param   boolean     $distinct_donations     If true, will only count unique donations.
-		 * @return  int
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  boolean $distinct_donations If true, will only count unique donations.
+		 * @return int
 		 */
 		public function count_donations( $distinct_donations = false ) {
 			return charitable_get_table( 'campaign_donations' )->count_donations_by_donor( $this->get_donor_id(), $distinct_donations );
@@ -384,9 +469,9 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Return the number of campaigns that the donor has supported.
 		 *
-		 * @return  int
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return int
 		 */
 		public function count_campaigns_supported() {
 			return charitable_get_table( 'campaign_donations' )->count_campaigns_supported_by_donor( $this->get_donor_id() );
@@ -395,22 +480,25 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Return the total amount donated by the donor.
 		 *
-		 * @param   int $campaign_id Optional. If set, returns total donated to this particular campaign.
-		 * @return  float
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  int $campaign_id Optional. If set, returns total donated to this particular campaign.
+		 * @return float
 		 */
 		public function get_total_donated( $campaign_id = false ) {
 			$amount = wp_cache_get( $this->get_donor_id(), 'charitable_donor_total_donation_amount_' . $campaign_id );
 
 			if ( false === $amount ) {
-				$query = new Charitable_Donor_Query( array(
-					'output' => 'raw',
-					'donor_id' => $this->get_donor_id(),
+
+				$args = apply_filters( 'charitable_user_total_donated_query_args', array(
+					'output'          => 'raw',
+					'donor_id'        => $this->get_donor_id(),
 					'distinct_donors' => true,
-					'fields' => 'amount',
-					'campaign' => (int) $campaign_id,
-				) );
+					'fields'          => 'amount',
+					'campaign'        => (int) $campaign_id,
+				), $this );
+
+				$query = new Charitable_Donor_Query( $args );
 
 				$amount = $query->current()->amount;
 
@@ -426,13 +514,13 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		 * By default, this will return the gravatar, but it can
 		 * be extended to add support for locally hosted avatars.
 		 *
-		 * @param   int $size
-		 * @return  string
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  int $size The length and width of the avatar.
+		 * @return string
 		 */
 		public function get_avatar( $size = 100 ) {
-			/** If you use this filter, return an attachment ID. */
+			/**If you use this filter, return an attachment ID. */
 			$avatar_attachment_id = apply_filters( 'charitable_user_avatar', false, $this );
 
 			/* If we don't have an attachment ID, display the gravatar. */
@@ -450,7 +538,7 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 			}
 
 			return apply_filters( 'charitable_user_avatar_custom', sprintf( '<img src="%s" alt="%s" class="avatar photo" width="%s" height="%s" />',
-				$attachment_src[0] ,
+				$attachment_src[0],
 				esc_attr( $this->display_name ),
 				$attachment_src[1],
 				$attachment_src[2]
@@ -460,10 +548,10 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Return the src of the avatar.
 		 *
-		 * @param   int         $size
-		 * @return  string
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  int $size The length and the width of the avatar.
+		 * @return string
 		 */
 		public function get_avatar_src( $size = 100 ) {
 			/* If this returns something, we don't need to deal with the gravatar. */
@@ -485,14 +573,14 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Return the campaigns created by the user.
 		 *
-		 * @param   array $args Optional. Any arguments accepted by WP_Query.
-		 * @return  WP_Query
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  array $args Optional. Any arguments accepted by WP_Query.
+		 * @return WP_Query
 		 */
 		public function get_campaigns( $args = array() ) {
 			$defaults = array(
-			'author' => $this->ID,
+				'author' => $this->ID,
 			);
 
 			$args = wp_parse_args( $args, $defaults );
@@ -503,9 +591,10 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Checks whether the user has any current campaigns (i.e. non-expired).
 		 *
-		 * @return  WP_Query
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  array $args Query arguments.
+		 * @return WP_Query
 		 */
 		public function get_current_campaigns( $args = array() ) {
 			$defaults = array(
@@ -533,9 +622,9 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Returns all current campaigns by the user.
 		 *
-		 * @return  WP_Query
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return WP_Query
 		 */
 		public function has_current_campaigns() {
 			return $this->get_current_campaigns()->found_posts;
@@ -545,18 +634,18 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		 * Returns the user's donation and campaign creation activity.
 		 *
 		 * @see     WP_Query
-		 * @param   array $args Optional. Any arguments accepted by WP_Query.
-		 * @return  WP_Query
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  array $args Optional. Any arguments accepted by WP_Query.
+		 * @return WP_Query
 		 */
 		public function get_activity( $args = array() ) {
 			$defaults = array(
-				'author'        => $this->ID,
-				'post_status'   => array( 'charitable-completed', 'charitable-preapproved', 'publish' ),
-				'post_type'     => array( 'donation', 'campaign' ),
-				'order'         => 'DESC',
-				'orderby'       => 'date',
+				'author'      => $this->ID,
+				'post_status' => array( 'charitable-completed', 'charitable-preapproved', 'publish' ),
+				'post_type'   => array( 'donation', 'campaign' ),
+				'order'       => 'DESC',
+				'orderby'     => 'date',
 			);
 
 			$args = wp_parse_args( $args, $defaults );
@@ -569,10 +658,10 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Add a new donor. This may also create a user account for them.
 		 *
-		 * @param   array   $submitted
-		 * @return  int     $donor_id
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  array $submitted Values submitted by the user.
+		 * @return int   $donor_id  Donor ID.
 		 */
 		public function add_donor( $submitted = array() ) {
 			$email = false;
@@ -586,11 +675,23 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 			}
 
 			/**
-			 * Still no email? We're going to have to call an end
-			 * to this party right now then.
+			 * Filter whether donors can be added without an email address.
+			 *
+			 * Prior to Charitable 1.6, this was never permitted. As of Charitable 1.6, donors
+			 * without an email address can be added by default, primarily to support manual
+			 * donations without an email address. Use this filter to disable that ability.
+			 *
+			 * NOTE: By default, the public donation form still requires an email address, so this
+			 * primarily affects programmatically created donors, or donors created via manual
+			 * donations in the admin.
+			 *
+			 * @see https://github.com/Charitable/Charitable/issues/535
+			 *
+			 * @since 1.6.0
+			 *
+			 * @param boolean $permitted Whether donors can be added without an email address.
 			 */
-			if ( ! $email ) {
-
+			if ( ! $email && ! charitable_permit_donor_without_email() ) {
 				charitable_get_deprecated()->doing_it_wrong(
 					__METHOD__,
 					__( 'Unable to add donor. Email not set for logged out user.', 'charitable' ),
@@ -598,17 +699,37 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 				);
 
 				return 0;
-
 			}
 
-			$donor_values = apply_filters( 'charitable_donor_values', array(
-				'user_id' => $this->ID,
-				'email' => $email,
-				'first_name' => isset( $submitted['first_name'] ) ? $submitted['first_name'] : $this->first_name,
-				'last_name' => isset( $submitted['last_name'] ) ? $submitted['last_name'] : $this->last_name,
-			), $this, $submitted );
+			/**
+			 * Filter the donor values.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param array           $donor_values The donor values.
+			 * @param Charitable_User $user         This instance of `Charitable_User`.
+			 * @param array           $submitted    Submitted values.
+			 */
+			$donor_values = apply_filters(
+				'charitable_donor_values',
+				array(
+					'user_id'    => $this->ID,
+					'email'      => $email,
+					'first_name' => array_key_exists( 'first_name', $submitted ) ? $submitted['first_name'] : $this->first_name,
+					'last_name'  => array_key_exists( 'last_name', $submitted ) ? $submitted['last_name'] : $this->last_name,
+				),
+				$this,
+				$submitted
+			);
 
 			$donor_id = charitable_get_table( 'donors' )->insert( $donor_values );
+
+			/**
+			 * If the user is logged in, add the "Donor" role to their account.
+			 */
+			if ( $this->is_logged_in() ) {
+				$this->add_role( 'donor' );
+			}
 
 			do_action( 'charitable_after_insert_donor', $donor_id, $this );
 
@@ -618,11 +739,11 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Insert a new donor with submitted values.
 		 *
-		 * @param   array $submitted The submitted values.
-		 * @param   array $keys The keys of fields that are to be updated.
-		 * @return  int
-		 * @access  public
-		 * @since   1.4.0
+		 * @since  1.4.0
+		 *
+		 * @param  array $submitted The submitted values.
+		 * @param  array $keys The keys of fields that are to be updated.
+		 * @return int
 		 */
 		public static function create_profile( $submitted = array(), $keys = array() ) {
 			$user = new Charitable_User();
@@ -633,11 +754,11 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Update the user's details with submitted values.
 		 *
-		 * @param   array $submitted The submitted values.
-		 * @param   array $keys The keys of fields that are to be updated.
-		 * @return  int
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  array $submitted The submitted values.
+		 * @param  array $keys The keys of fields that are to be updated.
+		 * @return int
 		 */
 		public function update_profile( $submitted = array(), $keys = array() ) {
 			if ( empty( $submitted ) ) {
@@ -655,19 +776,78 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 				return $user_id;
 			}
 
+			/* Create or update the user's donor record. */
+			$this->update_donor_record( $submitted, $keys );
+
 			$this->update_user_meta( $submitted, $keys );
 
 			return $user_id;
 		}
 
 		/**
+		 * Create or update a donor record for the current user.
+		 *
+		 * @since  1.6.2
+		 *
+		 * @param  array $submitted The submitted values.
+		 * @param  array $keys      The keys of fields that are to be updated.
+		 * @return int The donor ID, or 0 if none was created or edited.
+		 */
+		public function update_donor_record( $submitted, $keys ) {
+			$donor_fields = array_intersect( $keys, charitable_get_donor_keys() );
+
+			if ( array_key_exists( 'user_email', $submitted ) ) {
+				$donor_fields[]     = 'email';
+				$submitted['email'] = $submitted['user_email'];
+			}
+
+			if ( empty( $donor_fields ) ) {
+				return 0;
+			}
+
+			$donor_data = array(
+				'user_id' => $this->ID,
+			);
+
+			foreach ( $donor_fields as $field ) {
+				if ( array_key_exists( $field, $submitted ) ) {
+					$value = $submitted[ $field ];
+				} elseif ( 'contact_consent' == $field ) {
+					$value = 0;
+				} else {
+					$value = '';
+				}
+
+				$donor_data[ $field ] = $value;
+			}
+
+			if ( array_key_exists( 'donor_id', $donor_data ) ) {
+				$donor_id = $donor_data['donor_id'];
+			} else {
+				$donor_id = $this->get_donor_id();
+			}
+
+			/* Clear out the cache */
+			wp_cache_delete( $donor_id, 'donors' );
+
+			if ( $donor_id ) {
+				charitable_get_table( 'donors' )->update( $donor_id, $donor_data );
+
+				return $donor_id;
+			}
+
+			return charitable_get_table( 'donors' )->insert( $donor_data );
+		}
+
+		/**
 		 * Save core fields of the user (i.e. the wp_users data)
 		 *
-		 * @uses    wp_insert_user
-		 * @param   array $submitted
-		 * @return  int User ID
-		 * @access  public
-		 * @since   1.0.0
+		 * @uses   wp_insert_user
+		 *
+		 * @since  1.0.0
+		 *
+		 * @param  array $submitted Values submitted by the user.
+		 * @return int User ID
 		 */
 		public function update_core_user( $submitted ) {
 			$core_fields = array_intersect( array_keys( $submitted ), $this->get_core_keys() );
@@ -680,15 +860,18 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 
 			/* If we're updating an active user, set the ID */
 			if ( 0 !== $this->ID ) {
-
 				$values['ID'] = $this->ID;
-
 			}
 
 			foreach ( $core_fields as $field ) {
-
 				$values[ $field ] = $submitted[ $field ];
+			}
 
+			/* Set the user's display name based on their name. */
+			$display_name = $this->sanitize_display_name( $values );
+
+			if ( $display_name ) {
+				$values['display_name'] = $display_name;
 			}
 
 			/* Insert the user */
@@ -705,7 +888,7 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 
 				/**
 				 * `wp_insert_user` calls `sanitize_user` internally - make the
-				 * same call here so `$values[ 'user_login' ]` matches what is
+				 * same call here so `$values['user_login']` matches what is
 				 * eventually saved to the database
 				 */
 				$values['user_login'] = sanitize_user( $values['user_login'], true );
@@ -726,24 +909,35 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 					return false;
 				}
 
+				/**
+				 * Do something after a user has been registered.
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param int   $user_id The new user's ID.
+				 * @param array $values  Values submitted to register user.
+				 */
 				do_action( 'charitable_after_insert_user', $user_id, $values );
 
 			} else {
-
 				$values['ID'] = $this->ID;
-
-				$user_id = wp_update_user( $values );
-
-			}
+				$user_id      = wp_update_user( $values );
+			}//end if
 
 			/* If there was an error when inserting or updating the user, lodge the error. */
 			if ( is_wp_error( $user_id ) ) {
-
 				charitable_get_notices()->add_errors_from_wp_error( $user_id );
 				return false;
-
 			}
 
+			/**
+			 * Do something after a user's account has been updated or created.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param int   $user_id The user's ID.
+			 * @param array $values  Values submitted to save user.
+			 */
 			do_action( 'charitable_after_save_user', $user_id, $values );
 
 			return $user_id;
@@ -752,30 +946,26 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Save the user's meta fields.
 		 *
-		 * @param   array $submitted The submitted values.
-		 * @param   array $keys The keys of fields that are to be updated.
-		 * @return  int Number of fields updated.
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  array $submitted The submitted values.
+		 * @param  array $keys      The keys of fields that are to be updated.
+		 * @return int Number of fields updated.
 		 */
 		public function update_user_meta( $submitted, $keys ) {
 			/* Exclude the core keys */
-			$mapped_keys    = $this->get_mapped_keys();
-			$meta_fields    = array_diff( $keys, $this->get_core_keys() );
-			$updated        = 0;
+			$meta_fields = array_diff( $keys, $this->get_core_keys() );
+			$updated     = 0;
 
 			foreach ( $meta_fields as $field ) {
 
 				if ( isset( $submitted[ $field ] ) ) {
-
-					$meta_key = array_key_exists( $field, $mapped_keys ) ? $mapped_keys[ $field ] : $field;
-
+					$meta_key   = $this->map_key( $field );
 					$meta_value = sanitize_meta( $meta_key, $submitted[ $field ], 'user' );
 
 					update_user_meta( $this->ID, $meta_key, $meta_value );
 
 					$updated++;
-
 				}
 			}
 
@@ -785,12 +975,11 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		/**
 		 * Log a user is with their username and password.
 		 *
-		 * @param   string $username
-		 * @param   string $password
-		 * @return  WP_User|WP_Error|false WP_User on login, WP_Error on failure. False if feature is disabled.
-		 * @access  public
-		 * @static
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @param  string $username The user's username.
+		 * @param  string $password User password.
+		 * @return WP_User|WP_Error|false WP_User on login, WP_Error on failure. False if feature is disabled.
 		 */
 		public static function signon( $username, $password ) {
 			if ( ! apply_filters( 'charitable_auto_login_after_registration', true, $username ) ) {
@@ -802,20 +991,41 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 			}
 
 			$creds = array(
-				'user_login' => $username,
+				'user_login'    => $username,
 				'user_password' => $password,
-				'remember' => true,
+				'remember'      => true,
 			);
 
 			return wp_signon( $creds, false );
 		}
 
 		/**
+		 * Return a display name for the user.
+		 *
+		 * @since  1.5.2
+		 *
+		 * @param  array $values Submitted values.
+		 * @return string|false String if we received a display_name
+		 *                      or had a first name or last name.
+		 */
+		public function sanitize_display_name( $values ) {
+			if ( array_key_exists( 'display_name', $values ) ) {
+				return $values['display_name'];
+			}
+
+			$first_name = array_key_exists( 'first_name', $values ) ? $values['first_name'] : $this->first_name;
+			$last_name  = array_key_exists( 'last_name', $values ) ? $values['last_name'] : $this->last_name;
+			$display    = trim( sprintf( '%s %s', $first_name, $last_name ) );
+
+			return strlen( $display ) ? $display : false;
+		}
+
+		/**
 		 * Return the array of mapped keys, where the key is mapped to a meta_key in the user meta table.
 		 *
-		 * @return  array
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return array
 		 */
 		public function get_mapped_keys() {
 			if ( ! isset( $this->mapped_keys ) ) {
@@ -826,11 +1036,25 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 		}
 
 		/**
+		 * Given a key, returns the mapped key or itself if it is not mapped.
+		 *
+		 * @since  1.5.0
+		 *
+		 * @param  string $key The key to map.
+		 * @return string
+		 */
+		public function map_key( $key ) {
+			$mapped_keys = $this->get_mapped_keys();
+
+			return array_key_exists( $key, $mapped_keys ) ? $mapped_keys[ $key ] : $key;
+		}
+
+		/**
 		 * Return the array of core keys.
 		 *
-		 * @return  array
-		 * @access  public
-		 * @since   1.0.0
+		 * @since  1.0.0
+		 *
+		 * @return array
 		 */
 		public function get_core_keys() {
 			if ( ! isset( $this->core_keys ) ) {
@@ -839,6 +1063,49 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 
 			return $this->core_keys;
 		}
+
+		/**
+		 * Deprecated function.
+		 *
+		 * Return an array of fields used for the address.
+		 *
+		 * @deprecated 2.2.0
+		 *
+		 * @since  1.0.0
+		 * @since  1.6.44 Deprecated.
+		 *
+		 * @return array
+		 */
+		public function get_address_fields() {
+			charitable_get_deprecated()->deprecated_function(
+				__METHOD__,
+				'1.6.44',
+				''
+			);
+
+			/**
+			 * Deprecated filter in deprecated method.
+			 *
+			 * Please note that prior to 1.6.44, the hook used here was `charitable_user_address_fields`,
+			 * which is used elsewhere in a different context and thus resulted in unexpected results.
+			 *
+			 * @since 1.6.44
+			 *
+			 * @param array $address_fields The address fields.
+			 */
+			return apply_filters(
+				'charitable_user_address_fields_deprecated',
+				array(
+					'donor_address',
+					'donor_address_2',
+					'donor_city',
+					'donor_state',
+					'donor_postcode',
+					'donor_country',
+				)
+			);
+		}
+
 	}
 
-endif; // End class_exists check
+endif;

@@ -3,7 +3,7 @@
  * The template used to display the login fields.
  *
  * @author 	Studio 164a
- * @since 	1.0.0
+ * @since   1.0.0
  * @version 1.0.0
  */
 
@@ -28,7 +28,7 @@ if ( empty( $account_fields ) ) {
 	 */
 	do_action( 'charitable_donation_form_before_login_fields' );
 
-	foreach ( $account_fields as $key => $field ) : 
+	foreach ( $account_fields as $key => $field ) :
 
 		do_action( 'charitable_donation_form_user_field', $field, $key, $form );
 

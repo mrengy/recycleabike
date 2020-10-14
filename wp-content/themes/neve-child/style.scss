@@ -16,14 +16,24 @@ Text Domain: neve-child
   max-width: 42em; }
 */
 
-$link-color: rgb(103,183,225);
+$blue-primary: rgb(92, 200, 221);
+$blue-light: #E5F3F4;
+$gray-light: #f2f2f2;
+$overlay: rgba(0, 0, 0, 0.7);
 
-a, a:focus, a:hover {
-  color: $link-color;
+body{
+  font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   clear: both; }
+
+#header-grid{
+    div.builder-item{
+    padding-left:0;
+    padding-right:0;
+  }
+}
 
 figure.alignleft:first-child, figure.alignright:first-child {
   margin-top: 0; }
@@ -31,11 +41,98 @@ figure.alignleft:first-child, figure.alignright:first-child {
 p {
   clear: both; }
 
+.relative {
+  position: relative;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0px;
+  padding: 0 2em;
+  background: $overlay;
+  color: white;
+
+  p {
+    margin: 1em 0;
+  }
+}
+
+.header-main-inner{
+  background-color: $blue-primary !important;
+}
+
+.footer-bottom-inner{
+  background-color: $blue-light !important;
+  min-height: 2em;
+}
+
+main{
+  background: $blue-light;
+}
+
+.covid-frontpage {
+
+  .content-wrapper {
+    max-width: 1024px;
+    margin: auto;
+    background: white;
+  }
+
+  .container {
+    padding: 1em 0;
+  }
+
+  .featured-image {
+    height: 220px;
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .wp-block-group {
+    padding: 1em 2em;
+    &:nth-child(even) {
+      background: $gray-light;
+    }
+  }
+}
+
+.mc4wp-form{
+  padding: 1em 2em;
+}
+
+@media (min-width: 1024px) {
+  header .container {
+    max-width: 1024px;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+// Desktop
 @media (min-width: 769px) {
   p {
-    clear: none; }
+    clear: none;
+  }
+
+  .covid-frontpage {
+    .featured-image {
+      height: 340px;
+    }
+  }
 }
+
+// Tablet
+@media (min-width: 480px) {
+  .covid-frontpage {
+    .wp-block-group:nth-child(even) {
+      background: inherit;
+    }
+    .featured-image {
+      height: 280px;
+    }
+  }
+}
+
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }
-
-/*# sourceMappingURL=style.css.map */

@@ -1,15 +1,16 @@
-<?php 
+<?php
 /**
  * Renders the campaign title field for the Campaign post type.
  *
  * @author 	Studio 164a
- * @since 	1.0.0
+ * @since   1.0.0
+ * @package Charitable/Admin Views/Metaboxes
  */
 
 global $post;
 
-$title 		= isset( $view_args['title'] ) 	? $view_args['title'] 	: '';
-$tooltip 	= isset( $view_args['tooltip'] )? '<span class="tooltip"> '. $view_args['tooltip'] . '</span>'	: '';
+$title   = isset( $view_args['title'] ) ? $view_args['title'] : '';
+$tooltip = isset( $view_args['tooltip'] ) ? '<span class="tooltip"> ' . $view_args['tooltip'] . '</span>' : '';
 
 /**
  * Filter the title field placeholder text.

@@ -3,18 +3,17 @@
  * Displays the campaign donation stats.
  *
  * @author  Studio 164a
+ * @package Charitable/Templates/Campaign
  * @since   1.0.0
  * @version 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
-
-/**
- * @var 	Charitable_Campaign
- */
-$campaign = $view_args['campaign'];
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?>
-<div class="campaign-donation-stats">  
-	<?php echo $campaign->get_donation_summary() ?>
+<div class="campaign-donation-stats">
+<?php echo $view_args['campaign']->get_donation_summary(); ?>
 </div>
