@@ -39,9 +39,9 @@ get_header();
 			// Display the Post Title with Hyperlink
 			?>
 
-
 			<li><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
 
+			<li class="meta date posted-on"><?php the_date(); ?></li>
 
 			<li><?php
 			// Display the Post Excerpt
