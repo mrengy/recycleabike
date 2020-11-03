@@ -25,7 +25,36 @@ get_header();
 			get_template_part( 'template-parts/content', 'pagebuilder' );
 		}
 	?>
-		</div>
+	<div class="wp-block-group">
+		<h1>Recent Blog Posts</h1>
+		<ul>
+			<?php
+			// Define our WP Query Parameters
+			$the_query = new WP_Query( 'posts_per_page=3' ); ?>
+
+
+			<?php
+			// Start our WP Query
+			while ($the_query -> have_posts()) : $the_query -> the_post();
+			// Display the Post Title with Hyperlink
+			?>
+			<li><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
+
+			<span class="nv-meta-list">
+				<li class="meta date posted-on"><?php the_date(); ?></li>
+			</span>
+
+			<li><?php
+			// Display the Post Excerpt
+			the_excerpt(__('(more…)')); ?></li>
+
+			<?php
+			// Repeat the process and reset once it hits the limit
+			endwhile;
+			wp_reset_postdata();
+			?>
+		</ul>
+	</div>
 	<?php
 		get_footer();
 	?>
