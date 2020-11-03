@@ -38,15 +38,15 @@ get_header();
 			while ($the_query -> have_posts()) : $the_query -> the_post();
 			// Display the Post Title with Hyperlink
 			?>
-
 			<li><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
 
-			<li class="meta date posted-on"><?php the_date(); ?></li>
+			<span class="nv-meta-list">
+				<li class="meta date posted-on"><?php the_date(); ?></li>
+			</span>
 
 			<li><?php
 			// Display the Post Excerpt
 			the_excerpt(__('(more…)')); ?></li>
-
 
 			<?php
 			// Repeat the process and reset once it hits the limit
