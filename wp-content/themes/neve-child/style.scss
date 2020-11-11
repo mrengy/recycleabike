@@ -78,7 +78,7 @@ p {
   color: $blue-primary !important;
 }
 
-@media (min-width: $desktop-min) {
+@media (min-width: $large-min) {
   .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a{
     color: $white !important;
   }
