@@ -46,7 +46,7 @@ get_header();
 
 			<li><?php
 			// Display the Post Excerpt
-			the_excerpt(__('(more…)')); ?></li>
+			the_excerpt(); ?></li>
 
 			<?php
 			// Repeat the process and reset once it hits the limit

@@ -46,11 +46,17 @@ if (!preg_match_all('#\b(localhost|devsite|stage)\b#', site_url())) {
 }
 
 //hide / show meta boxes when editing pages in admin https://wordpress.stackexchange.com/a/1402/7313
-
 add_action('do_meta_boxes', 'neve_child_customize_meta_boxes');
 
 function neve_child_customize_meta_boxes(){
     add_meta_box('postcustom', __('Custom Fields'), 'post_custom_meta_box', 'page', 'normal', 'high');
 }
+
+//customize excerpt length
+function neve_child_excerpt_length($length){
+  return 20;
+}
+
+add_filter(‘excerpt_length’, ‘neve_child_excerpt_length’, 999);
 
 ?>
