@@ -58,5 +58,4 @@ function neve_child_excerpt_length($length){
 }
 
 add_filter(‘excerpt_length’, ‘neve_child_excerpt_length’, 999);
-
 ?>
