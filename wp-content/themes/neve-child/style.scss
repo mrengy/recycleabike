@@ -70,13 +70,23 @@ main{
   background: $blue-light;
 }
 
-.covid-frontpage {
+/*overriding theme default styling*/
+.nv-page-title-wrap.nv-big-title .nv-page-title{
+  border-bottom:none;
+}
 
-  .content-wrapper {
-    max-width: 1024px;
-    margin: auto;
-    background: white;
-  }
+.nv-sidebar-wrap.nv-right{
+  border-left:none;
+}
+
+/*page layout*/
+.content-wrapper, .single-page-container {
+  max-width: 1024px;
+  margin: auto;
+  background: white;
+}
+
+.covid-frontpage {
 
   .container {
     padding: 1em 0;
