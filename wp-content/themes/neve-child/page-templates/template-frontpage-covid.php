@@ -18,7 +18,7 @@ get_header();
 				?>
 			</div>
 		</div>
-		<div class="container single-page-container">
+		<div class="container single-page-container nv-content-wrap">
 	<?php
 		while ( have_posts() ) {
 			the_post();
