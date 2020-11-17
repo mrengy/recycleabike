@@ -93,11 +93,15 @@ main{
 
 /*overriding theme default styling*/
 .nv-page-title-wrap.nv-big-title .nv-page-title{
-  border-bottom:none;
+  border-bottom: none;
 }
 
 .nv-sidebar-wrap.nv-right{
-  border-left:none;
+  border-left: none;
+}
+
+.nv-index-posts:not(:only-child), .nv-single-page-wrap:not(:only-child), .nv-single-post-wrap:not(:only-child){
+  padding-right: 0;
 }
 
 /*page layout*/
@@ -169,6 +173,14 @@ input[type="submit"]:hover{
   }
 }
 
+.nv-sidebar-wrap.nv-right{
+  padding: 0 2em;
+}
+
+.nv-sidebar-wrap{
+  max-width: 100%;
+}
+
 // Desktop
 @media (min-width: $desktop-min) {
   p {
@@ -177,6 +189,10 @@ input[type="submit"]:hover{
 
   .featured-image {
     height: 340px;
+  }
+
+  .nv-sidebar-wrap{
+    max-width: 21em;
   }
 }
 
