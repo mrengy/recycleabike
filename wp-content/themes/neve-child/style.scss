@@ -25,7 +25,7 @@ $gray-light: #f2f2f2;
 $overlay: rgba(0, 0, 0, 0.7);
 
 $large-min: 1024px;
-$desktop-min: 769px;
+$desktop-min: 945px;
 $tablet-min: 480px;
 
 body{
@@ -93,11 +93,15 @@ main{
 
 /*overriding theme default styling*/
 .nv-page-title-wrap.nv-big-title .nv-page-title{
-  border-bottom:none;
+  border-bottom: none;
 }
 
 .nv-sidebar-wrap.nv-right{
-  border-left:none;
+  border-left: none;
+}
+
+.nv-index-posts:not(:only-child), .nv-single-page-wrap:not(:only-child), .nv-single-post-wrap:not(:only-child){
+  padding-right: 0;
 }
 
 /*page layout*/
@@ -137,12 +141,6 @@ main{
   background-repeat: no-repeat;
 }
 
-.widget, .widget:last-child{
-  padding: 1em 2em;
-  &:nth-child(even) {
-    background: $gray-light;
-  }
-}
 
 label{
   display:block;
@@ -161,25 +159,6 @@ input[type="submit"]:hover{
   background-color: $overlay;
 }
 
-@media (min-width: $large-min) {
-  header .container {
-    max-width: 1024px;
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-}
-
-// Desktop
-@media (min-width: $desktop-min) {
-  p {
-    clear: none;
-  }
-
-  .featured-image {
-    height: 340px;
-  }
-}
-
 // Tablet
 @media (min-width: $tablet-min) {
   .wp-block-group:nth-child(even) {
@@ -190,5 +169,39 @@ input[type="submit"]:hover{
   }
 }
 
+.nv-sidebar-wrap{
+  max-width: 100%;
+  padding: 0 2em;
+}
+
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }
+
+  // Desktop
+  @media (min-width: $desktop-min) {
+    p {
+      clear: none;
+    }
+    .featured-image {
+      height: 340px;
+    }
+    .nv-sidebar-wrap{
+      max-width: 21em;
+    }
+
+    .widget, .widget:last-child{
+      padding: 1em 2em;
+      &:nth-child(even) {
+        background: $gray-light;
+      }
+    }
+  }
+
+// Large
+  @media (min-width: $large-min) {
+    header .container {
+      max-width: 1024px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
