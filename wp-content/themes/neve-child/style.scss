@@ -101,8 +101,8 @@ main{
 }
 
 /*page layout*/
-.content-wrapper, .single-page-container, .archive-container {
-  max-width: 1024px;
+.content-wrapper, .single-page-container, .archive-container, .single-post-container {
+  max-width: $large-min;
   margin: auto;
   background: white;
 }
@@ -111,6 +111,14 @@ main{
   padding-left: 0;
   padding-right: 0;
   .nv-page-title {
+    padding: 0 2em;
+  }
+}
+
+.nv-single-post-wrap {
+  padding-left: 0;
+  padding-right: 0;
+  .nv-title-meta-wrap, #comments{
     padding: 0 2em;
   }
 }
