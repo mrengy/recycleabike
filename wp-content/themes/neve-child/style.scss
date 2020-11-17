@@ -18,7 +18,7 @@ Text Domain: neve-child
 
 $white: #fff;
 $black: #000;
-$blue-primary: rgb(92, 200, 221);
+$blue-primary: #5cc8dd;
 $blue-light: #E5F3F4;
 $blue-mid: #03c2d6;
 $gray-light: #f2f2f2;
@@ -65,31 +65,18 @@ p {
 }
 
 /*header*/
-
-.builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a{
-  color: $blue-mid !important;
-}
-
-.builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a:hover{
-  text-decoration: underline;
-}
-
-.builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a:active{
-  color: $blue-primary !important;
-}
-
-@media (min-width: $large-min) {
+#header-menu-sidebar{
   .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a{
-    color: $white !important;
+    color: $blue-primary;
   }
   .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a:hover{
     text-decoration: underline;
   }
-
   .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a:active{
-    color: $black !important;
+    color: $blue-mid;
   }
 }
+
 
 .header-main-inner{
   background-color: $blue-primary !important;
