@@ -11,5 +11,7 @@ To "watch" the minified CSS, run `make watch` from the command line in the neve-
 
 # Development Site
 http://devsite.recycleabike.org
+
 username: demo
+
 password: demo123
