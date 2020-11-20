@@ -64,7 +64,7 @@ p {
   }
 }
 
-/*header*/
+/*mobile header*/
 #header-menu-sidebar{
   .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a{
     color: $blue-primary;
@@ -76,11 +76,19 @@ p {
     color: $blue-mid;
   }
 }
-
+nav.hide-on-desktop{
+  .item--inner{
+    padding: 0;
+  }
+  .row--wrapper{
+    padding: 0 2em;
+  }
+}
 
 .header-main-inner{
   background-color: $blue-primary !important;
 }
+
 
 .footer-bottom-inner{
   background-color: $blue-light !important;
