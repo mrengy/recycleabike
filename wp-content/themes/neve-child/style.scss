@@ -76,13 +76,13 @@ p {
     color: $blue-mid;
   }
 }
-nav.hide-on-desktop{
+nav.hide-on-desktop.header--row{
   .item--inner{
     padding: 0;
   }
-  .row--wrapper{
+  /*.row--wrapper{
     padding: 0 2em;
-  }
+  } */
 }
 
 .header-main-inner{
