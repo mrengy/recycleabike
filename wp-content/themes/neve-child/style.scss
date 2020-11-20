@@ -89,6 +89,7 @@ nav.header--row.hide-on-mobile{
     color: $blue-mid;
   }
 }
+
 nav.header--row.hide-on-desktop{
   .item--inner{
     padding: 0;
@@ -96,6 +97,11 @@ nav.header--row.hide-on-desktop{
   .row--wrapper{
     padding: 0 2em;
   }
+}
+
+/*weird workaround for mobile safari*/
+.item--inner{
+  padding: 0;
 }
 
 .footer-bottom-inner{
