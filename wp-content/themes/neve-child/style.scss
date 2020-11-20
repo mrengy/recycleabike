@@ -79,13 +79,18 @@ p {
 nav.hide-on-desktop.header--row{
   .item--inner{
     padding: 0;
-    margin: 0;
   }
-  /*.row--wrapper{
+  .row--wrapper{
     padding: 0 2em;
-  } */
+  } 
 }
 
+/*desktop header*/
+nav.hide-on-mobile.header--row{
+  .item--inner{
+    padding: 0 2em;
+  }
+}
 .header-main-inner{
   background-color: $blue-primary !important;
 }
@@ -153,10 +158,6 @@ main{
 
 label{
   display:block;
-}
-
-.item--inner{
-  padding: 0 2em;
 }
 
 input[type="submit"]{
