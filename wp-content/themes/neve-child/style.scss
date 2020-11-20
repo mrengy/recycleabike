@@ -64,6 +64,19 @@ p {
   }
 }
 
+
+/*desktop header*/
+nav.hide-on-mobile.header--row{
+  .item--inner{
+    padding: 0 2em;
+  }
+}
+
+.header-main-inner{
+  background-color: $blue-primary !important;
+}
+
+
 /*mobile header*/
 #header-menu-sidebar{
   .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a{
@@ -82,19 +95,8 @@ nav.hide-on-desktop.header--row{
   }
   .row--wrapper{
     padding: 0 2em;
-  } 
-}
-
-/*desktop header*/
-nav.hide-on-mobile.header--row{
-  .item--inner{
-    padding: 0 2em;
   }
 }
-.header-main-inner{
-  background-color: $blue-primary !important;
-}
-
 
 .footer-bottom-inner{
   background-color: $blue-light !important;
