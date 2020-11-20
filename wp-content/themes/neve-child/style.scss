@@ -66,7 +66,7 @@ p {
 
 
 /*desktop header*/
-nav.hide-on-mobile.header--row{
+nav.header--row.hide-on-mobile{
   .item--inner{
     padding: 0 2em;
   }
@@ -89,7 +89,7 @@ nav.hide-on-mobile.header--row{
     color: $blue-mid;
   }
 }
-nav.hide-on-desktop.header--row{
+nav.header--row.hide-on-desktop{
   .item--inner{
     padding: 0;
   }
