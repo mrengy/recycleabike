@@ -54,7 +54,8 @@ p {
 
 .caption {
   position: absolute;
-  bottom: 0px;
+  max-width: 100%;
+  top: 0;
   padding: 0 2em;
   background: $overlay;
   color: white;
@@ -179,6 +180,10 @@ input[type="submit"]:hover{
 
 // Tablet
 @media (min-width: $tablet-min) {
+  .caption{
+    top: inherit;
+    bottom: 0;
+  }
   .wp-block-group:nth-child(even) {
     background: inherit;
   }
