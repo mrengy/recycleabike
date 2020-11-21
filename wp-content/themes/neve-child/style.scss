@@ -62,7 +62,9 @@ nav.header--row.hide-on-mobile{
 
 
 /*mobile header*/
-#header-menu-sidebar{
+#header-menu-sidebar-bg{
+  padding-left: 2em;
+
   .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a{
     color: $blue-primary;
   }
