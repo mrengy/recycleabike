@@ -9,7 +9,7 @@ get_header();
 	<div class="content-wrapper">
 		<div class="relative">
 			<div class="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
-			<div class="caption">
+			<div class="featured-caption">
 				<?php
 					$caption = get_post_custom_values( $key = 'Caption');
 					if (!empty($caption)){
