@@ -1,11 +1,11 @@
 <?php
 /**
- * Template Name: RAB Covid Front Page
+ * Template Name: front page with caption
  */
 
 get_header();
 ?>
-<div class="covid-frontpage">
+<div class="frontpage">
 	<div class="content-wrapper">
 		<div id="featured-container">
 			<div id="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
