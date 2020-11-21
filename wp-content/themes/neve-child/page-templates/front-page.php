@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Front page with caption
+ * Front page with caption
  */
 
 get_header();
