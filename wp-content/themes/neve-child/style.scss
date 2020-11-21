@@ -48,23 +48,6 @@ figure.alignleft:first-child, figure.alignright:first-child {
 p {
   clear: both; }
 
-.relative {
-  position: relative;
-}
-
-.featured-caption {
-  position: absolute;
-  max-width: 100%;
-  top: 0;
-  padding: 0 2em;
-  background: $overlay;
-  color: white;
-
-  p {
-    margin: 1em 0;
-  }
-}
-
 
 /*desktop header*/
 nav.header--row.hide-on-mobile{
@@ -157,13 +140,47 @@ main{
   margin-top: 1em;
 }
 
-.featured-image {
+#featured-container{
+  position: relative;
+  overflow: visible;
+  min-height: 220px;
+  width: 100%;
+}
+
+#featured-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#featured-image {
   height: 220px;
+  width: 100%;
   background-position: left;
   background-size: cover;
   background-repeat: no-repeat;
+
+  position: absolute;
+  top: 0;
 }
 
+#featured-caption {
+  float: left;
+  /*
+  position: absolute;
+  top: 0;
+  */
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  padding: 0 2em;
+  background: $overlay;
+  color: white;
+
+  p {
+    margin: 1em 0;
+  }
+}
 
 label{
   display:block;
@@ -180,10 +197,6 @@ input[type="submit"]:hover{
 
 // Tablet
 @media (min-width: $tablet-min) {
-  .featured-caption{
-    top: inherit;
-    bottom: 0;
-  }
   .wp-block-group:nth-child(even) {
     background: inherit;
   }

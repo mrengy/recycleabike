@@ -7,9 +7,9 @@ get_header();
 ?>
 <div class="covid-frontpage">
 	<div class="content-wrapper">
-		<div class="relative">
-			<div class="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
-			<div class="featured-caption">
+		<div id="featured-container">
+			<div id="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
+			<div id="featured-caption">
 				<?php
 					$caption = get_post_custom_values( $key = 'Caption');
 					if (!empty($caption)){
