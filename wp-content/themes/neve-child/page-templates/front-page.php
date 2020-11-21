@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: front page with caption
+ * Template Name: Front page with caption
  */
 
 get_header();
@@ -19,42 +19,42 @@ get_header();
 			</div>
 		</div>
 		<div class="container single-page-container nv-content-wrap">
-	<?php
-		while ( have_posts() ) {
-			the_post();
-			get_template_part( 'template-parts/content', 'pagebuilder' );
-		}
-	?>
-	<div class="wp-block-group">
-		<h1>Recent Blog Posts</h1>
-		<ul>
-			<?php
-			// Define our WP Query Parameters
-			$the_query = new WP_Query( 'posts_per_page=3' ); ?>
+		<?php
+			while ( have_posts() ) {
+				the_post();
+				get_template_part( 'template-parts/content', 'pagebuilder' );
+			}
+		?>
+		<div id="recent-blog-posts">
+			<h1>Recent Blog Posts</h1>
+			<ul>
+				<?php
+				// Define our WP Query Parameters
+				$the_query = new WP_Query( 'posts_per_page=3' ); ?>
 
 
-			<?php
-			// Start our WP Query
-			while ($the_query -> have_posts()) : $the_query -> the_post();
-			// Display the Post Title with Hyperlink
-			?>
-			<li><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
+				<?php
+				// Start our WP Query
+				while ($the_query -> have_posts()) : $the_query -> the_post();
+				// Display the Post Title with Hyperlink
+				?>
+				<li><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
 
-			<span class="nv-meta-list">
-				<li class="meta date posted-on"><?php the_date(); ?></li>
-			</span>
+				<span class="nv-meta-list">
+					<li class="meta date posted-on"><?php the_date(); ?></li>
+				</span>
 
-			<li><?php
-			// Display the Post Excerpt
-			the_excerpt(); ?></li>
+				<li><?php
+				// Display the Post Excerpt
+				the_excerpt(); ?></li>
 
-			<?php
-			// Repeat the process and reset once it hits the limit
-			endwhile;
-			wp_reset_postdata();
-			?>
-		</ul>
-	</div>
+				<?php
+				// Repeat the process and reset once it hits the limit
+				endwhile;
+				wp_reset_postdata();
+				?>
+			</ul>
+		</div>
 	<?php
 		get_footer();
 	?>
