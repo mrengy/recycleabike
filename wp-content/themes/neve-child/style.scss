@@ -112,6 +112,11 @@ main{
   padding-right: 0;
 }
 
+#recent-blog-posts ul{
+  list-style: none;
+  padding: 0;
+}
+
 /*page layout*/
 .content-wrapper, .single-page-container, .archive-container, .single-post-container {
   max-width: $large-min;
