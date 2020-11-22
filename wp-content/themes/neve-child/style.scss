@@ -142,6 +142,16 @@ main{
   margin-top: 1em;
 }
 
+.neve-child-wrap, .neve-main > .container > .row.neve-child-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.neve-child-nowrap{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 #featured-container{
   position: relative;
   overflow: visible;
