@@ -5,7 +5,6 @@
 
 get_header();
 ?>
-<div class="frontpage">
 	<div class="content-wrapper container single-page-container ">
 		<div class="row">
 			<div id="featured-container">
@@ -62,5 +61,4 @@ get_header();
 			</div>
 			<?php do_action( 'neve_do_sidebar', 'single-page', 'right' ); ?>
 		</div>
-	</div>
 <?php get_footer();	?>
