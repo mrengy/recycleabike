@@ -19,7 +19,7 @@ get_header();
 			</div>
 		</div>
 		<?php do_action( 'neve_do_sidebar', 'single-page', 'left' ); ?>
-		<div class="col nv-content-wrap">
+		<div class="nv-content-wrap col">
 			<?php
 				while ( have_posts() ) {
 					the_post();
@@ -56,8 +56,7 @@ get_header();
 				?>
 			</ul>
 		</div>
-		<?php
-			get_footer();
-		?>
+		</div>
+		<?php do_action( 'neve_do_sidebar', 'single-page', 'right' ); ?>
 	</div>
-</div>
+<?php get_footer();	?>
