@@ -147,15 +147,10 @@ main{
   flex-wrap: wrap;
 }
 
-.neve-child-nowrap{
-  display: flex;
-  flex-wrap: nowrap;
-}
-
 #featured-container{
   position: relative;
   overflow: visible;
-  min-height: 260px;
+  min-height: 200px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -169,7 +164,7 @@ main{
 }
 
 #featured-image {
-  height: 260px;
+  height: 200px;
   width: 100%;
   background-position: left;
   background-size: cover;
@@ -209,7 +204,7 @@ input[type="submit"]:hover{
   .wp-block-group:nth-child(even) {
     background: inherit;
   }
-  .featured-image {
+  #featured-image, #featured-container {
     height: 280px;
   }
 }
@@ -222,25 +217,28 @@ input[type="submit"]:hover{
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }
 
-  // Desktop
-  @media (min-width: $desktop-min) {
-    p {
-      clear: none;
-    }
-    .featured-image {
-      height: 340px;
-    }
-    .nv-sidebar-wrap{
-      max-width: 21em;
-    }
-
-    .widget, .widget:last-child{
-      padding: 1em 2em;
-      &:nth-child(even) {
-        background: $gray-light;
-      }
+// Desktop
+@media (min-width: $desktop-min) {
+  p {
+    clear: none;
+  }
+  #featured-image, #featured-container {
+    height: 340px;
+  }
+  .neve-child-nowrap{
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .nv-sidebar-wrap{
+    max-width: 21em;
+  }
+  .widget, .widget:last-child{
+    padding: 1em 2em;
+    &:nth-child(even) {
+      background: $gray-light;
     }
   }
+}
 
 // Large
   @media (min-width: $large-min) {
