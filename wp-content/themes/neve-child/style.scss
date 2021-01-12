@@ -174,18 +174,12 @@ main{
   background-position: left;
   background-size: cover;
   background-repeat: no-repeat;
-  position: absolute;
-  top: 0;
 }
 
 #featured-caption {
-  float: left;
-  position: relative;
-  z-index: 2;
   max-width: 100%;
   padding: 0 2em;
-  background: $overlay;
-  color: white;
+  background: $blue-light;
   p {
     margin: 1em 0;
   }
@@ -211,6 +205,13 @@ input[type="submit"]:hover{
   }
   #featured-image, #featured-container {
     height: 280px;
+  }
+  #featured-caption {
+    color: white;
+    position: absolute;
+    bottom: 0px;
+    z-index: 2;
+    background: $overlay;
   }
 }
 
