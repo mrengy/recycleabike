@@ -26,7 +26,7 @@ $overlay: rgba(0, 0, 0, 0.7);
 
 $large-min: 1024px;
 $desktop-min: 945px;
-$tablet-min: 480px;
+$tablet-min: 576px;
 
 body{
   font-size: 16px;
@@ -204,23 +204,6 @@ input[type="submit"]:hover{
   background-color: $overlay;
 }
 
-// Tablet
-@media (min-width: $tablet-min) {
-  .wp-block-group:nth-child(even) {
-    background: inherit;
-  }
-  #featured-image, #featured-container {
-    height: 280px;
-  }
-  #featured-caption {
-    color: white;
-    position: absolute;
-    bottom: 0px;
-    z-index: 2;
-    background: $overlay;
-  }
-}
-
 .nv-sidebar-wrap{
   max-width: 100%;
   padding: 0 2em;
@@ -278,6 +261,33 @@ input[type="submit"]:hover{
 
 #homepage-grid-donate{
   background-image: url(img/IMG_0221.jpg);
+}
+
+// Tablet
+@media (min-width: $tablet-min) {
+  .wp-block-group:nth-child(even) {
+    background: inherit;
+  }
+  #featured-image, #featured-container {
+    height: 280px;
+  }
+  #featured-caption {
+    color: white;
+    position: absolute;
+    bottom: 0px;
+    z-index: 2;
+    background: $overlay;
+  }
+
+  .nv-sidebar-wrap.nv-right{
+    padding-left: 0;
+  }
+
+  //homepage grid Tablet
+  .homepage-grid-item:nth-child(even){
+    flex-direction:row;
+    margin-left:1em;
+  }
 }
 
 // Desktop
