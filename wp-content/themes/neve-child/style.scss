@@ -26,7 +26,7 @@ $overlay: rgba(0, 0, 0, 0.7);
 
 $large-min: 1024px;
 $desktop-min: 945px;
-$tablet-min: 480px;
+$tablet-min: 576px;
 
 body{
   font-size: 16px;
@@ -185,6 +185,12 @@ main{
   }
 }
 
+#main-container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+
 label{
   display:block;
 }
@@ -196,6 +202,64 @@ input[type="submit"]{
 
 input[type="submit"]:hover{
   background-color: $overlay;
+}
+
+.nv-sidebar-wrap{
+  max-width: 100%;
+  padding: 0 2em;
+  margin-bottom: 0;
+}
+
+.header-menu-sidebar .nav-menu-primary ul li {
+  text-align: left; }
+
+#homepage-grid-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nv-content-wrap a:not(.button):not(.wp-block-file__button).homepage-grid-item{
+  text-decoration: none;
+}
+
+.homepage-grid-item{
+  min-height: 140px;
+  display: flex;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin-bottom: 1em;
+}
+
+.grid-name-background{
+  background: rgba($blue-mid, .8);
+  color: $white ;
+  display: flex;
+  align-items: center;
+}
+
+.homepage-grid-item:nth-child(even){
+  flex-direction:row-reverse;
+}
+
+.grid-name{
+  font-size: 2em;
+}
+
+#homepage-grid-about{
+  background-image: url(img/IMG_0004.jpg);
+}
+
+#homepage-grid-friends{
+  background-image: url(img/IMG_0629.jpg);
+}
+
+#homepage-grid-blog{
+  background-image: url(img/IMG_0070.jpg);
+}
+
+#homepage-grid-donate{
+  background-image: url(img/IMG_0221.jpg);
 }
 
 // Tablet
@@ -213,15 +277,32 @@ input[type="submit"]:hover{
     z-index: 2;
     background: $overlay;
   }
-}
 
-.nv-sidebar-wrap{
-  max-width: 100%;
-  padding: 0 2em;
-}
+  .nv-sidebar-wrap.nv-right{
+    padding-left: 0;
+  }
 
-.header-menu-sidebar .nav-menu-primary ul li {
-  text-align: left; }
+  //homepage grid Tablet
+  .homepage-grid-item:nth-child(even){
+    flex-direction:row;
+    margin-left:1em;
+  }
+
+  .homepage-grid-item{
+    background-size: cover;
+  }
+
+  .grid-name-background{
+    height:3em;
+    align-self:center;
+    justify-content: center;
+  }
+
+  .grid-name{
+    font-size: 1.5em;
+  }
+
+}
 
 // Desktop
 @media (min-width: $desktop-min) {
