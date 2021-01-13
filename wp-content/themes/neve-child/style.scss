@@ -185,6 +185,12 @@ main{
   }
 }
 
+#main-container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+
 label{
   display:block;
 }
