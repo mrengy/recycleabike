@@ -224,6 +224,7 @@ input[type="submit"]:hover{
 .nv-sidebar-wrap{
   max-width: 100%;
   padding: 0 2em;
+  margin-bottom: 0;
 }
 
 .header-menu-sidebar .nav-menu-primary ul li {
@@ -246,14 +247,21 @@ input[type="submit"]:hover{
   background-repeat: no-repeat;
   padding: 0;
   margin-bottom: 1em;
+}
 
-  .grid-name-background{
-    background: rgba($blue-mid, .8);
-    color: $white ;
-    display: flex;
-    align-items: center;
-  }
+.grid-name-background{
+  background: rgba($blue-mid, .8);
+  color: $white ;
+  display: flex;
+  align-items: center;
+}
 
+.homepage-grid-item:nth-child(even){
+  flex-direction:row-reverse;
+}
+
+.grid-name{
+  font-size: 2em;
 }
 
 #homepage-grid-about{
