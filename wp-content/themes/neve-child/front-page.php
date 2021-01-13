@@ -23,28 +23,28 @@ get_header();
 					<div class="nv-single-page-wrap col-sm-8 col-12">
 						<div class="nv-content-wrap" id="homepage-grid-container">
 							<a class="homepage-grid-item col-12 col-sm-5" href="about" id="homepage-grid-about">
-								<div class="grid-name-background col-6">
+								<div class="grid-name-background col-6 col-sm-12">
 									<div class="grid-name">
 										About
 									</div>
 								</div>
 							</a>
 							<a class="homepage-grid-item col-12 col-sm-5" href="friends" id="homepage-grid-friends">
-								<div class="grid-name-background col-6">
+								<div class="grid-name-background col-6 col-sm-12">
 									<div class="grid-name">
 										Friends
 									</div>
 								</div>
 							</a>
 							<a class="homepage-grid-item col-12 col-sm-5" href="blog" id="homepage-grid-blog">
-								<div class="grid-name-background col-6">
+								<div class="grid-name-background col-6 col-sm-12">
 									<div class="grid-name">
 										Blog
 									</div>
 								</div>
 							</a>
 							<a class="homepage-grid-item col-12 col-sm-5" href="donate" id="homepage-grid-donate">
-								<div class="grid-name-background col-6">
+								<div class="grid-name-background col-6 col-sm-12">
 									<div class="grid-name">
 										Donate
 									</div>
