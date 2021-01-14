@@ -28,6 +28,8 @@ $large-min: 1024px;
 $desktop-min: 945px;
 $tablet-min: 576px;
 
+$transition-time-hover: .2s;
+
 body{
   font-size: 16px;
 }
@@ -241,6 +243,13 @@ input[type="submit"]:hover{
   color: $white ;
   display: flex;
   align-items: center;
+  transition-property: all;
+  transition-duration: $transition-time-hover;
+}
+
+a:hover .grid-name-background{
+  flex-basis: 100%;
+  max-width: 100%;
 }
 
 .homepage-grid-item:nth-child(even){
@@ -304,8 +313,8 @@ input[type="submit"]:hover{
     height: 3em;
     align-self: center;
     justify-content: center;
-    transition-property: height;
-    transition-duration: .2s;
+    transition-property: all;
+    transition-duration: $transition-time-hover;
   }
 
   a:hover .grid-name-background{
