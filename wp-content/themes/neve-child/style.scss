@@ -216,6 +216,8 @@ input[type="submit"]:hover{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
   &::after{
     content:none;
   }
@@ -231,7 +233,7 @@ input[type="submit"]:hover{
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 .grid-name-background{
@@ -284,12 +286,12 @@ input[type="submit"]:hover{
   //homepage grid Tablet
   .homepage-grid-item:nth-child(even){
     flex-direction:row;
-    margin-left:1em;
   }
 
   .homepage-grid-item{
     background-size: cover;
-    flex-grow:1;
+    max-width: calc(50% - 1em);
+    flex-basis: calc(50% - 1em);
   }
 
   .grid-name-background{
