@@ -292,12 +292,24 @@ input[type="submit"]:hover{
     background-size: cover;
     max-width: calc(50% - 1em);
     flex-basis: calc(50% - 1em);
+    position: relative;
+    &::before{
+    	content: "";
+    	float: left;
+    	padding-top: 75%;
+    }
   }
 
   .grid-name-background{
-    height:3em;
-    align-self:center;
+    height: 3em;
+    align-self: center;
     justify-content: center;
+    transition-property: height;
+    transition-duration: .2s;
+  }
+
+  a:hover .grid-name-background{
+    height: 100%;
   }
 
   .grid-name{
@@ -326,6 +338,11 @@ input[type="submit"]:hover{
     &:nth-child(even) {
       background: $gray-light;
     }
+  }
+
+  //homepage grid Desktop
+  .homepage-grid-item::before{
+  	padding-top: 50%;
   }
 }
 
