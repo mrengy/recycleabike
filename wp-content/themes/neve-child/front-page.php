@@ -9,7 +9,7 @@ get_header();
 		<div class="row neve-child-wrap">
 				<div id="featured-container">
 					<div id="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
-					<div id="featured-caption">
+					<div id="featured-caption" class="col-md-10">
 						<?php
 							$caption = get_post_custom_values( $key = 'Caption');
 							if (!empty($caption)){
@@ -20,7 +20,15 @@ get_header();
 				</div>
 				<div class="neve-child-nowrap" id="main-container">
 					<?php do_action( 'neve_do_sidebar', 'single-page', 'left' ); ?>
-					<div class="nv-single-page-wrap col-sm-8 col-12">
+					<div class="col-md-10 col-12 nv-right blog-sidebar nv-content-wrap" id="page-content">
+						<?php
+							while ( have_posts() ) {
+								the_post();
+								get_template_part( 'template-parts/content', 'pagebuilder' );
+							}
+						?>
+					</div>
+					<div class="nv-single-page-wrap col-12">
 						<div class="nv-content-wrap" id="homepage-grid-container">
 							<a class="homepage-grid-item col-12 col-sm-5" href="about" id="homepage-grid-about">
 								<div class="grid-name-background col-6 col-sm-12">
@@ -51,14 +59,6 @@ get_header();
 								</div>
 							</a>
 						</div>
-					</div>
-					<div class="nv-sidebar-wrap col-sm-4 col-12 nv-right blog-sidebar" id="page-content">
-						<?php
-							while ( have_posts() ) {
-								the_post();
-								get_template_part( 'template-parts/content', 'pagebuilder' );
-							}
-						?>
 					</div>
 				</div>
 		</div>
