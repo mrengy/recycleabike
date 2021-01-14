@@ -28,6 +28,8 @@ $large-min: 1024px;
 $desktop-min: 945px;
 $tablet-min: 576px;
 
+$transition-time-hover: .2s;
+
 body{
   font-size: 16px;
 }
@@ -177,7 +179,6 @@ main{
 }
 
 #featured-caption {
-  max-width: 100%;
   padding: 0 2em;
   background: $blue-light;
   p {
@@ -188,7 +189,7 @@ main{
 #main-container{
   width: 100%;
   display: flex;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
 }
 
 label{
@@ -216,6 +217,12 @@ input[type="submit"]:hover{
 #homepage-grid-container{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
+  &::after{
+    content:none;
+  }
 }
 
 .nv-content-wrap a:not(.button):not(.wp-block-file__button).homepage-grid-item{
@@ -228,7 +235,7 @@ input[type="submit"]:hover{
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 .grid-name-background{
@@ -236,6 +243,13 @@ input[type="submit"]:hover{
   color: $white ;
   display: flex;
   align-items: center;
+  transition-property: all;
+  transition-duration: $transition-time-hover;
+}
+
+a:hover .grid-name-background{
+  flex-basis: 100%;
+  max-width: 100%;
 }
 
 .homepage-grid-item:nth-child(even){
@@ -281,17 +295,30 @@ input[type="submit"]:hover{
   //homepage grid Tablet
   .homepage-grid-item:nth-child(even){
     flex-direction:row;
-    margin-left:1em;
   }
 
   .homepage-grid-item{
     background-size: cover;
+    max-width: calc(50% - 1em);
+    flex-basis: calc(50% - 1em);
+    position: relative;
+    &::before{
+    	content: "";
+    	float: left;
+    	padding-top: 75%;
+    }
   }
 
   .grid-name-background{
-    height:3em;
-    align-self:center;
+    height: 3em;
+    align-self: center;
     justify-content: center;
+    transition-property: all;
+    transition-duration: $transition-time-hover;
+  }
+
+  a:hover .grid-name-background{
+    height: 100%;
   }
 
   .grid-name{
@@ -320,6 +347,11 @@ input[type="submit"]:hover{
     &:nth-child(even) {
       background: $gray-light;
     }
+  }
+
+  //homepage grid Desktop
+  .homepage-grid-item::before{
+  	padding-top: 50%;
   }
 }
 
