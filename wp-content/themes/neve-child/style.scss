@@ -305,7 +305,7 @@ a:hover .grid-name-background{
     &::before{
     	content: "";
     	float: left;
-    	padding-top: 75%;
+    	padding-top: 75%; /*sets height of grid item relative to its width*/
     }
   }
 
@@ -351,7 +351,7 @@ a:hover .grid-name-background{
 
   //homepage grid Desktop
   .homepage-grid-item::before{
-  	padding-top: 50%;
+  	padding-top: 50%; /*sets height of grid item relative to its width*/
   }
 }
 
