@@ -23,7 +23,7 @@ do_action( 'neve_before_primary_end' );
 			 <div class="widget-area" role="complementary">
 			  <?php dynamic_sidebar( 'sidebar-3' ); ?>
 				<aside id="copyright" class="widget widget_text">
-						&copy; 2021 Recycle-a-Bike
+						&copy; <?php echo date('Y'); ?> Recycle-a-Bike
 				</aside>
 			 </div>
 			<?php endif; ?>
