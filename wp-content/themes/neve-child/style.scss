@@ -28,7 +28,9 @@ $overlay: rgba(0, 0, 0, 0.7);
 
 $large-min: 1024px;
 $desktop-min: 945px;
-$tablet-min: 480px;
+$tablet-min: 576px;
+
+$transition-time-hover: .2s;
 
 body{
   font-size: 16px;
@@ -176,21 +178,20 @@ main{
   background-position: left;
   background-size: cover;
   background-repeat: no-repeat;
-  position: absolute;
-  top: 0;
 }
 
 #featured-caption {
-  float: left;
-  position: relative;
-  z-index: 2;
-  max-width: 100%;
   padding: 0 2em;
-  background: $overlay;
-  color: white;
+  background: $blue-light;
   p {
     margin: 1em 0;
   }
+}
+
+#main-container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 label{
@@ -206,13 +207,76 @@ input[type="submit"]:hover{
   background-color: $overlay;
 }
 
-// footer
-#site-footer .content-wrapper{
-  background-color: $blue-light;
-  padding: 2em;
-  color: $blackish;
+.nv-sidebar-wrap{
+  max-width: 100%;
+  padding: 0 2em;
+  margin-bottom: 0;
 }
 
+.header-menu-sidebar .nav-menu-primary ul li {
+  text-align: left; }
+
+#homepage-grid-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
+  &::after{
+    content:none;
+  }
+}
+
+.nv-content-wrap a:not(.button):not(.wp-block-file__button).homepage-grid-item{
+  text-decoration: none;
+}
+
+.homepage-grid-item{
+  min-height: 140px;
+  display: flex;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin-bottom: 2em;
+}
+
+.grid-name-background{
+  background: rgba($blue-mid, .8);
+  color: $white ;
+  display: flex;
+  align-items: center;
+  transition-property: all;
+  transition-duration: $transition-time-hover;
+}
+
+a:hover .grid-name-background{
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+.homepage-grid-item:nth-child(even){
+  flex-direction:row-reverse;
+}
+
+.grid-name{
+  font-size: 2em;
+}
+
+#homepage-grid-about{
+  background-image: url(img/IMG_0004.jpg);
+}
+
+#homepage-grid-friends{
+  background-image: url(img/IMG_0629.jpg);
+}
+
+#homepage-grid-blog{
+  background-image: url(img/IMG_0070.jpg);
+}
+
+#homepage-grid-donate{
+  background-image: url(img/IMG_0221.jpg);
+}
 
 // Tablet
 @media (min-width: $tablet-min) {
@@ -222,15 +286,48 @@ input[type="submit"]:hover{
   #featured-image, #featured-container {
     height: 280px;
   }
-}
+  #featured-caption {
+    color: white;
+    position: absolute;
+    bottom: 0px;
+    z-index: 2;
+    background: $overlay;
+  }
 
-.nv-sidebar-wrap{
-  max-width: 100%;
-  padding: 0 2em;
-}
+  //homepage grid Tablet
+  .homepage-grid-item:nth-child(even){
+    flex-direction:row;
+  }
 
-.header-menu-sidebar .nav-menu-primary ul li {
-  text-align: left; }
+  .homepage-grid-item{
+    background-size: cover;
+    max-width: calc(50% - 1em);
+    flex-basis: calc(50% - 1em);
+    position: relative;
+    &::before{
+    	content: "";
+    	float: left;
+    	padding-top: 75%; /*sets height of grid item relative to its width*/
+    }
+  }
+
+  .grid-name-background{
+    height: 3em;
+    align-self: center;
+    justify-content: center;
+    transition-property: all;
+    transition-duration: $transition-time-hover;
+  }
+
+  a:hover .grid-name-background{
+    height: 100%;
+  }
+
+  .grid-name{
+    font-size: 1.5em;
+  }
+
+}
 
 // Desktop
 @media (min-width: $desktop-min) {
@@ -252,6 +349,11 @@ input[type="submit"]:hover{
     &:nth-child(even) {
       background: $gray-light;
     }
+  }
+
+  //homepage grid Desktop
+  .homepage-grid-item::before{
+  	padding-top: 50%; /*sets height of grid item relative to its width*/
   }
 }
 
