@@ -19,14 +19,20 @@ do_action( 'neve_before_primary_end' );
 	<div class="footer--row-inner footer-bottom-inner footer-content-wrap">
 		<div class="content-wrapper container">
 			<?php //display footer widget area if it's active
-				if ( is_active_sidebar( 'neve-child-footer' )  ) : ?>
-			 <div class="widget-area" role="complementary">
-			  <?php dynamic_sidebar( 'neve-child-footer' ); ?>
-				<aside id="copyright" class="widget widget_text">
+				if ( is_active_sidebar( 'neve-child-footer' )  ){ ?>
+				 	<div class="widget-area" role="complementary">
+					  <?php dynamic_sidebar( 'neve-child-footer' ); ?>
+						<aside id="copyright" class="widget widget_text">
+								&copy; <?php echo date('Y'); ?> Recycle-a-Bike
+						</aside>
+				 	</div>
+			<?php } else{
+					//just show the copyright text on its own if this footer widget area isn't active
+				?>
+				<aside id="copyright-no-footer-widgets" class="widget widget_text">
 						&copy; <?php echo date('Y'); ?> Recycle-a-Bike
 				</aside>
-			 </div>
-			<?php endif; ?>
+			<?php } ?>
 		</div>
 	</div>
 </footer>
