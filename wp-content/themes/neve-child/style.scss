@@ -216,6 +216,8 @@ input[type="submit"]:hover{
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }
 
+//Homepage grid
+
 #homepage-grid-container{
   display: flex;
   flex-wrap: wrap;
@@ -278,6 +280,33 @@ a:hover .grid-name-background{
   background-image: url(img/IMG_0221.jpg);
 }
 
+
+
+// footer
+#site-footer{
+  .content-wrapper{
+  background-color: $blue-light;
+  padding: 0;
+  color: $blackish;
+  }
+
+  .widget{
+    background: none;
+    padding: 1em 2em;
+  }
+
+  .footer-bottom-inner a:not(.button){
+    color: $blue-mid;
+  }
+
+  .widget-area{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+}
+
 // Tablet
 @media (min-width: $tablet-min) {
   .wp-block-group:nth-child(even) {
@@ -325,6 +354,17 @@ a:hover .grid-name-background{
 
   .grid-name{
     font-size: 1.5em;
+  }
+
+  //footer Tablet
+  #site-footer{
+    .widget{
+      max-width: 33%;
+    }
+
+    #copyright{
+      text-align: right;
+    }
   }
 
 }

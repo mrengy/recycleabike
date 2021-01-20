@@ -18,12 +18,16 @@ do_action( 'neve_before_primary_end' );
 <footer id="site-footer" class="site-footer">
 	<div class="footer--row-inner footer-bottom-inner footer-content-wrap">
 		<div class="content-wrapper container">
-			<?php if ( is_active_sidebar( 'sidebar-3' )  ) : ?>
+			<?php //display footer widget area if it's active
+				if ( is_active_sidebar( 'sidebar-3' )  ) : ?>
 			 <div class="widget-area" role="complementary">
 			  <?php dynamic_sidebar( 'sidebar-3' ); ?>
+				<aside id="copyright" class="widget widget_text">
+						&copy; 2021 Recycle-a-Bike
+				</aside>
 			 </div>
 			<?php endif; ?>
-			</div>
+		</div>
 	</div>
 </footer>
 
