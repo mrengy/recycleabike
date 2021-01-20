@@ -18,11 +18,13 @@ Text Domain: neve-child
 
 $white: #fff;
 $black: #000;
+$blackish: #404248;
 $blue-primary: #5cc8dd;
 $blue-light: #E5F3F4;
 $blue-mid: #03c2d6;
 $gray-light: #f2f2f2;
 $overlay: rgba(0, 0, 0, 0.7);
+
 
 $large-min: 1024px;
 $desktop-min: 945px;
@@ -208,7 +210,7 @@ input[type="submit"]:hover{
 #site-footer .content-wrapper{
   background-color: $blue-light;
   padding: 2em;
-  color: $black;
+  color: $blackish;
 }
 
 

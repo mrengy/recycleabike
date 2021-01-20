@@ -18,10 +18,12 @@ do_action( 'neve_before_primary_end' );
 <footer id="site-footer" class="site-footer">
 	<div class="footer--row-inner footer-bottom-inner footer-content-wrap">
 		<div class="content-wrapper container">
-			<?php
-				echo('hi from new footer');
-			?>
-		</div>
+			<?php if ( is_active_sidebar( 'sidebar-3' )  ) : ?>
+			 <div class="widget-area" role="complementary">
+			  <?php dynamic_sidebar( 'sidebar-3' ); ?>
+			 </div>
+			<?php endif; ?>
+			</div>
 	</div>
 </footer>
 
