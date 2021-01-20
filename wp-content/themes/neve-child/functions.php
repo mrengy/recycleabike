@@ -58,4 +58,18 @@ function neve_child_excerpt_length($length){
 }
 
 add_filter('excerpt_length', 'neve_child_excerpt_length', 999);
+
+//add footer widget area
+function neve_child_widgets_init() {
+  register_sidebar( array(
+    'name'          => __( 'Footer Widgets', 'neve-child' ),
+    'id'            => 'sidebar-3',
+    'description'   => __( 'Add widgets here to appear in your footer area.', 'neve-child' ),
+    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</aside>',
+    'before_title'  => '<h2 class="widget-title">',
+    'after_title'   => '</h2>',
+  ) );
+}
+add_action( 'widgets_init', 'neve_child_widgets_init' );
 ?>
