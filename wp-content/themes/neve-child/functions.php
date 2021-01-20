@@ -63,7 +63,7 @@ add_filter('excerpt_length', 'neve_child_excerpt_length', 999);
 function neve_child_widgets_init() {
   register_sidebar( array(
     'name'          => __( 'Footer Widgets', 'neve-child' ),
-    'id'            => 'sidebar-3',
+    'id'            => 'neve-child-footer',
     'description'   => __( 'Add widgets here to appear in your footer area.', 'neve-child' ),
     'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     'after_widget'  => '</aside>',
