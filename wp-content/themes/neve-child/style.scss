@@ -286,13 +286,13 @@ a:hover .grid-name-background{
 #site-footer{
   .content-wrapper{
   background-color: $blue-light;
-  padding: 0;
+  padding: 0 2em;
   color: $blackish;
   }
 
   .widget{
     background: none;
-    padding: 1em 2em;
+    padding: 1em 0;
   }
 
   .footer-bottom-inner a:not(.button){
@@ -359,11 +359,7 @@ a:hover .grid-name-background{
   //footer Tablet
   #site-footer{
     .widget{
-      max-width: 33%;
-    }
-
-    #copyright{
-      text-align: right;
+      width: calc(50% - 1em);
     }
   }
 
@@ -394,6 +390,17 @@ a:hover .grid-name-background{
   //homepage grid Desktop
   .homepage-grid-item::before{
   	padding-top: 50%; /*sets height of grid item relative to its width*/
+  }
+
+  //footer Desktop
+  #site-footer{
+    .widget{
+      width: calc(33% - 1em);
+    }
+
+    #copyright{
+      text-align: right;
+    }
   }
 }
 
