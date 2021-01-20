@@ -18,11 +18,13 @@ Text Domain: neve-child
 
 $white: #fff;
 $black: #000;
+$blackish: #404248;
 $blue-primary: #5cc8dd;
 $blue-light: #E5F3F4;
 $blue-mid: #03c2d6;
 $gray-light: #f2f2f2;
 $overlay: rgba(0, 0, 0, 0.7);
+
 
 $large-min: 1024px;
 $desktop-min: 945px;
@@ -142,7 +144,7 @@ main{
   }
 }
 
-.nv-content-wrap {
+.nv-content-wrap{
   padding: 1em;
   padding-left: 2em;
   padding-right: 2em;
@@ -214,6 +216,8 @@ input[type="submit"]:hover{
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }
 
+//Homepage grid
+
 #homepage-grid-container{
   display: flex;
   flex-wrap: wrap;
@@ -276,6 +280,33 @@ a:hover .grid-name-background{
   background-image: url(img/IMG_0221.jpg);
 }
 
+
+
+// footer
+#site-footer{
+  .content-wrapper{
+  background-color: $blue-light;
+  padding: 0 2em;
+  color: $blackish;
+  }
+
+  .widget{
+    background: none;
+    padding: 1em 0;
+  }
+
+  .footer-bottom-inner a:not(.button){
+    color: $blue-mid;
+  }
+
+  .widget-area{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+}
+
 // Tablet
 @media (min-width: $tablet-min) {
   .wp-block-group:nth-child(even) {
@@ -325,6 +356,13 @@ a:hover .grid-name-background{
     font-size: 1.5em;
   }
 
+  //footer Tablet
+  #site-footer{
+    .widget{
+      width: calc(50% - 1em);
+    }
+  }
+
 }
 
 // Desktop
@@ -352,6 +390,17 @@ a:hover .grid-name-background{
   //homepage grid Desktop
   .homepage-grid-item::before{
   	padding-top: 50%; /*sets height of grid item relative to its width*/
+  }
+
+  //footer Desktop
+  #site-footer{
+    .widget{
+      width: calc(33% - 1em);
+    }
+
+    #copyright{
+      text-align: right;
+    }
   }
 }
 
