@@ -14,13 +14,16 @@ do_action( 'neve_before_primary_end' );
 
 <?php do_action( 'neve_after_primary' ); ?>
 
-<?php
-if ( apply_filters( 'neve_filter_toggle_content_parts', true, 'footer' ) === true ) {
-	neve_before_footer_trigger();
-	do_action( 'neve_do_footer' );
-	neve_after_footer_trigger();
-}
-?>
+<!-- overwriting theme-editable footer content in favor of widget area -->
+<footer id="site-footer" class="site-footer">
+	<div class="footer--row-inner footer-bottom-inner footer-content-wrap">
+		<div class="content-wrapper container">
+			<?php
+				echo('hi from new footer');
+			?>
+		</div>
+	</div>
+</footer>
 
 </div><!--/.wrapper-->
 <?php wp_footer(); ?>

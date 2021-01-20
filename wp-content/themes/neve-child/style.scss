@@ -140,7 +140,7 @@ main{
   }
 }
 
-.nv-content-wrap {
+.nv-content-wrap{
   padding: 1em;
   padding-left: 2em;
   padding-right: 2em;
@@ -203,6 +203,14 @@ input[type="submit"]{
 input[type="submit"]:hover{
   background-color: $overlay;
 }
+
+// footer
+#site-footer .content-wrapper{
+  background-color: $blue-light;
+  padding: 2em;
+  color: $black;
+}
+
 
 // Tablet
 @media (min-width: $tablet-min) {
