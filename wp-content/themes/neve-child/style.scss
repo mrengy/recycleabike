@@ -392,6 +392,10 @@ a:hover .grid-name-background{
       background: $gray-light;
     }
   }
+  #content.neve-main > .container > .row > .col{
+    //replace this with the theme setting if we can find it
+    max-width: 70% !important;
+  }
 
   //homepage grid Desktop
   .homepage-grid-item::before{
