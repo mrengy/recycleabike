@@ -129,7 +129,7 @@ main{
   background: white;
 }
 
-.nv-single-page-wrap, .archive-container {
+.nv-single-page-wrap, .nv-archive-wrap{
   padding-left: 0;
   padding-right: 0;
   .nv-page-title {
@@ -216,6 +216,28 @@ input[type="submit"]:hover{
 
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }
+
+//blog archive layout
+.archive-container{
+  padding-top: 0;
+}
+
+.blog .nv-page-title-wrap{
+  margin-top: 30px;
+}
+
+#blog-archive-container{
+  .row{
+    margin: 0;
+  }
+  article{
+    padding: 0;
+    margin: 0;
+  }
+  .article-content-col{
+    padding: 0;
+  }
+}
 
 //Homepage grid
 

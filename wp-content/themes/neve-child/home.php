@@ -1,6 +1,6 @@
 <?php
 /**
- * Index template.
+ * Index template, also used for blog archive.
  *
  * @package Neve
  */
@@ -15,8 +15,8 @@ get_header();
 			<?php
 					do_action( 'neve_before_loop' );
 					do_action( 'neve_page_header', 'index' );
+					$featured_img = wp_get_attachment_image_src(get_post_thumbnail_id(get_option('page_for_posts')),'large');
 
-					$featured_img = wp_get_attachment_image_src(get_post_thumbnail_id(get_option('page_for_posts')),'full');
 					if ($featured_img) {
 						$image_src = $featured_img[0];
 			?>
@@ -27,7 +27,7 @@ get_header();
 			<?php
 					}
 					?>
-					<div class="row nv-content-wrap">
+					<div class="nv-content-wrap" id="blog-archive-container">
 						<?php do_action( 'neve_do_sidebar', 'blog-archive', 'left' ); ?>
 						<div class="nv-index-posts blog">
 							<?php
