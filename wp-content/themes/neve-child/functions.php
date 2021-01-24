@@ -54,7 +54,7 @@ function neve_child_customize_meta_boxes(){
 
 //customize excerpt length
 function neve_child_excerpt_length($length){
-  return 25;
+  return 30;
 }
 
 add_filter('excerpt_length', 'neve_child_excerpt_length', 999);

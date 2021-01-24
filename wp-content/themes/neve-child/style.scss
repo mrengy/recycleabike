@@ -129,7 +129,7 @@ main{
   background: white;
 }
 
-.nv-single-page-wrap, .archive-container {
+.nv-single-page-wrap, .nv-archive-wrap{
   padding-left: 0;
   padding-right: 0;
   .nv-page-title {
@@ -145,7 +145,7 @@ main{
   }
 }
 
-.nv-content-wrap{
+.nv-content-wrap, .article-content-col{
   padding: 1em;
   padding-left: 2em;
   padding-right: 2em;
@@ -216,6 +216,31 @@ input[type="submit"]:hover{
 
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }
+
+//blog archive layout
+.archive-container{
+  padding-top: 0;
+}
+
+.blog .nv-page-title-wrap{
+  margin-top: 30px;
+}
+
+#blog-archive-container{
+  .row{
+    margin: 0;
+  }
+  article{
+    padding: 0;
+    margin: 0;
+  }
+  .article-content-col{
+    padding: 0;
+  }
+  .nv-meta-list{
+    padding: 0;
+  }
+}
 
 //Homepage grid
 
@@ -391,6 +416,10 @@ a:hover .grid-name-background{
     &:nth-child(even) {
       background: $gray-light;
     }
+  }
+  #content.neve-main > .container > .row > .col{
+    //replace this with the theme setting if we can find it
+    max-width: 70% !important;
   }
 
   //homepage grid Desktop
