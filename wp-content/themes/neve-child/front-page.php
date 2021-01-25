@@ -11,11 +11,11 @@ get_header();
 					<!--
 					<div id="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
 					-->
-					<!--
+
 					<div id="featured-image">
 						<?php if ( function_exists( 'soliloquy' ) ) { soliloquy( 'homepage-slider', 'slug' ); } ?>
 					</div>
-					-->
+					
 					<!--
 					<div id="featured-image">
 						<?php echo do_shortcode('[metaslider id="2601"]'); ?>
@@ -28,9 +28,11 @@ get_header();
 						?>
 					</div>
 					-->
+					<!--
 					<div id="featured-image">
 						<?php echo do_shortcode('[sp_wpcarousel id="2623"]'); ?>
 					</div>
+					-->
 					<div id="featured-caption" class="col-md-10">
 						<?php
 							$caption = get_post_custom_values( $key = 'Caption');
