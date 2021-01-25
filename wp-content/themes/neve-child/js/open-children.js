@@ -6,12 +6,9 @@ jQuery(document).ready(function($){
     $(this).closest('li').find('ul.sub-menu').toggleClass('dropdown-open');
   });
 
-  //define variable for changing container
-  var changingContainer;
-  var letSliderLoad = window.setTimeout((defineContainer), 500);
-
+  //detecting height changes. run this when slider plugin creates children
   function defineContainer(){
-    changingContainer = $('.soliloquy-viewport');
+    var changingContainer = $('.soliloquy-viewport');
 
     const heightObserver = new MutationObserver((ml, o) => {
       for (const m of ml) {
@@ -25,26 +22,18 @@ jQuery(document).ready(function($){
     });
   }
 
-  /*
-  let $featuredImage = $('#featured-image');
-  var changingContainer = $('.soliloquy-viewport');
-
-  //mutation observer to capture div when it's created
+  //detecting when children are created
   const childrenObserver = new MutationObserver((ml, o) => {
-    for (const m of ml) {
-      changingContainer = $('.soliloquy-viewport');
-    }
+    defineContainer();
   });
+
+  //define variable for children observer
+  let $featuredImage = $('#featured-image');
 
   childrenObserver.observe($featuredImage[0], {
     attributes: false,
     subtree: true,
     childList: true
   });
-  */
-
-  //resize container for image slider
-  //let $changingContainer = $('.soliloquy-viewport');
-
 
 });
