@@ -6,22 +6,6 @@ jQuery(document).ready(function($){
     $(this).closest('li').find('ul.sub-menu').toggleClass('dropdown-open');
   });
 
-  //detecting height changes. run this when slider plugin creates children
-  function defineContainer(){
-    var changingContainer = $('.soliloquy-viewport');
-
-    const heightObserver = new MutationObserver((ml, o) => {
-      for (const m of ml) {
-        console.log('The ' + m.attributeName + ' attribute was modified.');
-      }
-    });
-
-    heightObserver.observe(changingContainer[0], {
-      attributes: true,
-      subtree: false
-    });
-  }
-
   //detecting when children are created
   const childrenObserver = new MutationObserver((ml, o) => {
     defineContainer();
@@ -35,5 +19,28 @@ jQuery(document).ready(function($){
     subtree: true,
     childList: true
   });
+
+  //detecting height changes. run this when slider plugin creates children
+  function defineContainer(){
+    var changingContainer = $('.soliloquy-viewport');
+
+    const heightObserver = new MutationObserver((ml, o) => {
+      matchHeight();
+      //console.log('attribute was modified.');
+
+    });
+
+    heightObserver.observe(changingContainer[0], {
+      attributes: true,
+      subtree: false
+    });
+  }
+
+  //set height of containers equal to soliloquy viewport height
+  function matchHeight(){
+    var soliloquy_viewport_height = $('.soliloquy-viewport').height();
+    $('#featured-image').css('min-height', soliloquy_viewport_height);
+    $('#featured-container').css('min-height', soliloquy_viewport_height);
+  }
 
 });
