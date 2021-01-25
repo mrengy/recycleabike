@@ -8,31 +8,21 @@ get_header();
 	<div class="content-wrapper container single-page-container ">
 		<div class="row neve-child-wrap">
 				<div id="featured-container">
-					<!--
-					<div id="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
-					-->
-
-					<div id="featured-image">
-						<?php if ( function_exists( 'soliloquy' ) ) { soliloquy( 'homepage-slider', 'slug' ); } ?>
-					</div>
-					
-					<!--
-					<div id="featured-image">
-						<?php echo do_shortcode('[metaslider id="2601"]'); ?>
-					</div>
-					-->
-					<!--
-					<div id="featured-image">
-						<?php
-						echo do_shortcode('[smartslider3 slider="2"]');
-						?>
-					</div>
-					-->
-					<!--
-					<div id="featured-image">
-						<?php echo do_shortcode('[sp_wpcarousel id="2623"]'); ?>
-					</div>
-					-->
+					<?php
+					if ( function_exists( 'soliloquy' ) ){
+					?>
+						<div id="featured-image">
+							<?php
+								soliloquy( 'homepage-slider', 'slug' );
+							?>
+						</div>
+					<?php
+				  } else{
+					?>
+						<div id="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
+					<?php
+					}
+					?>
 					<div id="featured-caption" class="col-md-10">
 						<?php
 							$caption = get_post_custom_values( $key = 'Caption');
