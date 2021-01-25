@@ -6,16 +6,17 @@ jQuery(document).ready(function($){
     $(this).closest('li').find('ul.sub-menu').toggleClass('dropdown-open');
   });
 
-  //var definition for MutationObserver
-  var changingContainer = $('.soliloquy-viewport');
-  const config = { attributes:true};
-  observer.observe(changingContainer, config);
-  console.log('registered');
-});
+  //resize container for image slider
+  let $changingContainer = $('.soliloquy-viewport');
 
-//defining function outside of document ready
-var observer = new MutationObserver(function (mutationRecords, observer) {
-    mutationRecords.forEach(function (mutation) {
-        console.log("mutation change in ", mutation.type, " name: ",mutation.target);
-    });
+  const observer = new MutationObserver((ml, o) => {
+    for (const m of ml) {
+      console.log('The ' + m.attributeName + ' attribute was modified.');
+    }
+  });
+
+  observer.observe($changingContainer[0], {
+    attributes: true,
+    subtree: false
+  });
 });
