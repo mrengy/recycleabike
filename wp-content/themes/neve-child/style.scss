@@ -160,7 +160,7 @@ main{
 #featured-container{
   position: relative;
   overflow: visible;
-  min-height: 200px;
+  min-height: 144px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -174,7 +174,7 @@ main{
 }
 
 #featured-image {
-  height: 200px;
+  height: 144px;
   width: 100%;
   background-position: left;
   background-size: cover;
@@ -187,10 +187,6 @@ main{
   p {
     margin: 1em 0;
   }
-}
-
-.n2-ss-layers-container{
-  height: 340px !important;
 }
 
 #main-container{
@@ -348,7 +344,7 @@ a:hover .grid-name-background{
     background: inherit;
   }
   #featured-image, #featured-container {
-    height: 280px;
+    min-height: 186px;
   }
   #featured-caption {
     color: white;
