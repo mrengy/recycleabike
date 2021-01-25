@@ -6,30 +6,16 @@ jQuery(document).ready(function($){
     $(this).closest('li').find('ul.sub-menu').toggleClass('dropdown-open');
   });
 
-  //resize container for image slider
-
-  // Callback function to execute when mutations are observed
-  const callback = function(mutationsList, observer) {
-      // Use traditional 'for loops' for IE 11
-      for(const mutation of mutationsList) {
-          if (mutation.type === 'childList') {
-              console.log('A child node has been added or removed.');
-          }
-          else if (mutation.type === 'attributes') {
-              console.log('The ' + mutation.attributeName + ' attribute was modified.');
-          }
-      }
-  };
-
-  const observer = new MutationObserver(callback);
-
-  //set up your configuration
-  //this will watch to see if you insert or remove any children
-  const config = { attributes:true, subtree: false };
-
+  //var definition for MutationObserver
   var changingContainer = $('.soliloquy-viewport');
-
-  //start observing
+  const config = { attributes:true};
   observer.observe(changingContainer, config);
+  console.log('registered');
+});
 
+//defining function outside of document ready
+var observer = new MutationObserver(function (mutationRecords, observer) {
+    mutationRecords.forEach(function (mutation) {
+        console.log("mutation change in ", mutation.type, " name: ",mutation.target);
+    });
 });
