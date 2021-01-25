@@ -8,7 +8,7 @@ get_header();
 	<div class="content-wrapper container single-page-container ">
 		<div class="row neve-child-wrap">
 				<div id="featured-container">
-					<?php
+					<?php //show slider if the plugin is active. Otherwise, show the featured image
 					if ( function_exists( 'soliloquy' ) ){
 					?>
 						<div id="featured-image">
