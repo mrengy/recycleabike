@@ -6,17 +6,45 @@ jQuery(document).ready(function($){
     $(this).closest('li').find('ul.sub-menu').toggleClass('dropdown-open');
   });
 
-  //resize container for image slider
-  let $changingContainer = $('.soliloquy-viewport');
+  //define variable for changing container
+  var changingContainer;
+  var letSliderLoad = window.setTimeout((defineContainer), 500);
 
-  const observer = new MutationObserver((ml, o) => {
+  function defineContainer(){
+    changingContainer = $('.soliloquy-viewport');
+
+    const heightObserver = new MutationObserver((ml, o) => {
+      for (const m of ml) {
+        console.log('The ' + m.attributeName + ' attribute was modified.');
+      }
+    });
+
+    heightObserver.observe(changingContainer[0], {
+      attributes: true,
+      subtree: false
+    });
+  }
+
+  /*
+  let $featuredImage = $('#featured-image');
+  var changingContainer = $('.soliloquy-viewport');
+
+  //mutation observer to capture div when it's created
+  const childrenObserver = new MutationObserver((ml, o) => {
     for (const m of ml) {
-      console.log('The ' + m.attributeName + ' attribute was modified.');
+      changingContainer = $('.soliloquy-viewport');
     }
   });
 
-  observer.observe($changingContainer[0], {
-    attributes: true,
-    subtree: false
+  childrenObserver.observe($featuredImage[0], {
+    attributes: false,
+    subtree: true,
+    childList: true
   });
+  */
+
+  //resize container for image slider
+  //let $changingContainer = $('.soliloquy-viewport');
+
+
 });
