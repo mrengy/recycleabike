@@ -8,6 +8,7 @@ jQuery(document).ready(function($){
 
   //detecting when children are created
   const childrenObserver = new MutationObserver((ml, o) => {
+    matchHeight();
     defineContainer();
   });
 
@@ -39,8 +40,12 @@ jQuery(document).ready(function($){
   //set height of containers equal to soliloquy viewport height
   function matchHeight(){
     var soliloquy_viewport_height = $('.soliloquy-viewport').height();
+    /*
     $('#featured-image').css('min-height', soliloquy_viewport_height);
+    */
     $('#featured-container').css('min-height', soliloquy_viewport_height);
+  
+    $('#featured-image').height(soliloquy_viewport_height);
   }
 
 });
