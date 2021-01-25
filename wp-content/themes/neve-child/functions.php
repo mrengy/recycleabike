@@ -24,7 +24,7 @@ if ( function_exists( 'eae_encode_emails' ) )  {
 add_action( 'wp_enqueue_scripts', 'neve_child_enqueue_scripts');
 
 function neve_child_enqueue_scripts() {
-  wp_enqueue_script( 'open-children', get_stylesheet_directory_uri() . '/js/open-children.js', array ( 'jquery' ), 1.0, true);
+  wp_enqueue_script( 'neve-child', get_stylesheet_directory_uri() . '/js/neve-child.js', array ( 'jquery' ), 1.0, true);
 }
 
 //add google analytics if not on staging or local Sites

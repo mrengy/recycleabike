@@ -160,7 +160,7 @@ main{
 #featured-container{
   position: relative;
   overflow: visible;
-  min-height: 200px;
+  min-height: 144px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -174,7 +174,7 @@ main{
 }
 
 #featured-image {
-  height: 200px;
+  height: 144px;
   width: 100%;
   background-position: left;
   background-size: cover;
@@ -217,6 +217,10 @@ input[type="submit"]:hover{
 .header-menu-sidebar .nav-menu-primary ul li {
   text-align: left; }
 
+//slider
+.soliloquy-controls{
+  display:none !important;
+}
 //blog archive layout
 .archive-container{
   padding-top: 0;
@@ -344,7 +348,7 @@ a:hover .grid-name-background{
     background: inherit;
   }
   #featured-image, #featured-container {
-    height: 280px;
+    min-height: 186px;
   }
   #featured-caption {
     color: white;
@@ -402,7 +406,7 @@ a:hover .grid-name-background{
     clear: none;
   }
   #featured-image, #featured-container {
-    height: 340px;
+    min-height: 314px;
   }
   .neve-child-nowrap{
     display: flex;

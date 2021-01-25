@@ -8,7 +8,21 @@ get_header();
 	<div class="content-wrapper container single-page-container ">
 		<div class="row neve-child-wrap">
 				<div id="featured-container">
-					<div id="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
+					<?php //show slider if the plugin is active. Otherwise, show the featured image
+					if ( function_exists( 'soliloquy' ) ){
+					?>
+						<div id="featured-image">
+							<?php
+								soliloquy( 'homepage-slider', 'slug' );
+							?>
+						</div>
+					<?php
+				  } else{
+					?>
+						<div id="featured-image" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>')"></div>
+					<?php
+					}
+					?>
 					<div id="featured-caption" class="col-md-10">
 						<?php
 							$caption = get_post_custom_values( $key = 'Caption');
