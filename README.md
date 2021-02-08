@@ -12,6 +12,17 @@ To "watch" the minified CSS, run `make watch` from the command line in the neve-
 # Development Site
 http://devsite.recycleabike.org
 
-username: demo
+An independent installation of WordPress with its own database. This site is [set to automatically update every minute from the master branch in Github](https://stackoverflow.com/a/9006987/370407).
 
+username: demo
+password: demo123
+
+# Archive Site
+contains all the content that was on the site as of the end of 2020.
+
+An independent installation of WordPress with its own database, and some other non-WordPress content that was on the server.
+
+http://archive.recycleabike.org
+
+username: demo
 password: demo123
