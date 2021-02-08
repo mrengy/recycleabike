@@ -15,14 +15,16 @@ http://devsite.recycleabike.org
 An independent installation of WordPress with its own database. This site is [set to automatically update every minute from the master branch in Github](https://stackoverflow.com/a/9006987/370407).
 
 username: demo
+
 password: demo123
 
 # Archive Site
+http://archive.recycleabike.org
+
 contains all the content that was on the site as of the end of 2020.
 
 An independent installation of WordPress with its own database, and some other non-WordPress content that was on the server.
 
-http://archive.recycleabike.org
-
 username: demo
+
 password: demo123
