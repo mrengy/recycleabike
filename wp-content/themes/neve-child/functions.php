@@ -72,4 +72,13 @@ function neve_child_widgets_init() {
   ) );
 }
 add_action( 'widgets_init', 'neve_child_widgets_init' );
+
+function neve_child_read_more_args_filter($args) {
+  if ( isset($args['classes']) ) {
+    $args['classes'] .= 'read-more';
+  }
+  return $args;
+}
+// add a class to the "read more" links on the blog page to put them on their own line
+add_filter( 'neve_read_more_args', 'neve_child_read_more_args_filter');
 ?>
