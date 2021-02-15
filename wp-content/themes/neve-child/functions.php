@@ -74,7 +74,7 @@ function neve_child_widgets_init() {
 add_action( 'widgets_init', 'neve_child_widgets_init' );
 
 function neve_child_read_more_args_filter($args) {
-  if ( isset($args['classes']) ) {
+  if (isset($args['classes']) ) {
     $args['classes'] .= 'read-more';
   }
   return $args;
