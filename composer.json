@@ -8,7 +8,7 @@
     }
   ],
   "require": {
-    "wordpress": "5.5.*",
+    "johnpbloch/wordpress": ">5.5.1",
     "wpackagist-plugin/akismet": "4.1.6",
     "wpackagist-plugin/custom-field-suite": "2.6",
     "wpackagist-plugin/ewww-image-optimizer": "5.7.1",
