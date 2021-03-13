@@ -1,0 +1,71 @@
+{
+  "name": "mrengy/recycleabike",
+  "description": "Recycle-a-Bike website controlled with composer + wpackagist",
+  "authors": [
+    {
+      "name": "Mike Eng",
+      "email": "mrengy@gmail.com"
+    }
+  ],
+  "require": {
+    "wordpress": "5.5.*",
+    "wpackagist-plugin/w3-total-cache": "0.9.2",
+    "wpackagist-plugin/google-analytics-for-wordpress": "5.5.2"
+  },
+  "require-dev": {
+    "wpackagist-plugin/debug-bar": "0.8.2",
+    "wpackagist-plugin/debug-bar-console": "0.3"
+  },
+  "repositories":[
+      {
+          "type":"composer",
+          "url":"https://wpackagist.org"
+      },
+      {
+        "type"    : "package",
+        "package" : {
+          "name"    : "wordpress",
+          "type"    : "webroot",
+          "version" : "5.5.1",
+          "dist"    : {
+            "url"  : "https://github.com/WordPress/WordPress/archive/5.5.1.zip",
+            "type" : "zip"
+          },
+          "source" : {
+            "url"       : "https://github.com/WordPress/WordPress",
+            "type"      : "git",
+            "reference" : "5.5.1"
+          },
+          "require" : {
+            "fancyguy/webroot-installer" : "1.0.0"
+          }
+        }
+      },
+      {
+        "type": "composer",
+        "url": "https://languages.koodimonni.fi"
+      }
+  ],
+  "autoload": {
+      "psr-0": {
+          "Acme": "src/"
+      }
+  },
+  "config"      : {
+      "vendor-dir": "content/vendor"
+  },
+  "extra" : {
+    "installer-paths": {
+      "content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "content/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "webroot-dir"     : "wp",
+    "webroot-package" : "wordpress",
+    "wordpress-install-dir": "wp",
+    "dropin-paths": {
+      "content/languages/": ["vendor:koodimonni-language"],
+      "content/languages/plugins/": ["vendor:koodimonni-plugin-language"],
+      "content/languages/themes/": ["vendor:koodimonni-theme-language"]
+    }
+  }
+}
