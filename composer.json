@@ -51,10 +51,6 @@
             "fancyguy/webroot-installer" : "1.0.0"
           }
         }
-      },
-      {
-        "type": "composer",
-        "url": "https://languages.koodimonni.fi"
       }
   ],
   "autoload": {
