@@ -9,12 +9,23 @@
   ],
   "require": {
     "wordpress": "5.5.*",
-    "wpackagist-plugin/w3-total-cache": "0.9.2",
-    "wpackagist-plugin/google-analytics-for-wordpress": "5.5.2"
+    "wpackagist-plugin/akismet": "4.1.6",
+    "wpackagist-plugin/custom-field-suite": "2.6",
+    "wpackagist-plugin/ewww-image-optimizer": "5.7.1",
+    "wpackagist-plugin/fix-image-rotation": "2.2.1",
+    "wpackagist-plugin/mailchimp-for-wp": "4.8.1",
+    "wpackagist-plugin/postie": "1.9.53",
+    "wpackagist-plugin/really-simple-captcha": "2.0.2",
+    "wpackagist-plugin/soliloquy-lite": "2.6.1",
+    "wpackagist-plugin/show-current-template": "0.3.4",
+    "wpackagist-plugin/wp-retina-2x": "5.6.1",
+    "wpackagist-theme/neve": "2.8.2"
   },
   "require-dev": {
     "wpackagist-plugin/debug-bar": "0.8.2",
-    "wpackagist-plugin/debug-bar-console": "0.3"
+    "wpackagist-plugin/debug-bar-console": "0.3",
+    "wpackagist-plugin/simple-history": "2.37.2",
+    "wpackagist-plugin/wordpress-importer": "0.7"
   },
   "repositories":[
       {
