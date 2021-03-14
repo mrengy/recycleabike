@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3313d2ea8062da2062d3d2cf0d8682ef",
+    "content-hash": "f317434380e09809de498824e7ad951a",
     "packages": [
         {
             "name": "composer/installers",
@@ -156,20 +156,20 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "5.7.0",
+            "version": "5.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "22ea3c6aa631e296c528f58a67371fb2a5e674f2"
+                "reference": "0973abd5c01ecce0b60bc1c81a6dd072827de930"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/22ea3c6aa631e296c528f58a67371fb2a5e674f2",
-                "reference": "22ea3c6aa631e296c528f58a67371fb2a5e674f2",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/0973abd5c01ecce0b60bc1c81a6dd072827de930",
+                "reference": "0973abd5c01ecce0b60bc1c81a6dd072827de930",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "5.7.0",
+                "johnpbloch/wordpress-core": "5.5.1",
                 "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
                 "php": ">=5.6.20"
             },
@@ -198,20 +198,20 @@
                 "source": "http://core.trac.wordpress.org/browser",
                 "wiki": "http://codex.wordpress.org/"
             },
-            "time": "2021-03-09T20:32:28+00:00"
+            "time": "2020-09-01T19:07:41+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "5.7.0",
+            "version": "5.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "8b057056692ca196aaa7a7ddd915f29426922c6d"
+                "reference": "fa5bcb1579eae33baef6c04355f8d6657e5bd349"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/8b057056692ca196aaa7a7ddd915f29426922c6d",
-                "reference": "8b057056692ca196aaa7a7ddd915f29426922c6d",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/fa5bcb1579eae33baef6c04355f8d6657e5bd349",
+                "reference": "fa5bcb1579eae33baef6c04355f8d6657e5bd349",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +219,7 @@
                 "php": ">=5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "5.7.0"
+                "wordpress/core-implementation": "5.5.1"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -246,7 +246,7 @@
                 "source": "https://core.trac.wordpress.org/browser",
                 "wiki": "https://codex.wordpress.org/"
             },
-            "time": "2021-03-09T20:32:23+00:00"
+            "time": "2020-09-01T19:07:35+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -334,6 +334,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/akismet/"
+        },
+        {
+            "name": "wpackagist-plugin/broken-link-checker",
+            "version": "1.11.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/broken-link-checker/",
+                "reference": "tags/1.11.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/broken-link-checker.1.11.5.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/broken-link-checker/"
         },
         {
             "name": "wpackagist-plugin/custom-field-suite",
