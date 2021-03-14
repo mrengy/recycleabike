@@ -1,14 +1,8 @@
 {
   "name": "mrengy/recycleabike",
   "description": "Recycle-a-Bike website controlled with composer + wpackagist",
-  "authors": [
-    {
-      "name": "Mike Eng",
-      "email": "https://github.com/mrengy"
-    }
-  ],
   "require": {
-    "johnpbloch/wordpress": ">5.5.1",
+    "johnpbloch/wordpress": "5.5.1",
     "wpackagist-plugin/akismet": "4.1.6",
     "wpackagist-plugin/custom-field-suite": "2.6",
     "wpackagist-plugin/ewww-image-optimizer": "5.7.1",

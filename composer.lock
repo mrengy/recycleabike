@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45cd22112d22166fea3f19fe929b91fb",
+    "content-hash": "3313d2ea8062da2062d3d2cf0d8682ef",
     "packages": [
         {
             "name": "composer/installers",
@@ -303,6 +303,21 @@
             "time": "2020-04-16T21:44:57+00:00"
         },
         {
+            "name": "mrengy/recycleabike-theme",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:mrengy/recycleabike-theme.git",
+                "reference": "a488de0fd1d19321f06f34f347d1c87cafe88efd"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "default-branch": true,
+            "type": "wordpress-theme",
+            "time": "2021-03-14T02:23:48+00:00"
+        },
+        {
             "name": "wpackagist-plugin/akismet",
             "version": "4.1.6",
             "source": {
@@ -577,7 +592,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "mrengy/recycleabike-theme": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
