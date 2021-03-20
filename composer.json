@@ -47,10 +47,6 @@
             "fancyguy/webroot-installer" : "1.0.0"
           }
         }
-      },
-      {
-        "type": "git",
-        "url": "git@github.com:mrengy/recycleabike-theme.git"
       }
   ],
   "autoload": {
