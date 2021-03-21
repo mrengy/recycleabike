@@ -6,6 +6,8 @@ Recycle-a-Bike website
 ## Initial setup for local site
 _to be written_
 
+You may need to create [the default .htaccess file](https://wordpress.org/support/article/htaccess/#basic-wp) in your local top level directory.
+
 ## Keeping local site up to date
 _to be expanded_
 Run "composer update" after each "git pull"
