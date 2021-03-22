@@ -30,9 +30,10 @@
 #
 # -----------------------------------------------------------------
 
-# ignore everything in the root except the "wp-content" directory.
+# ignore everything in the root except the "wp-content" directory and composer files.
 /*
 !wp-content/
+!composer.json
 
 # ignore all files starting with .
 .*

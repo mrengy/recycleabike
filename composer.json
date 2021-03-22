@@ -1,0 +1,77 @@
+{
+  "name": "halles/wp-composer-site",
+  "description": "Basic template for creating a composer + wpackagist controlled site",
+
+  "require": {
+    "johnpbloch/wordpress": "5.6.*",
+    "wpackagist-plugin/akismet": "*",
+    "wpackagist-plugin/custom-field-suite": "2.6",
+    "wpackagist-plugin/ewww-image-optimizer": "5.7.1",
+    "wpackagist-plugin/fix-image-rotation": "2.2.1",
+    "wpackagist-plugin/mailchimp-for-wp": "4.8.1",
+    "wpackagist-plugin/postie": "1.9.53",
+    "wpackagist-plugin/really-simple-captcha": "2.0.2",
+    "wpackagist-plugin/soliloquy-lite": "2.6.1",
+    "wpackagist-plugin/show-current-template": "0.3.4",
+    "wpackagist-plugin/wp-retina-2x": "5.6.1",
+    "wpackagist-plugin/broken-link-checker": "1.11.5",
+    "wpackagist-plugin/simple-history": "2.37.2"
+  },
+  "require-dev": {
+    "wpackagist-plugin/debug-bar": "0.8.2",
+    "wpackagist-plugin/debug-bar-console": "0.3",
+    "wpackagist-plugin/wordpress-importer": "0.7"
+  },
+  "repositories":[
+      {
+          "type":"composer",
+          "url":"https://wpackagist.org"
+      },
+      {
+        "type"    : "package",
+        "package" : {
+          "name"    : "wordpress",
+          "type"    : "webroot",
+          "version" : "5.6.1",
+          "dist"    : {
+            "url"  : "https://github.com/WordPress/WordPress/archive/5.6.1.zip",
+            "type" : "zip"
+          },
+          "source" : {
+            "url"       : "https://github.com/WordPress/WordPress",
+            "type"      : "git",
+            "reference" : "5.6.1"
+          },
+          "require" : {
+            "fancyguy/webroot-installer" : "1.0.0"
+          }
+        }
+      },
+      {
+        "type": "composer",
+        "url": "https://languages.koodimonni.fi"
+      }
+  ],
+  "autoload": {
+      "psr-0": {
+          "Acme": "src/"
+      }
+  },
+  "config"      : {
+      "vendor-dir": "wp-content/vendor"
+  },
+  "extra" : {
+    "installer-paths": {
+      "wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "wp-content/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "webroot-dir"     : ".",
+    "webroot-package" : "wordpress",
+    "wordpress-install-dir": ".",
+    "dropin-paths": {
+      "wp-content/languages/": ["vendor:koodimonni-language"],
+      "wp-content/languages/plugins/": ["vendor:koodimonni-plugin-language"],
+      "wp-content/languages/themes/": ["vendor:koodimonni-theme-language"]
+    }
+  }
+}
