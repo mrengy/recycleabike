@@ -1,8 +1,16 @@
 {
+<<<<<<< HEAD
   "name": "mrengy/recycleabike",
   "description": "Recycle-a-Bike website controlled with composer + wpackagist",
   "require": {
     "johnpbloch/wordpress": "5.6.*",
+=======
+  "name": "halles/wp-composer-site",
+  "description": "Basic template for creating a composer + wpackagist controlled site",
+
+  "require": {
+    "johnpbloch/wordpress": "5.6.1",
+>>>>>>> composer-take-2
     "wpackagist-plugin/akismet": "*",
     "wpackagist-plugin/custom-field-suite": "2.6",
     "wpackagist-plugin/ewww-image-optimizer": "5.7.1",
@@ -13,12 +21,20 @@
     "wpackagist-plugin/soliloquy-lite": "2.6.1",
     "wpackagist-plugin/show-current-template": "0.3.4",
     "wpackagist-plugin/wp-retina-2x": "5.6.1",
+<<<<<<< HEAD
     "wpackagist-plugin/broken-link-checker": "1.11.5"
+=======
+    "wpackagist-plugin/broken-link-checker": "1.11.5",
+    "wpackagist-plugin/simple-history": "2.37.2"
+>>>>>>> composer-take-2
   },
   "require-dev": {
     "wpackagist-plugin/debug-bar": "0.8.2",
     "wpackagist-plugin/debug-bar-console": "0.3",
+<<<<<<< HEAD
     "wpackagist-plugin/simple-history": "2.37.2",
+=======
+>>>>>>> composer-take-2
     "wpackagist-plugin/wordpress-importer": "0.7"
   },
   "repositories":[
@@ -62,11 +78,15 @@
     },
     "webroot-dir"     : "wp",
     "webroot-package" : "wordpress",
+<<<<<<< HEAD
     "wordpress-install-dir": "wp",
     "dropin-paths": {
       "content/languages/": ["vendor:koodimonni-language"],
       "content/languages/plugins/": ["vendor:koodimonni-plugin-language"],
       "content/languages/themes/": ["vendor:koodimonni-theme-language"]
     }
+=======
+    "wordpress-install-dir": "wp"
+>>>>>>> composer-take-2
   }
 }

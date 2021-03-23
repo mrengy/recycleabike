@@ -1,15 +1,28 @@
-vendor
-.DS_Store
+# -----------------------------------------------------------------
+# .gitignore for WordPress
+# Bare Minimum Git
+# http://ironco.de/bare-minimum-git/
+# ver 20150227
+#
+# Modified by Mike Eng
+# -----------------------------------------------------------------
 
-/content/*
-!/content/themes/
+# ignore everything in the root except the "content" directory and starter files.
+/*
+!content/
+!composer.json
+!wp-config-sample.php
+!index.php
 
-/wp/
-wp-config.php
-/sandbox/
-robots.txt
+# ignore everything in the "content" directory, except:
+# "mu-plugins" directory
+# "themes" directory
+content/*
+!content/mu-plugins/
+!content/themes/
 
-#from bare minimum git https://gist.github.com/mombrea/935008c06dec974c698cc134$
+# ignore specific themes
+wp-content/themes/twenty*/
 
 # ignore all files starting with .
 .*
@@ -29,6 +42,7 @@ robots.txt
 # ignore OS generated files
 ehthumbs.db
 Thumbs.db
+.DS_Store
 
 # ignore Editor files
 *.sublime-project
@@ -57,3 +71,7 @@ Thumbs.db
 *.rar
 *.tar
 *.zip
+
+# ignore node dependency directories
+node_modules/
+

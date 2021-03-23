@@ -246,6 +246,10 @@ input[type="submit"]:hover{
   }
 }
 
+.read-more-wrapper{
+  padding:0 !important; //fixes github issue 161
+}
+
 //Homepage grid
 
 #homepage-grid-container{
