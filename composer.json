@@ -54,7 +54,7 @@
       }
   },
   "config"      : {
-      "vendor-dir": "wp-content/vendor"
+      "vendor-dir": "content/vendor"
   },
   "extra" : {
     "installer-paths": {
