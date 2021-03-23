@@ -3,7 +3,7 @@
   "description": "Basic template for creating a composer + wpackagist controlled site",
 
   "require": {
-    "johnpbloch/wordpress": "5.6.*",
+    "johnpbloch/wordpress": "5.6.1",
     "wpackagist-plugin/akismet": "*",
     "wpackagist-plugin/custom-field-suite": "2.6",
     "wpackagist-plugin/ewww-image-optimizer": "5.7.1",
@@ -58,16 +58,11 @@
   },
   "extra" : {
     "installer-paths": {
-      "wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
-      "wp-content/themes/{$name}/": ["type:wordpress-theme"]
+      "content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "content/themes/{$name}/": ["type:wordpress-theme"]
     },
-    "webroot-dir"     : ".",
+    "webroot-dir"     : "wp",
     "webroot-package" : "wordpress",
-    "wordpress-install-dir": ".",
-    "dropin-paths": {
-      "wp-content/languages/": ["vendor:koodimonni-language"],
-      "wp-content/languages/plugins/": ["vendor:koodimonni-plugin-language"],
-      "wp-content/languages/themes/": ["vendor:koodimonni-theme-language"]
-    }
+    "wordpress-install-dir": "wp"
   }
 }

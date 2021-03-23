@@ -6,7 +6,7 @@ Plugin URI: http://PostiePlugin.com/
 Tags: e-mail, email, post-by-email
 Requires PHP: 5.3
 Requires at least: 4.0
-Tested up to: 5.4
+Tested up to: 5.6
 Stable tag: 1.9.53
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
