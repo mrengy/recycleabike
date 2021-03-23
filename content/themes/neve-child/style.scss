@@ -1,0 +1,455 @@
+/*
+Theme Name: Neve Child
+description: >-
+  Child Theme of Neve
+Author: Mike Eng
+Author URI: http://mike-eng.com
+Template: neve
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: two-columns, responsive-layout
+Text Domain: neve-child
+*/
+
+/*#content .row {
+  max-width: 42em; }
+*/
+
+$white: #fff;
+$black: #000;
+$blackish: #404248;
+$blue-primary: #5cc8dd;
+$blue-light: #E5F3F4;
+$blue-mid: #03c2d6;
+$gray-light: #f2f2f2;
+$overlay: rgba(0, 0, 0, 0.7);
+
+
+$large-min: 1024px;
+$desktop-min: 945px;
+$tablet-min: 576px;
+
+$transition-time-hover: .2s;
+
+body{
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  clear: both;
+}
+
+#header-grid{
+    div.builder-item{
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
+figure.alignleft:first-child, figure.alignright:first-child {
+  margin-top: 0; }
+
+p {
+  clear: both; }
+
+
+/*desktop header*/
+nav.header--row.hide-on-mobile{
+  .item--inner{
+    padding: 0 2em;
+  }
+}
+
+.header-main-inner{
+  background-color: $blue-primary !important;
+}
+
+
+/*mobile header*/
+#header-menu-sidebar-bg{
+  padding-left: 2em;
+
+  .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a{
+    color: $blue-primary;
+  }
+  .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a:hover{
+    text-decoration: underline;
+  }
+  .builder-item--primary-menu .nav-menu-primary > .nav-ul li:not(.woocommerce-mini-cart-item) > a:active{
+    color: $blue-mid;
+  }
+}
+
+nav.header--row.hide-on-desktop{
+  .item--inner{
+    padding: 0;
+  }
+  .row--wrapper{
+    padding: 0 2em;
+  }
+}
+
+/*weird workaround for mobile safari*/
+.item--inner{
+  padding: 0;
+}
+
+.footer-bottom-inner{
+  background-color: $blue-light !important;
+  min-height: 2em;
+}
+
+main{
+  background: $blue-light;
+}
+
+/*overriding theme default styling*/
+.nv-page-title-wrap.nv-big-title .nv-page-title{
+  border-bottom: none;
+}
+
+.nv-sidebar-wrap.nv-right{
+  border-left: none;
+}
+
+.nv-index-posts:not(:only-child), .nv-single-page-wrap:not(:only-child), .nv-single-post-wrap:not(:only-child){
+  padding-right: 0;
+}
+
+#recent-blog-posts ul{
+  list-style: none;
+  padding: 0;
+}
+
+/*page layout*/
+.content-wrapper, .single-page-container, .archive-container, .single-post-container {
+  max-width: $large-min;
+  margin: auto;
+  background: white;
+}
+
+.nv-single-page-wrap, .nv-archive-wrap{
+  padding-left: 0;
+  padding-right: 0;
+  .nv-page-title {
+    padding: 0 2em;
+  }
+}
+
+.nv-single-post-wrap {
+  padding-left: 0;
+  padding-right: 0;
+  .nv-title-meta-wrap, #comments{
+    padding: 0 2em;
+  }
+}
+
+.nv-content-wrap, .article-content-col{
+  padding: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-top: 1em;
+}
+
+.neve-child-wrap, .neve-main > .container > .row.neve-child-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#featured-container{
+  position: relative;
+  overflow: visible;
+  min-height: 144px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+#featured-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#featured-image {
+  height: 144px;
+  width: 100%;
+  background-position: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#featured-caption {
+  padding: 0 2em;
+  background: $blue-light;
+  p {
+    margin: 1em 0;
+  }
+}
+
+#main-container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label{
+  display:block;
+}
+
+input[type="submit"]{
+  background-color: $blue-primary;
+  text-transform: none;
+}
+
+input[type="submit"]:hover{
+  background-color: $overlay;
+}
+
+.nv-sidebar-wrap{
+  max-width: 100%;
+  padding: 0 2em;
+  margin-bottom: 0;
+}
+
+.header-menu-sidebar .nav-menu-primary ul li {
+  text-align: left; }
+
+//slider
+.soliloquy-controls{
+  display:none !important;
+}
+//blog archive layout
+.archive-container{
+  padding-top: 0;
+}
+
+.blog .nv-page-title-wrap{
+  margin-top: 30px;
+}
+
+#blog-archive-container{
+  .row{
+    margin: 0;
+  }
+  article{
+    padding: 0;
+    margin: 0;
+  }
+  .article-content-col{
+    padding: 0;
+  }
+  .nv-meta-list{
+    padding: 0;
+  }
+}
+
+.read-more-wrapper{
+  padding:0 !important; //fixes github issue 161
+}
+
+//Homepage grid
+
+#homepage-grid-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
+  &::after{
+    content:none;
+  }
+}
+
+.nv-content-wrap a:not(.button):not(.wp-block-file__button).homepage-grid-item{
+  text-decoration: none;
+}
+
+.homepage-grid-item{
+  min-height: 140px;
+  display: flex;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin-bottom: 2em;
+}
+
+.grid-name-background{
+  background: rgba($blue-mid, .8);
+  color: $white ;
+  display: flex;
+  align-items: center;
+  transition-property: all;
+  transition-duration: $transition-time-hover;
+}
+
+a:hover .grid-name-background{
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+.homepage-grid-item:nth-child(even){
+  flex-direction:row-reverse;
+}
+
+.grid-name{
+  font-size: 2em;
+}
+
+#homepage-grid-about{
+  background-image: url(img/IMG_0004.jpg);
+}
+
+#homepage-grid-friends{
+  background-image: url(img/IMG_0629.jpg);
+}
+
+#homepage-grid-blog{
+  background-image: url(img/IMG_0070.jpg);
+}
+
+#homepage-grid-donate{
+  background-image: url(img/IMG_0221.jpg);
+}
+
+
+
+// footer
+#site-footer{
+  .content-wrapper{
+  background-color: $blue-light;
+  padding: 0 2em;
+  color: $blackish;
+  }
+
+  .widget{
+    background: none;
+    padding: 1em 0;
+  }
+
+  .footer-bottom-inner a:not(.button){
+    color: $blue-mid;
+  }
+
+  .widget-area{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  h2{
+    font-size: 1.5em;
+    color: $blackish;
+  }
+
+}
+
+// Tablet
+@media (min-width: $tablet-min) {
+  .wp-block-group:nth-child(even) {
+    background: inherit;
+  }
+  #featured-image, #featured-container {
+    min-height: 186px;
+  }
+  #featured-caption {
+    color: white;
+    position: absolute;
+    bottom: 0px;
+    z-index: 2;
+    background: $overlay;
+  }
+
+  //homepage grid Tablet
+  .homepage-grid-item:nth-child(even){
+    flex-direction:row;
+  }
+
+  .homepage-grid-item{
+    background-size: cover;
+    max-width: calc(50% - 1em);
+    flex-basis: calc(50% - 1em);
+    position: relative;
+    &::before{
+    	content: "";
+    	float: left;
+    	padding-top: 75%; /*sets height of grid item relative to its width*/
+    }
+  }
+
+  .grid-name-background{
+    height: 3em;
+    align-self: center;
+    justify-content: center;
+    transition-property: all;
+    transition-duration: $transition-time-hover;
+  }
+
+  a:hover .grid-name-background{
+    height: 100%;
+  }
+
+  .grid-name{
+    font-size: 1.5em;
+  }
+
+  //footer Tablet
+  #site-footer{
+    .widget{
+      width: calc(50% - 1em);
+    }
+  }
+
+}
+
+// Desktop
+@media (min-width: $desktop-min) {
+  p {
+    clear: none;
+  }
+  #featured-image, #featured-container {
+    min-height: 314px;
+  }
+  .neve-child-nowrap{
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .nv-sidebar-wrap{
+    max-width: 21em;
+  }
+  .widget, .widget:last-child{
+    padding: 1em 2em;
+    &:nth-child(even) {
+      background: $gray-light;
+    }
+  }
+  #content.neve-main > .container > .row > .col{
+    //replace this with the theme setting if we can find it
+    max-width: 70% !important;
+  }
+
+  //homepage grid Desktop
+  .homepage-grid-item::before{
+  	padding-top: 50%; /*sets height of grid item relative to its width*/
+  }
+
+  //footer Desktop
+  #site-footer{
+    .widget{
+      width: calc(33% - 1em);
+    }
+
+    #copyright{
+      text-align: right;
+    }
+  }
+}
+
+// Large
+  @media (min-width: $large-min) {
+    header .container {
+      max-width: 1024px;
+    }
+  }
