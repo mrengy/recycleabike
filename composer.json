@@ -3,8 +3,8 @@
   "description": "Recycle-a-Bike Website",
 
   "require": {
-    "johnpbloch/wordpress": "5.6.1",
-    "wpackagist-plugin/akismet": "4.1.6",
+    "johnpbloch/wordpress": "5.6.*",
+    "wpackagist-plugin/akismet": "4.1.8",
     "wpackagist-plugin/custom-field-suite": "2.6",
     "wpackagist-plugin/ewww-image-optimizer": "5.7.1",
     "wpackagist-plugin/fix-image-rotation": "2.2.1",
