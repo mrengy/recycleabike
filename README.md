@@ -6,6 +6,10 @@ Recycle-a-Bike website
 ## Initial setup for local site
 _to be written_
 
+Clone this repository
+
+Install [Composer](https://getcomposer.org/)
+
 You may need to create [the default .htaccess file](https://wordpress.org/support/article/htaccess/#basic-wp) in your local top level directory.
 
 ## Keeping local site up to date
@@ -19,9 +23,9 @@ Composer (see below) tracks a separate repository that contains the theme as a d
 # Technical details
 
 ## Composer
-This site uses Composer for dependency management and treats WordPress Core, plugins, and themes as dependencies. The goal is to enable automatic updates with minimal maintenance while also version controlling the active theme using Github.
+This site uses [Composer](https://getcomposer.org/) for dependency management and treats WordPress Core and plugins as dependencies. The goal is to enable automatic updates with minimal maintenance and easily keeping multiple environments (including local) in sync while also version controlling the active theme using Github.
 
-The approach follows [this tutorial](https://medium.com/@halles/wordpress-composer-git-1ccf29a9827a).
+The approach follows [the main idea in this Medium post](https://medium.com/@halles/wordpress-composer-git-1ccf29a9827a), except that the theme(s) and list of dependencies are all in the same repository. Also, there are some corrections (like up to date sources of dependencies) taken from [this Roots tutorial](https://roots.io/using-composer-with-wordpress/).
 
 
 
