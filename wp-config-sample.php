@@ -31,8 +31,8 @@ define('WPLANG', '');
 
 # Sets the site's admin location and the site's location, respectively
 
-define( 'WP_SITEURL', 'https://yourhost.io/wp' );
-define( 'WP_HOME', 'https://yourhost.io' );
+define( 'WP_SITEURL', 'https://www.yourhost.io/wp' );
+define( 'WP_HOME', 'https://www.yourhost.io' );
 
 
 # Sets the content location, related to what's defined on composer.json file
