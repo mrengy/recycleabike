@@ -4,6 +4,8 @@ Recycle-a-Bike website
 # Working locally
 
 ## Initial setup for local site
+This is assuming knowledge of [the basics of installing WordPress locally](https://wordpress.org/support/article/installing-wordpress-on-your-own-computer/).
+
 Clone this repository
 
 [Install Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
