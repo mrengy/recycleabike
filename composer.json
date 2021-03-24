@@ -3,24 +3,23 @@
   "description": "Recycle-a-Bike Website",
 
   "require": {
-    "johnpbloch/wordpress": "5.6.*",
-    "wpackagist-plugin/akismet": "4.1.8",
-    "wpackagist-plugin/custom-field-suite": "2.6",
-    "wpackagist-plugin/ewww-image-optimizer": "5.7.1",
-    "wpackagist-plugin/fix-image-rotation": "2.2.1",
-    "wpackagist-plugin/mailchimp-for-wp": "4.8.1",
-    "wpackagist-plugin/postie": "1.9.53",
-    "wpackagist-plugin/really-simple-captcha": "2.0.2",
+    "johnpbloch/wordpress": "5.7.*",
+    "wpackagist-plugin/akismet": "*",
+    "wpackagist-plugin/custom-field-suite": "*",
+    "wpackagist-plugin/ewww-image-optimizer": "*",
+    "wpackagist-plugin/fix-image-rotation": "*",
+    "wpackagist-plugin/mailchimp-for-wp": "*",
+    "wpackagist-plugin/really-simple-captcha": "*",
     "wpackagist-plugin/soliloquy-lite": "2.6.1",
-    "wpackagist-plugin/show-current-template": "0.3.4",
-    "wpackagist-plugin/wp-retina-2x": "5.6.1",
-    "wpackagist-plugin/broken-link-checker": "1.11.5",
-    "wpackagist-plugin/simple-history": "2.37.2"
+    "wpackagist-plugin/show-current-template": "*",
+    "wpackagist-plugin/wp-retina-2x": "*",
+    "wpackagist-plugin/broken-link-checker": "*",
+    "wpackagist-plugin/simple-history": "*"
   },
   "require-dev": {
-    "wpackagist-plugin/debug-bar": "0.8.2",
-    "wpackagist-plugin/debug-bar-console": "0.3",
-    "wpackagist-plugin/wordpress-importer": "0.7"
+    "wpackagist-plugin/debug-bar": "*",
+    "wpackagist-plugin/debug-bar-console": "*",
+    "wpackagist-plugin/wordpress-importer": "*"
   },
   "repositories":[
       {
