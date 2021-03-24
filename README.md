@@ -10,7 +10,7 @@ Clone this repository
 
 [Install Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
 
-From the root of the repository on your local machine, run [Composer's install command](https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies). This will install WordPress Core and the specified plugins. Note that if you installed Composer globally on your machine, the command is `composer install` but if you installed Composer locally within the repository, the command is `php composer.phar install`. 
+From the root of the repository on your local machine, run [Composer's install command](https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies). This will download files for WordPress Core and the specified plugins. Note that if you installed Composer globally on your machine, the command is `composer install` but if you installed Composer locally within the repository, the command is `php composer.phar install`. 
 
 You may need to create [the default .htaccess file](https://wordpress.org/support/article/htaccess/#basic-wp) in the root of your local repository.
 
