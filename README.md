@@ -14,6 +14,8 @@ You may need to create [the default .htaccess file](https://wordpress.org/suppor
 
 Create or import a local database (ask [Mike](https://github.com/mrengy) if you need a copy from production). Change whatever database contents need to be changed: references to the site url throughout, user passwords.
 
+Copy the contents of the production "uploads" directory to your local "contents" > "uploads" directory.
+
 Make a copy of wp-config-sample.php and name it wp-config.php. Edit it with your local database details. This is important - don't skip this step and run the browser-based install. The wp-config-sample.php has some lines that set custom paths for the WordPress installation that are required for the site to run.
 
 
