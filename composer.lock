@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "785b50c524afcbfce10f6040b5a70270",
+    "content-hash": "ebcd8726b6b953b3b089c070b684765c",
     "packages": [
         {
             "name": "composer/installers",
@@ -156,20 +156,20 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "5.6.1",
+            "version": "5.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "d7a597988102967cdfc28851b6b897d018613823"
+                "reference": "22ea3c6aa631e296c528f58a67371fb2a5e674f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/d7a597988102967cdfc28851b6b897d018613823",
-                "reference": "d7a597988102967cdfc28851b6b897d018613823",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/22ea3c6aa631e296c528f58a67371fb2a5e674f2",
+                "reference": "22ea3c6aa631e296c528f58a67371fb2a5e674f2",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "5.6.1",
+                "johnpbloch/wordpress-core": "5.7.0",
                 "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
                 "php": ">=5.6.20"
             },
@@ -198,20 +198,20 @@
                 "source": "http://core.trac.wordpress.org/browser",
                 "wiki": "http://codex.wordpress.org/"
             },
-            "time": "2021-02-03T21:27:41+00:00"
+            "time": "2021-03-09T20:32:28+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "5.6.1",
+            "version": "5.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "82592ec73d42cf784da38adb0028a24dbacab1b4"
+                "reference": "8b057056692ca196aaa7a7ddd915f29426922c6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/82592ec73d42cf784da38adb0028a24dbacab1b4",
-                "reference": "82592ec73d42cf784da38adb0028a24dbacab1b4",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/8b057056692ca196aaa7a7ddd915f29426922c6d",
+                "reference": "8b057056692ca196aaa7a7ddd915f29426922c6d",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +219,7 @@
                 "php": ">=5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "5.6.1"
+                "wordpress/core-implementation": "5.7.0"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -246,7 +246,7 @@
                 "source": "https://core.trac.wordpress.org/browser",
                 "wiki": "https://codex.wordpress.org/"
             },
-            "time": "2021-02-03T21:27:35+00:00"
+            "time": "2021-03-09T20:32:23+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -304,15 +304,15 @@
         },
         {
             "name": "wpackagist-plugin/akismet",
-            "version": "4.1.6",
+            "version": "4.1.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/akismet/",
-                "reference": "tags/4.1.6"
+                "reference": "tags/4.1.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/akismet.4.1.6.zip"
+                "url": "https://downloads.wordpress.org/plugin/akismet.4.1.9.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -322,15 +322,15 @@
         },
         {
             "name": "wpackagist-plugin/broken-link-checker",
-            "version": "1.11.5",
+            "version": "1.11.15",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/broken-link-checker/",
-                "reference": "tags/1.11.5"
+                "reference": "tags/1.11.15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/broken-link-checker.1.11.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/broken-link-checker.1.11.15.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -358,15 +358,15 @@
         },
         {
             "name": "wpackagist-plugin/ewww-image-optimizer",
-            "version": "5.7.1",
+            "version": "6.0.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/ewww-image-optimizer/",
-                "reference": "tags/5.7.1"
+                "reference": "tags/6.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/ewww-image-optimizer.5.7.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/ewww-image-optimizer.6.0.3.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -376,15 +376,15 @@
         },
         {
             "name": "wpackagist-plugin/fix-image-rotation",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/fix-image-rotation/",
-                "reference": "tags/2.2.1"
+                "reference": "tags/2.2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/fix-image-rotation.2.2.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/fix-image-rotation.2.2.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -394,15 +394,15 @@
         },
         {
             "name": "wpackagist-plugin/mailchimp-for-wp",
-            "version": "4.8.1",
+            "version": "4.8.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/mailchimp-for-wp/",
-                "reference": "tags/4.8.1"
+                "reference": "tags/4.8.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/mailchimp-for-wp.4.8.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/mailchimp-for-wp.4.8.3.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -411,34 +411,16 @@
             "homepage": "https://wordpress.org/plugins/mailchimp-for-wp/"
         },
         {
-            "name": "wpackagist-plugin/postie",
-            "version": "1.9.53",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/postie/",
-                "reference": "tags/1.9.53"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/postie.1.9.53.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/postie/"
-        },
-        {
             "name": "wpackagist-plugin/really-simple-captcha",
-            "version": "2.0.2",
+            "version": "2.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/really-simple-captcha/",
-                "reference": "tags/2.0.2"
+                "reference": "tags/2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/really-simple-captcha.2.0.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/really-simple-captcha.2.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -448,15 +430,15 @@
         },
         {
             "name": "wpackagist-plugin/show-current-template",
-            "version": "0.3.4",
+            "version": "0.4.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/show-current-template/",
-                "reference": "tags/0.3.4"
+                "reference": "tags/0.4.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/show-current-template.0.3.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/show-current-template.0.4.5.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -466,15 +448,15 @@
         },
         {
             "name": "wpackagist-plugin/simple-history",
-            "version": "2.37.2",
+            "version": "2.41.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/simple-history/",
-                "reference": "tags/2.37.2"
+                "reference": "tags/2.41.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/simple-history.2.37.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/simple-history.2.41.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -502,15 +484,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-retina-2x",
-            "version": "5.6.1",
+            "version": "6.1.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-retina-2x/",
-                "reference": "tags/5.6.1"
+                "reference": "tags/6.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-retina-2x.5.6.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-retina-2x.6.1.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -522,15 +504,15 @@
     "packages-dev": [
         {
             "name": "wpackagist-plugin/debug-bar",
-            "version": "0.8.2",
+            "version": "1.1.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/debug-bar/",
-                "reference": "tags/0.8.2"
+                "reference": "tags/1.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar.0.8.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/debug-bar.1.1.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
