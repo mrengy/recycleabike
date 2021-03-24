@@ -1,6 +1,6 @@
 {
-  "name": "halles/wp-composer-site",
-  "description": "Basic template for creating a composer + wpackagist controlled site",
+  "name": "mrengy/recycleabike",
+  "description": "Recycle-a-Bike Website",
 
   "require": {
     "johnpbloch/wordpress": "5.6.1",

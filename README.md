@@ -45,7 +45,7 @@ To "watch" the minified CSS, run `make watch` from the command line in the neve-
 # Development Site
 http://devsite.recycleabike.org
 
-An independent installation of WordPress with its own database. This site is [set to automatically update every minute from the master branch in Github](https://stackoverflow.com/a/9006987/370407).
+An independent installation of WordPress with its own database. This site is [set to automatically pull every 5 minutes from the master branch in Github](https://stackoverflow.com/a/9006987/370407) and automatically run a `composer update` command to update all dependencies following each pull from Github.
 
 htaccess username: demo
 
