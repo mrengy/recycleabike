@@ -4,21 +4,22 @@ Recycle-a-Bike website
 # Working locally
 
 ## Initial setup for local site
-_to be written_
-
 Clone this repository
 
-Install [Composer](https://getcomposer.org/)
+[Install Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
 
-You may need to create [the default .htaccess file](https://wordpress.org/support/article/htaccess/#basic-wp) in your local top level directory.
+From the root of the repository on your local machine, run [Composer's install command](https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies). This will install WordPress Core and the specified plugins. Note that if you installed Composer globally on your machine, the command is `composer install` but if you installed Composer locally within the repository, the command is `php composer.phar install`. 
+
+You may need to create [the default .htaccess file](https://wordpress.org/support/article/htaccess/#basic-wp) in the root of your local repository.
+
+Create or import a local database (ask [Mike](https://github.com/mrengy) if you need a copy from production). Change whatever database contents need to be changed: references to the site url throughout, user passwords.
+
+Make a copy of wp-config-sample.php and name it wp-config.php. Edit it with your local database details. This is important - don't skip this step and run the browser-based install. The wp-config-sample.php has some lines that set custom paths for the WordPress installation that are required for the site to run.
+
+
 
 ## Keeping local site up to date
-_to be expanded_
-Run "composer update" after each "git pull"
-
-## Working with the theme
-_to be expanded_
-Composer (see below) tracks a separate repository that contains the theme as a dependency: [recycleabike_theme](https://github.com/mrengy/recycleabike-theme). Edit the code in that repository. Running "composer update" from the root will pull that repository along with all other dependencies.
+Run "git pull" in the local root of the repository as you would normally. In order to update dependencies (which may have changed in the code), run [Composer Update](https://getcomposer.org/doc/01-basic-usage.md#updating-dependencies-to-their-latest-versions). (again, note that if you installed Composer locally rather than globally on your machine, the command is `php composer.phar update` )
 
 # Technical details
 
@@ -42,17 +43,17 @@ http://devsite.recycleabike.org
 
 An independent installation of WordPress with its own database. This site is [set to automatically update every minute from the master branch in Github](https://stackoverflow.com/a/9006987/370407).
 
-username: demo
+htaccess username: demo
 
 password: demo123
 
 # Archive Site
 http://archive.recycleabike.org
 
-contains all the content that was on the site as of the end of 2020.
+contains all the content that was on the site as of the end of 2020, before this overhaul began.
 
 An independent installation of WordPress with its own database, and some other non-WordPress content that was on the server.
 
-username: demo
+htaccess username: demo
 
 password: demo123
