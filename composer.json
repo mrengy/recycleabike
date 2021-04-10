@@ -14,7 +14,8 @@
     "wpackagist-plugin/show-current-template": "*",
     "wpackagist-plugin/wp-retina-2x": "*",
     "wpackagist-plugin/broken-link-checker": "*",
-    "wpackagist-plugin/simple-history": "*"
+    "wpackagist-plugin/simple-history": "*",
+    "wpackagist-plugin/jetpack": "*"
   },
   "require-dev": {
     "wpackagist-plugin/debug-bar": "*",

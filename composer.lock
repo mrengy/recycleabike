@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ebcd8726b6b953b3b089c070b684765c",
+    "content-hash": "90921d2c16e62e2dbca21f465748e772",
     "packages": [
         {
             "name": "composer/installers",
@@ -358,15 +358,15 @@
         },
         {
             "name": "wpackagist-plugin/ewww-image-optimizer",
-            "version": "6.0.3",
+            "version": "6.1.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/ewww-image-optimizer/",
-                "reference": "tags/6.0.3"
+                "reference": "tags/6.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/ewww-image-optimizer.6.0.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/ewww-image-optimizer.6.1.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -391,6 +391,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/fix-image-rotation/"
+        },
+        {
+            "name": "wpackagist-plugin/jetpack",
+            "version": "9.6",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/jetpack/",
+                "reference": "tags/9.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/jetpack.9.6.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/jetpack/"
         },
         {
             "name": "wpackagist-plugin/mailchimp-for-wp",
@@ -448,15 +466,15 @@
         },
         {
             "name": "wpackagist-plugin/simple-history",
-            "version": "2.41.2",
+            "version": "2.42.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/simple-history/",
-                "reference": "tags/2.41.2"
+                "reference": "tags/2.42.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/simple-history.2.41.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/simple-history.2.42.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
