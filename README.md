@@ -42,7 +42,16 @@ Edit code in the .scss file rather than editing .css files directly.
 To build the debug CSS and minified CSS, run `make` from the command line in the neve-child directory.
 To "watch" the minified CSS, run `make watch` from the command line in the neve-child directory.
 
+# Automatic WordPress updates
+
+The below sites and also the production site are set to allow WordPress core and select plugins to automatically update. 
+
+There is a must-use plugin that is required to enable automatic updates with git, following [this approach](https://wordpress.org/support/article/configuring-automatic-background-updates/#core-updates-via-filter).
+
+Plugins automatically update as set in wp-admin on each site.
+
 # Development Site
+
 http://devsite.recycleabike.org
 
 An independent installation of WordPress with its own database. This site is [set to automatically pull every 5 minutes from the master branch in Github](https://stackoverflow.com/a/9006987/370407) and automatically run a `composer update` command to update all dependencies following each pull from Github.
