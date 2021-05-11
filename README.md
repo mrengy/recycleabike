@@ -44,9 +44,9 @@ To "watch" the minified CSS, run `make watch` from the command line in the neve-
 
 # Automatic WordPress updates
 
-The below sites and also the production site are set to allow WordPress core and select plugins to automatically update. 
+The below sites and also the production site are set to allow WordPress core and plugins to automatically update. 
 
-There is a must-use plugin that is required to enable automatic updates with git, following [this approach](https://wordpress.org/support/article/configuring-automatic-background-updates/#core-updates-via-filter).
+WP core automatic updates are set in wp-config.php. Also, there is a must-use plugin that is required to enable WP core automatic updates with git, following [this approach](https://wordpress.org/support/article/configuring-automatic-background-updates/#core-updates-via-filter).
 
 Plugins automatically update as set in wp-admin on each site.
 
