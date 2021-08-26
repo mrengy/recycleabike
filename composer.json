@@ -10,7 +10,7 @@
     "wpackagist-plugin/fix-image-rotation": "*",
     "wpackagist-plugin/mailchimp-for-wp": "*",
     "wpackagist-plugin/really-simple-captcha": "*",
-    "wpackagist-plugin/soliloquy-lite": "2.6.1",
+    "wpackagist-plugin/soliloquy-lite": "2.6.2",
     "wpackagist-plugin/show-current-template": "*",
     "wpackagist-plugin/wp-retina-2x": "*",
     "wpackagist-plugin/broken-link-checker": "*",
